@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
+import ServicesSection from "@/components/ServicesSection";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 
@@ -9,7 +9,7 @@ export default function Home() {
       <main className="flex flex-col">
         <Navbar />
         <Hero />
-        {/* <Services /> */}
+        <ServicesSection />
       </main>
     </div>
   );
