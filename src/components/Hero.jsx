@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section className="relative  pt-32 pb-24 overflow-hidden mt-10 bg-transparent">
       <HeroFiberLines />
-      <div className="max-w-[min(100%,2040px)] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div className="max-w-[1700px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         {/* Left Content */}
         <div className="lg:col-span-6 flex flex-col gap-6">
           <div className="flex gap-3">
@@ -389,7 +389,7 @@ export default function Hero() {
                 {[
                   <span
                     key="moc2"
-                    className="flex flex-col items-center gap-1 min-w-[56px]"
+                    className="flex flex-col items-center gap-1 min-w-14"
                   >
                     <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none">
                       <circle
@@ -421,7 +421,7 @@ export default function Hero() {
                   </span>,
                   <span
                     key="itpc2"
-                    className="flex flex-col items-center gap-1 min-w-[56px]"
+                    className="flex flex-col items-center gap-1 min-w-14"
                   >
                     <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none">
                       <circle
@@ -449,7 +449,7 @@ export default function Hero() {
                   </span>,
                   <span
                     key="cmc2"
-                    className="flex flex-col items-center gap-1 min-w-[56px]"
+                    className="flex flex-col items-center gap-1 min-w-14"
                   >
                     <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none">
                       <circle
@@ -475,7 +475,7 @@ export default function Hero() {
                       CMC
                     </span>
                   </span>,
-                  <span key="cisco2" className="flex items-center min-w-[64px]">
+                  <span key="cisco2" className="flex items-center min-w-16">
                     <svg viewBox="0 0 90 36" className="h-7 w-auto" fill="none">
                       <g fill="#049fd9">
                         <rect x="0" y="12" width="8" height="12" rx="2" />
@@ -498,7 +498,7 @@ export default function Hero() {
                   </span>,
                   <span
                     key="mikrotik2"
-                    className="flex items-center min-w-[80px]"
+                    className="flex items-center min-w-20"
                   >
                     <svg viewBox="0 0 120 32" className="h-7 w-auto">
                       <text
@@ -525,7 +525,7 @@ export default function Hero() {
                   </span>,
                   <span
                     key="ubiquiti2"
-                    className="flex flex-col items-center gap-0.5 min-w-[56px]"
+                    className="flex flex-col items-center gap-0.5 min-w-14"
                   >
                     <svg viewBox="0 0 40 44" className="h-9 w-auto" fill="none">
                       <path
@@ -550,7 +550,7 @@ export default function Hero() {
                   </span>,
                   <span
                     key="google2"
-                    className="flex items-center min-w-[80px]"
+                    className="flex items-center min-w-20"
                   >
                     <svg viewBox="0 0 120 40" className="h-8 w-auto">
                       <text
@@ -571,7 +571,7 @@ export default function Hero() {
                   </span>,
                   <span
                     key="youtube2"
-                    className="flex items-center min-w-[96px]"
+                    className="flex items-center min-w-24"
                   >
                     <svg
                       viewBox="0 0 130 32"
@@ -601,7 +601,7 @@ export default function Hero() {
                   </span>,
                   <span
                     key="meta2"
-                    className="flex flex-col items-center gap-0.5 min-w-[52px]"
+                    className="flex flex-col items-center gap-0.5 min-w-13"
                   >
                     <svg viewBox="0 0 60 36" className="h-8 w-auto" fill="none">
                       <path
@@ -627,7 +627,7 @@ export default function Hero() {
                       Meta
                     </span>
                   </span>,
-                  <span key="apple2" className="flex items-center min-w-[36px]">
+                  <span key="apple2" className="flex items-center min-w-9">
                     <svg
                       viewBox="0 0 32 38"
                       className="h-9 w-auto"

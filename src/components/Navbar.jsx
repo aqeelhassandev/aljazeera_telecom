@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <div className="fixed top-0 z-50 w-full bg-white border-b border-zinc-100 shadow-xs">
       {/* Main Navbar */}
-      <nav className="max-w-[min(100%,2040px)] mx-auto px-6 py-5">
+      <nav className="max-w-[1700px] mx-auto px-6 py-5">
         <div className="flex gap-6 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">

@@ -22,7 +22,8 @@ export default function ServicesSection() {
     {
       id: 0,
       title: "FTTx",
-      description: "Ultra-fast fiber-to-the-premises internet delivering reliable, high-speed connectivity for homes and businesses.",
+      description:
+        "Ultra-fast fiber-to-the-premises internet delivering reliable, high-speed connectivity for homes and businesses.",
       image: "/service_fttx.png",
       icon: <Zap className="w-5 h-5" />,
       tag: "Fiber",
@@ -30,7 +31,8 @@ export default function ServicesSection() {
     {
       id: 1,
       title: "Wireless",
-      description: "Cutting-edge wireless solutions providing seamless coverage and high-speed connectivity across your entire premises.",
+      description:
+        "Cutting-edge wireless solutions providing seamless coverage and high-speed connectivity across your entire premises.",
       image: "/service_wireless.png",
       icon: <Wifi className="w-5 h-5" />,
       tag: "Wireless",
@@ -38,7 +40,8 @@ export default function ServicesSection() {
     {
       id: 2,
       title: "Software Solutions",
-      description: "Custom software development and enterprise solutions tailored to streamline your business operations.",
+      description:
+        "Custom software development and enterprise solutions tailored to streamline your business operations.",
       image: "/service_software.png",
       icon: <Code className="w-5 h-5" />,
       tag: "Software",
@@ -46,7 +49,8 @@ export default function ServicesSection() {
     {
       id: 3,
       title: "VoIP",
-      description: "Feature-rich digital telephony systems delivering crystal-clear voice communication for modern businesses.",
+      description:
+        "Feature-rich digital telephony systems delivering crystal-clear voice communication for modern businesses.",
       image: "/service_tech_support.png",
       icon: <Wrench className="w-5 h-5" />,
       tag: "VoIP",
@@ -54,7 +58,8 @@ export default function ServicesSection() {
     {
       id: 4,
       title: "Cyber Security",
-      description: "Comprehensive cybersecurity services protecting your digital infrastructure against evolving threats 24/7.",
+      description:
+        "Comprehensive cybersecurity services protecting your digital infrastructure against evolving threats 24/7.",
       image: "/service_it_consulting.png",
       icon: <Shield className="w-5 h-5" />,
       tag: "Security",
@@ -62,7 +67,8 @@ export default function ServicesSection() {
     {
       id: 5,
       title: "Hosting",
-      description: "Reliable cloud and dedicated hosting solutions with maximum uptime guarantees and enterprise-grade security.",
+      description:
+        "Reliable cloud and dedicated hosting solutions with maximum uptime guarantees and enterprise-grade security.",
       image: "/service_cloud_migration.png",
       icon: <Server className="w-5 h-5" />,
       tag: "Hosting",
@@ -70,7 +76,8 @@ export default function ServicesSection() {
     {
       id: 6,
       title: "Network Consulting",
-      description: "Expert network design, implementation, and optimization services to build a robust digital foundation.",
+      description:
+        "Expert network design, implementation, and optimization services to build a robust digital foundation.",
       image: "/service_it_consulting.png",
       icon: <Network className="w-5 h-5" />,
       tag: "Network",
@@ -78,7 +85,8 @@ export default function ServicesSection() {
     {
       id: 7,
       title: "SBS for Businesses",
-      description: "Scalable business solutions designed to integrate accounting, HR, and operations into a unified platform.",
+      description:
+        "Scalable business solutions designed to integrate accounting, HR, and operations into a unified platform.",
       image: "/service_tech_support.png",
       icon: <Calculator className="w-5 h-5" />,
       tag: "Business",
@@ -111,7 +119,10 @@ export default function ServicesSection() {
   const activeCardIndex = displayIndex + 1;
 
   // Slice the 3 services to show based on current display index
-  const visibleServices = services.slice(displayIndex, displayIndex + VISIBLE_COUNT);
+  const visibleServices = services.slice(
+    displayIndex,
+    displayIndex + VISIBLE_COUNT,
+  );
 
   const progress = maxStartIndex > 0 ? startIndex / maxStartIndex : 0;
 
@@ -142,8 +153,8 @@ export default function ServicesSection() {
               </h3>
               <p className="text-sm md:text-base text-zinc-400 leading-relaxed">
                 No matter the issue, we've got the fix quick, clean, and with
-                zero hassle. From daily tech glitches to long-term IT
-                strategy, our services keep you running smooth.
+                zero hassle. From daily tech glitches to long-term IT strategy,
+                our services keep you running smooth.
               </p>
             </div>
 
@@ -152,7 +163,10 @@ export default function ServicesSection() {
                 asChild
                 className="rounded-full bg-[#1d4ed8] hover:bg-blue-700 px-6 py-2.5 h-auto text-sm font-semibold shadow-lg hover:shadow-blue-500/20 transition-all duration-500"
               >
-                <Link className="w-fit flex justify-center items-center gap-2" href="/services">
+                <Link
+                  className="w-fit flex justify-center items-center gap-2"
+                  href="/services"
+                >
                   All service
                   <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -186,8 +200,9 @@ export default function ServicesSection() {
         {/* Carousel Grid with Fade Animation */}
         <div className="relative">
           <div
-            className={`grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch transition-opacity duration-300 ease-in-out ${isFading ? "opacity-0" : "opacity-100"
-              }`}
+            className={`grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch transition-opacity duration-300 ease-in-out ${
+              isFading ? "opacity-0" : "opacity-100"
+            }`}
           >
             {visibleServices.map((service, index) => {
               const actualIndex = displayIndex + index;
@@ -195,10 +210,11 @@ export default function ServicesSection() {
               return (
                 <div
                   key={service.id}
-                  className={`relative overflow-hidden rounded-[32px] p-4 flex flex-col justify-between min-h-115 h-full transition-all duration-500 ease-out border ${isActive
-                    ? "bg-white border-white text-zinc-900 shadow-2xl shadow-blue-950/40 scale-100"
-                    : "bg-[#081a36]/60 border-blue-900/30 text-white hover:border-blue-700/50 hover:bg-[#081a36]/90 scale-[0.96] opacity-80"
-                    }`}
+                  className={`relative overflow-hidden rounded-[32px] p-4 flex flex-col justify-between min-h-115 h-full transition-all duration-500 ease-out border ${
+                    isActive
+                      ? "bg-white border-white text-zinc-900 shadow-2xl shadow-blue-950/40 scale-100 mb-10"
+                      : "bg-[#081a36]/60 border-blue-900/30 text-white hover:border-blue-700/50 mt-14 hover:bg-[#081a36]/90 scale-[0.96] opacity-80"
+                  }`}
                 >
                   {/* Image */}
                   <div className="relative w-full h-60 z-0">
@@ -207,27 +223,37 @@ export default function ServicesSection() {
                       alt={service.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className={`object-cover transition-all duration-500 rounded-[32px] ${isActive ? "scale-101" : "brightness-[0.8] contrast-[1.05]"
-                        }`}
+                      className={`object-cover transition-all duration-500 rounded-[32px] ${
+                        isActive
+                          ? "scale-101"
+                          : "brightness-[0.8] contrast-[1.05]"
+                      }`}
                     />
 
-                    {isActive && (
+                    {isActive ? (
                       <>
                         <div className="absolute bg-transparent w-10.75 h-10.75 rounded-tl-[24px] shadow-[-12px_-14px_0_0_white] -top-0.5 left-17" />
                         <div className="absolute bg-transparent w-10.75 h-10.75 rounded-tl-[24px] shadow-[-12px_-14px_0_0_white] top-17 left-[-2.7px]" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="absolute bg-transparent w-10.75 h-10.75 rounded-tl-[24px] shadow-[-12px_-14px_0_0_#061833] -top-0.5 left-17" />
+                        <div className="absolute bg-transparent w-10.75 h-10.75 rounded-tl-[24px] shadow-[-12px_-14px_0_0_#061833] top-17 left-[-2.7px]" />
                       </>
                     )}
 
                     {/* Icon wrapper */}
                     <div
-                      className={`absolute -top-3 -left-3 p-3.5 pb-4 pr-4 rounded-br-[24px] z-10 self-start transition-colors duration-500 ${isActive ? "bg-white" : "bg-[#061833]"
-                        }`}
+                      className={`absolute -top-3 -left-3 p-3.5 pb-4 pr-4 rounded-br-[24px] z-10 self-start transition-colors duration-500 ${
+                        isActive ? "bg-white" : "bg-[#061833]"
+                      }`}
                     >
                       <div
-                        className={`p-4 rounded-2xl flex items-center justify-center transition-colors duration-500 ${isActive
-                          ? "bg-[#1d4ed8]"
-                          : "bg-blue-600/30 border border-blue-500/20 backdrop-blur-sm"
-                          }`}
+                        className={`p-4 rounded-2xl flex items-center justify-center transition-colors duration-500 ${
+                          isActive
+                            ? "bg-[#1d4ed8]"
+                            : "bg-blue-600/30 border border-blue-500/20 backdrop-blur-sm"
+                        }`}
                       >
                         {React.cloneElement(service.icon, {
                           className: `w-5 h-5 ${isActive ? "text-white" : "text-blue-400"}`,
@@ -240,14 +266,16 @@ export default function ServicesSection() {
                   <div className="relative z-10 flex flex-col gap-6 mt-6 p-4">
                     <div className="flex flex-col gap-3">
                       <h4
-                        className={`text-xl font-bold tracking-tight transition-colors duration-500 max-w-[90%] ${isActive ? "text-zinc-900" : "text-white"
-                          }`}
+                        className={`text-xl font-bold tracking-tight transition-colors duration-500 max-w-[90%] ${
+                          isActive ? "text-zinc-900" : "text-white"
+                        }`}
                       >
                         {service.title}
                       </h4>
                       <p
-                        className={`text-sm leading-relaxed transition-colors duration-500 max-w-[95%] ${isActive ? "text-zinc-600" : "text-zinc-400"
-                          }`}
+                        className={`text-sm leading-relaxed transition-colors duration-500 max-w-[95%] ${
+                          isActive ? "text-zinc-600" : "text-zinc-400"
+                        }`}
                       >
                         {service.description}
                       </p>
@@ -256,12 +284,16 @@ export default function ServicesSection() {
                     <div>
                       <Button
                         asChild
-                        className={`rounded-full px-5 py-2.5 h-auto text-sm  font-semibold transition-all duration-500 ${isActive
-                          ? "bg-brand-secondary1 text-white hover:bg-blue-700 shadow-md"
-                          : "bg-brand-primary border border-white/10 text-white hover:bg-white/10"
-                          }`}
+                        className={`rounded-full px-5 py-2.5 h-auto text-sm  font-semibold transition-all duration-500 ${
+                          isActive
+                            ? "bg-brand-secondary1 text-white hover:bg-blue-700 shadow-md"
+                            : "bg-brand-primary border border-white/10 text-white hover:bg-white/10"
+                        }`}
                       >
-                        <Link className="w-fit flex justify-center items-center gap-2" href={`/services/${service.id}`}>
+                        <Link
+                          className="w-fit flex justify-center items-center gap-2"
+                          href={`/services/${service.id}`}
+                        >
                           Get Started
                           <ArrowRight className="w-4 h-4" />
                         </Link>
@@ -286,7 +318,8 @@ export default function ServicesSection() {
               />
             </div>
             <span className="text-xs font-medium text-zinc-400 tabular-nums shrink-0">
-              {String(startIndex + 1).padStart(2, "0")} / {String(services.length - VISIBLE_COUNT + 1).padStart(2, "0")}
+              {String(startIndex + 1).padStart(2, "0")} /{" "}
+              {String(services.length - VISIBLE_COUNT + 1).padStart(2, "0")}
             </span>
           </div>
 
@@ -298,8 +331,11 @@ export default function ServicesSection() {
                 type="button"
                 onClick={() => handleNavigate(i)}
                 aria-label={`Go to slide ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-500 ${i === startIndex ? "w-6 bg-brand-secondary1" : "w-1.5 bg-white/20 hover:bg-white/40"
-                  }`}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  i === startIndex
+                    ? "w-6 bg-brand-secondary1"
+                    : "w-1.5 bg-white/20 hover:bg-white/40"
+                }`}
               />
             ))}
           </div>
