@@ -1,10 +1,58 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail, ArrowRight, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@base-ui/react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+
+function AnimatedCounter({ value }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const [count, setCount] = useState("");
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const numberMatch = value.match(/[\d.]+/);
+    if (!numberMatch) {
+      setCount(value);
+      return;
+    }
+
+    const targetNumber = parseFloat(numberMatch[0]);
+    const isFloat = numberMatch[0].includes(".");
+    const suffix = value.replace(numberMatch[0], "");
+
+    let start = 0;
+    const duration = 2000;
+    const startTime = performance.now();
+
+    function updateCount(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const easeProgress = progress * (2 - progress);
+      const current = start + easeProgress * (targetNumber - start);
+
+      if (isFloat) {
+        setCount(current.toFixed(1) + suffix);
+      } else {
+        setCount(Math.floor(current) + suffix);
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCount);
+      } else {
+        setCount(value);
+      }
+    }
+
+    requestAnimationFrame(updateCount);
+  }, [isInView, value]);
+
+  return <span ref={ref}>{count || "0"}</span>;
+}
 
 const stats = [
   { value: "490M+", label: "happy Clients" },
@@ -34,27 +82,6 @@ const timeline = [
   },
 ];
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    label: "ADDRESS",
-    value: "Iraq Baghdad, Karrada Al-wehda District",
-    href: "https://maps.google.com/?q=Karrada,Baghdad,Iraq",
-  },
-  {
-    icon: Phone,
-    label: "PHONE",
-    value: "6055",
-    href: "tel:6055",
-  },
-  {
-    icon: Mail,
-    label: "EMAIL",
-    value: "info@jt.iq",
-    href: "mailto:info@jt.iq",
-  },
-];
-
 export default function AboutSection() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -66,7 +93,7 @@ export default function AboutSection() {
   const scaleY = useTransform(scrollYProgress, [0.1, 0.7], [0, 1]);
 
   return (
-    <section id="about" className="relative bg-[#f9f9f9] py-24 overflow-hidden">
+    <section id="about" className="relative bg-[#f9f9f9] pt-24 overflow-hidden">
       {/* Subtle background decoration */}
 
       <div className="pointer-events-none absolute top-0 right-0 w-150 h-150 bg-blue-50 rounded-full blur-[160px] opacity-60" />
@@ -76,7 +103,12 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 ">
           {/* Right — Content */}
           <div className="lg:col-span-6 flex flex-col gap-12">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 330 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+            >
               <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100 mb-5">
                 <span className="text-sm">✶</span> About us
               </span>
@@ -89,7 +121,7 @@ export default function AboutSection() {
                   since 2004
                 </h2>
               </div>
-            </div>
+            </motion.div>
 
             {/* Timeline */}
             <div className="flex flex-col gap-0">
@@ -119,7 +151,18 @@ export default function AboutSection() {
                 </svg>
 
                 {timeline.map((item, i) => (
-                  <div key={i} className="flex gap-6 pb-10 last:pb-0 relative">
+                  <motion.div
+                    key={i}
+                    className="flex gap-6 pb-10 last:pb-0 relative"
+                    initial={{ opacity: 0, x: -220 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{
+                      duration: 0.8,
+                      ease: "easeOut",
+                      delay: i * 0.4,
+                    }}
+                  >
                     {/* Dot */}
                     <div className="shrink-0 flex flex-col items-center">
                       <div
@@ -147,13 +190,19 @@ export default function AboutSection() {
                         {item.description}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
 
             {/* CTA */}
-            <div className="flex items-center gap-4">
+            <motion.div
+              className="flex items-center gap-4"
+              initial={{ opacity: 0, x: -220 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 1.3 }}
+            >
               <Link
                 href="/about"
                 className="inline-flex items-center gap-2 rounded-full bg-brand-secondary1 px-7 py-3.5 text-sm font-semibold text-white shadow-md hover:bg-brand-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
@@ -167,19 +216,34 @@ export default function AboutSection() {
               >
                 Our Services
               </Link>
-            </div>
+            </motion.div>
           </div>
 
           <div className="lg:col-span-6 flex flex-col gap-6 sticky top-28">
             {/* Main image */}
-            <div className="relative  aspect-4/3 w-full h-100  shadow-zinc-200">
+            <motion.div
+              className="relative aspect-4/3 w-full h-100 shadow-zinc-200"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
               <Image
                 src="/hero_tech_team.png"
                 alt="Al Jazeera Telecom Team"
                 fill
                 className="object-cover rounded-[30px] "
               />
-              <div className="absolute left-0 top-11 -translate-y-1/2 flex items-center justify-center z-20  bg-background p-4 rounded-br-[30px]">
+              <motion.div
+                initial={{ opacity: 0, y: -220 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                }}
+                className="absolute left-0 top-11 -translate-y-1/2 flex items-center justify-center z-20  bg-background p-4  rounded-br-[30px]"
+              >
                 {/* Wave 1 */}
                 <div
                   className="absolute w-14 h-14 rounded-full bg-blue-600 animate-ripple"
@@ -204,8 +268,17 @@ export default function AboutSection() {
 
                 <div className="absolute bg-transparent top-3 left-28 w-16 h-16 rounded-tl-3xl shadow-[-2px_-13px_0_0_var(--background)] z-0" />
                 <div className="absolute bg-transparent top-28 left-0 w-16 h-16 rounded-tl-3xl shadow-[-25px_-1px_0_0_var(--background)] z-0" />
-              </div>
-              <div className="absolute -bottom-1 -right-1 flex items-center gap-3 bg-background rounded-tl-[25px]  px-7 py-5">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 220 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.7,
+                  ease: "easeOut",
+                }}
+                className="absolute -bottom-1 -right-1 flex items-center gap-3 bg-background rounded-tl-[25px]  px-7 py-5"
+              >
                 <div className="w-9 h-9 rounded-xl bg-brand-secondary1 flex items-center justify-center shrink-0 z-10">
                   <svg
                     className="w-5 h-5 text-white"
@@ -231,22 +304,35 @@ export default function AboutSection() {
                 </div>
                 <div className="absolute bg-transparent bottom-19 right-1 w-16 h-16 rounded-br-3xl shadow-[2px_14px_0_0_var(--background)] z-0" />
                 <div className="absolute bg-transparent bottom-1 -left-16 w-16 h-16 rounded-br-3xl shadow-[32px_14px_0_0_var(--background)] z-0" />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-4 gap-4 border  border-[#E5E9EF] rounded-[30px] py-13 px-3">
-              {stats.map((stat) => (
-                <div key={stat.label} className=" rounded-2xl px-5 py-4">
-                  <p className="text-4xl  text-brand-primary tracking-tight">
-                    {stat.value}
+            <motion.div
+              className="grid grid-cols-4 gap-4 border border-[#E5E9EF] rounded-[30px] py-13 px-3"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+            >
+              {stats.map((stat, idx) => (
+                <motion.div
+                  key={stat.label}
+                  className="rounded-2xl px-5 py-4"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.05 }}
+                >
+                  <p className="text-4xl text-brand-primary tracking-tight">
+                    <AnimatedCounter value={stat.value} />
                   </p>
                   <p className="text-md text-zinc-500 font-medium mt-1 uppercase tracking-wider">
                     {stat.label}
                   </p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

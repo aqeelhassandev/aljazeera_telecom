@@ -1,8 +1,10 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@base-ui/react";
 import { Plus } from "lucide-react";
+import { motion } from "framer-motion";
 import HeroFiberLines from "./HeroFiberLines";
 
 export default function Hero() {
@@ -11,7 +13,12 @@ export default function Hero() {
       <HeroFiberLines />
       <div className="max-w-[1700px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         {/* Left Content */}
-        <div className="lg:col-span-6 flex flex-col gap-6">
+        <motion.div
+          className="lg:col-span-6 flex flex-col gap-6"
+          initial={{ opacity: 0, x: 350 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
           <div className="flex gap-3">
             <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-blue-100">
               <span className="text-[14px]">✶</span> Solution
@@ -496,10 +503,7 @@ export default function Hero() {
                       </text>
                     </svg>
                   </span>,
-                  <span
-                    key="mikrotik2"
-                    className="flex items-center min-w-20"
-                  >
+                  <span key="mikrotik2" className="flex items-center min-w-20">
                     <svg viewBox="0 0 120 32" className="h-7 w-auto">
                       <text
                         x="0"
@@ -548,10 +552,7 @@ export default function Hero() {
                       UBIQUITI
                     </span>
                   </span>,
-                  <span
-                    key="google2"
-                    className="flex items-center min-w-20"
-                  >
+                  <span key="google2" className="flex items-center min-w-20">
                     <svg viewBox="0 0 120 40" className="h-8 w-auto">
                       <text
                         x="0"
@@ -569,10 +570,7 @@ export default function Hero() {
                       </text>
                     </svg>
                   </span>,
-                  <span
-                    key="youtube2"
-                    className="flex items-center min-w-24"
-                  >
+                  <span key="youtube2" className="flex items-center min-w-24">
                     <svg
                       viewBox="0 0 130 32"
                       className="h-8 w-auto"
@@ -674,10 +672,15 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Media Grid */}
-        <div className="lg:col-span-6 relative flex flex-col gap-6 ">
+        <motion.div
+          className="lg:col-span-6 relative flex flex-col gap-6"
+          initial={{ opacity: 0, x: -350, y: 350 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 1,  delay: 0.15 }}
+        >
           {/* Main Large Image Container */}
           <div
             className="relative rounded-[30px]  aspect-4/3 w-full bg-cover bg-center bg-no-repeat "
@@ -813,7 +816,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

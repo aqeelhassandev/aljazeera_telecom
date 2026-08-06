@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
 const plans = [
   {
@@ -102,159 +103,196 @@ export default function PricingSection() {
           </span>
         </div>
         {/* ── Header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14 items-end"
-        >
-          <div className="lg:col-span-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14 items-end">
+          <motion.div
+            initial={{ opacity: 0, x: -300, y: -90 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="lg:col-span-6"
+          >
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.15]">
-              Fiber plans for every home
+              Fiber plans for{" "}
+              <span className="text-brand-secondary1">every home</span>
             </h2>
-          </div>
-          <div className="lg:col-span-6 lg:pl-12">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 300, y: -90 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="lg:col-span-6 lg:pl-12"
+          >
             <p className="text-base text-zinc-500 leading-relaxed max-w-lg">
               Four{" "}
-              <span className="text-brand-secondary1 font-semibold">FTTH</span>{" "}
+              <span className="text-brand-primary font-semibold">FTTH</span>{" "}
               tiers on the same fiber line — unlimited data on all of them.
               Prices are monthly, in Iraqi dinar.
             </p>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* ── Cards Grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.speed}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              initial={{ opacity: 0, x: -300 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{
-                duration: 0.55,
+                duration: 0.9,
                 ease: "easeOut",
-                delay: index * 0.12,
+                delay: index * 0.3,
               }}
-              className={`relative  flex flex-col rounded-3xl overflow-hidden border transition-shadow duration-300 hover:shadow-xl hover:-translate-y-1 ${
-                plan.popular
-                  ? "border-brand-secondary1 shadow-lg shadow-brand-secondary1/20 bg-brand-secondary1/8"
-                  : "border-zinc-200 bg-brand-secondary2/12 shadow-sm"
-              }`}
+              className="w-full h-full"
             >
-              {/* Popular banner */}
-              {plan.popular && (
-                <div className="bg-brand-secondary1 text-white text-[10px] font-bold tracking-[0.18em] uppercase text-center py-2 px-4">
-                  Most Popular
-                </div>
-              )}
-
-              <div className="flex flex-col flex-1 p-7 gap-5">
-                {/* Tag */}
-                <span
-                  className={`text-[11px] font-bold tracking-[0.2em] uppercase ${
+              <CardContainer className="inter-var w-full">
+                <CardBody
+                  className={`relative group/card w-full h-full rounded-3xl p-7 border transition-all duration-300 ${
                     plan.popular
-                      ? "text-brand-secondary1"
-                      : "text-brand-primary/90"
+                      ? "border-brand-secondary1 shadow-lg shadow-brand-secondary1/20 bg-brand-secondary1/8 dark:bg-brand-secondary1/8 dark:border-brand-secondary1"
+                      : "border-zinc-200 bg-white dark:bg-zinc-900/40 dark:border-zinc-800"
                   }`}
                 >
-                  {plan.tag}
-                </span>
-
-                {/* Speed */}
-                <div className="flex items-end gap-1 leading-none">
-                  <span
-                    className={`text-6xl font-black tracking-tight ${
-                      plan.popular ? "text-brand-secondary1" : "text-zinc-800"
-                    }`}
-                  >
-                    {plan.speed}
-                  </span>
-                  <span className="text-xl font-semibold text-zinc-500 mb-1.5">
-                    {plan.unit}
-                  </span>
-                </div>
-
-                {/* Name + Description */}
-                <div>
-                  <p className="text-base font-bold text-zinc-900 mb-1">
-                    {plan.name}
-                  </p>
-                  <p className="text-sm text-zinc-500 leading-relaxed">
-                    {plan.description}
-                  </p>
-                </div>
-
-                {/* Divider bar */}
-                <div
-                  className={`h-[3px] ${plan.barWidth} rounded-full bg-gradient-to-r from-brand-secondary1 to-brand-secondary2`}
-                />
-
-                {/* Stats grid */}
-                <div className="grid grid-cols-2 gap-x-4 gap-y-3 border border-zinc-100 rounded-2xl p-4 bg-zinc-50/60">
-                  {[
-                    { label: "Devices", value: plan.devices },
-                    { label: "4K Streams", value: plan.streams },
-                    { label: "5 GB File", value: plan.fileTime },
-                    { label: "Per Mbps", value: plan.perMbps },
-                  ].map((stat) => (
-                    <div key={stat.label}>
-                      <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-zinc-400 mb-0.5">
-                        {stat.label}
-                      </p>
-                      <p className="text-sm font-bold text-zinc-800">
-                        {stat.value}
-                      </p>
+                  {/* Popular banner */}
+                  {plan.popular && (
+                    <div className="absolute top-0 right-0 left-0 bg-brand-secondary1 text-white text-[10px] font-bold tracking-[0.18em] uppercase text-center py-2 rounded-t-3xl">
+                      Most Popular
                     </div>
-                  ))}
-                </div>
+                  )}
 
-                {/* Features */}
-                <ul className="flex flex-col gap-2 flex-1">
-                  {plan.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-start gap-2 text-sm text-zinc-500"
+                  <div
+                    className={`flex flex-col h-full gap-5 ${plan.popular ? "pt-5" : ""}`}
+                  >
+                    {/* Tag */}
+                    <CardItem
+                      translateZ="50"
+                      as="span"
+                      className={`text-[11px] font-bold tracking-[0.2em] uppercase ${
+                        plan.popular
+                          ? "text-brand-secondary1"
+                          : "text-brand-primary/90"
+                      }`}
+                    >
+                      {plan.tag}
+                    </CardItem>
+
+                    {/* Speed */}
+                    <CardItem
+                      translateZ="10"
+                      className="flex items-end gap-1 leading-none"
                     >
                       <span
-                        className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${
+                        className={`text-6xl font-black tracking-tight ${
                           plan.popular
-                            ? "bg-brand-secondary1"
-                            : "bg-brand-secondary2"
+                            ? "text-brand-secondary1"
+                            : "text-zinc-800 dark:text-zinc-100"
                         }`}
-                      />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+                      >
+                        {plan.speed}
+                      </span>
+                      <span className="text-xl font-semibold text-zinc-500 mb-1.5 dark:text-zinc-400">
+                        {plan.unit}
+                      </span>
+                    </CardItem>
 
-                {/* Price */}
-                <div className="flex items-baseline gap-1.5 mt-2">
-                  <span
-                    className={`text-3xl font-black tracking-tight ${
-                      plan.popular ? "text-brand-secondary1" : "text-zinc-900"
-                    }`}
-                  >
-                    {plan.price}
-                  </span>
-                  <span className="text-xs text-zinc-400 font-medium">
-                    IQD / month
-                  </span>
-                </div>
+                    {/* Name + Description */}
+                    <CardItem translateZ="50" className="w-full">
+                      <p className="text-base font-bold text-zinc-900 dark:text-zinc-100 mb-1">
+                        {plan.name}
+                      </p>
+                      <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                        {plan.description}
+                      </p>
+                    </CardItem>
 
-                {/* CTA */}
-                <Link
-                  href="tel:6055"
-                  className={`mt-1 w-full text-center rounded-full py-3.5 text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
-                    plan.popular
-                      ? "bg-brand-secondary1 text-white shadow-md hover:bg-brand-secondary1/90"
-                      : "border border-zinc-300 text-zinc-700 hover:border-zinc-400 hover:bg-brand-secondary1 hover:text-white"
-                  }`}
-                >
-                  Subscribe — 6055
-                </Link>
-              </div>
+                    {/* Divider bar */}
+                    <CardItem
+                      translateZ="10"
+                      className={`h-[3px] ${plan.barWidth} rounded-full bg-gradient-to-r from-brand-secondary1 to-brand-secondary2`}
+                    />
+
+                    {/* Stats grid */}
+                    <CardItem
+                      translateZ="80"
+                      className="grid grid-cols-2 gap-x-4 gap-y-3 border border-zinc-100 dark:border-zinc-800 rounded-2xl p-4 bg-zinc-50/60 dark:bg-zinc-900/60 w-full"
+                    >
+                      {[
+                        { label: "Devices", value: plan.devices },
+                        { label: "4K Streams", value: plan.streams },
+                        { label: "5 GB File", value: plan.fileTime },
+                        { label: "Per Mbps", value: plan.perMbps },
+                      ].map((stat) => (
+                        <div key={stat.label}>
+                          <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-zinc-400 mb-0.5 dark:text-zinc-500">
+                            {stat.label}
+                          </p>
+                          <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200">
+                            {stat.value}
+                          </p>
+                        </div>
+                      ))}
+                    </CardItem>
+
+                    {/* Features */}
+                    <CardItem
+                      translateZ="10"
+                      as="ul"
+                      className="flex flex-col gap-2 flex-1 w-full"
+                    >
+                      {plan.features.map((f) => (
+                        <li
+                          key={f}
+                          className="flex items-start gap-2 text-sm text-zinc-500 dark:text-zinc-400"
+                        >
+                          <span
+                            className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${
+                              plan.popular
+                                ? "bg-brand-secondary1"
+                                : "bg-brand-secondary2"
+                            }`}
+                          />
+                          {f}
+                        </li>
+                      ))}
+                    </CardItem>
+
+                    {/* Price */}
+                    <CardItem
+                      translateZ="10"
+                      className="flex items-baseline gap-1.5 mt-2"
+                    >
+                      <span
+                        className={`text-3xl font-black tracking-tight ${
+                          plan.popular
+                            ? "text-brand-secondary1"
+                            : "text-zinc-900 dark:text-zinc-100"
+                        }`}
+                      >
+                        {plan.price}
+                      </span>
+                      <span className="text-xs text-zinc-400 dark:text-zinc-500 font-medium">
+                        IQD / month
+                      </span>
+                    </CardItem>
+
+                    {/* CTA */}
+                    <CardItem translateZ="10" className="w-full">
+                      <Link
+                        href="tel:6055"
+                        className={`block mt-1 w-full text-center rounded-full py-3.5 text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+                          plan.popular
+                            ? "bg-brand-secondary1 text-white shadow-md hover:bg-brand-secondary1/90"
+                            : "border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-brand-secondary1 hover:text-white"
+                        }`}
+                      >
+                        Subscribe — 6055
+                      </Link>
+                    </CardItem>
+                  </div>
+                </CardBody>
+              </CardContainer>
             </motion.div>
           ))}
         </div>

@@ -1,8 +1,8 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Wrench,
   Wifi,
@@ -16,83 +16,84 @@ import {
   Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
+
+const services = [
+  {
+    id: 0,
+    title: "FTTx",
+    description:
+      "Ultra-fast fiber-to-the-premises internet delivering reliable, high-speed connectivity for homes and businesses.",
+    image: "/service_fttx.png",
+    icon: <Zap className="w-5 h-5" />,
+    tag: "Fiber",
+  },
+  {
+    id: 1,
+    title: "Wireless",
+    description:
+      "Cutting-edge wireless solutions providing seamless coverage and high-speed connectivity across your entire premises.",
+    image: "/service_wireless.png",
+    icon: <Wifi className="w-5 h-5" />,
+    tag: "Wireless",
+  },
+  {
+    id: 2,
+    title: "Software Solutions",
+    description:
+      "Custom software development and enterprise solutions tailored to streamline your business operations.",
+    image: "/service_software.png",
+    icon: <Code className="w-5 h-5" />,
+    tag: "Software",
+  },
+  {
+    id: 3,
+    title: "VoIP",
+    description:
+      "Feature-rich digital telephony systems delivering crystal-clear voice communication for modern businesses.",
+    image: "/service_tech_support.png",
+    icon: <Wrench className="w-5 h-5" />,
+    tag: "VoIP",
+  },
+  {
+    id: 4,
+    title: "Cyber Security",
+    description:
+      "Comprehensive cybersecurity services protecting your digital infrastructure against evolving threats 24/7.",
+    image: "/service_it_consulting.png",
+    icon: <Shield className="w-5 h-5" />,
+    tag: "Security",
+  },
+  {
+    id: 5,
+    title: "Hosting",
+    description:
+      "Reliable cloud and dedicated hosting solutions with maximum uptime guarantees and enterprise-grade security.",
+    image: "/service_cloud_migration.png",
+    icon: <Server className="w-5 h-5" />,
+    tag: "Hosting",
+  },
+  {
+    id: 6,
+    title: "Network Consulting",
+    description:
+      "Expert network design, implementation, and optimization services to build a robust digital foundation.",
+    image: "/service_it_consulting.png",
+    icon: <Network className="w-5 h-5" />,
+    tag: "Network",
+  },
+  {
+    id: 7,
+    title: "SBS for Businesses",
+    description:
+      "Scalable business solutions designed to integrate accounting, HR, and operations into a unified platform.",
+    image: "/service_tech_support.png",
+    icon: <Calculator className="w-5 h-5" />,
+    tag: "Business",
+  },
+];
 
 export default function ServicesSection() {
-  const services = [
-    {
-      id: 0,
-      title: "FTTx",
-      description:
-        "Ultra-fast fiber-to-the-premises internet delivering reliable, high-speed connectivity for homes and businesses.",
-      image: "/service_fttx.png",
-      icon: <Zap className="w-5 h-5" />,
-      tag: "Fiber",
-    },
-    {
-      id: 1,
-      title: "Wireless",
-      description:
-        "Cutting-edge wireless solutions providing seamless coverage and high-speed connectivity across your entire premises.",
-      image: "/service_wireless.png",
-      icon: <Wifi className="w-5 h-5" />,
-      tag: "Wireless",
-    },
-    {
-      id: 2,
-      title: "Software Solutions",
-      description:
-        "Custom software development and enterprise solutions tailored to streamline your business operations.",
-      image: "/service_software.png",
-      icon: <Code className="w-5 h-5" />,
-      tag: "Software",
-    },
-    {
-      id: 3,
-      title: "VoIP",
-      description:
-        "Feature-rich digital telephony systems delivering crystal-clear voice communication for modern businesses.",
-      image: "/service_tech_support.png",
-      icon: <Wrench className="w-5 h-5" />,
-      tag: "VoIP",
-    },
-    {
-      id: 4,
-      title: "Cyber Security",
-      description:
-        "Comprehensive cybersecurity services protecting your digital infrastructure against evolving threats 24/7.",
-      image: "/service_it_consulting.png",
-      icon: <Shield className="w-5 h-5" />,
-      tag: "Security",
-    },
-    {
-      id: 5,
-      title: "Hosting",
-      description:
-        "Reliable cloud and dedicated hosting solutions with maximum uptime guarantees and enterprise-grade security.",
-      image: "/service_cloud_migration.png",
-      icon: <Server className="w-5 h-5" />,
-      tag: "Hosting",
-    },
-    {
-      id: 6,
-      title: "Network Consulting",
-      description:
-        "Expert network design, implementation, and optimization services to build a robust digital foundation.",
-      image: "/service_it_consulting.png",
-      icon: <Network className="w-5 h-5" />,
-      tag: "Network",
-    },
-    {
-      id: 7,
-      title: "SBS for Businesses",
-      description:
-        "Scalable business solutions designed to integrate accounting, HR, and operations into a unified platform.",
-      image: "/service_tech_support.png",
-      icon: <Calculator className="w-5 h-5" />,
-      tag: "Business",
-    },
-  ];
-
   const VISIBLE_COUNT = 3;
   const [startIndex, setStartIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
@@ -135,18 +136,41 @@ export default function ServicesSection() {
       <div className="relative max-w-[min(100%,1640px)] mx-auto flex flex-col gap-16">
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
-          <div className="flex flex-col gap-4 max-w-xl">
+          <motion.div
+            className="flex flex-col gap-4 max-w-xl"
+            initial={{ opacity: 0, x: -430 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <div>
               <span className="inline-flex items-center gap-1.5 bg-white/10 text-white text-xs font-semibold px-4 py-1.5 rounded-full border border-white/20">
                 <span className="text-blue-400 text-sm">✶</span> Service
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-              Fix It All, Fast &amp; Right
-            </h2>
-          </div>
+            <LayoutTextFlip
+              text="Welcome to "
+              words={[
+                "Al Jazeera Telecom",
+                "Iraq's Fiber Pioneer",
+                "Unmatched Speed",
+                "24/7 Support",
+              ]}
+              classNameContener="bg-brand-secondary1 text-white border-brand-secondary1"
+            />
 
-          <div className="flex flex-col gap-6 max-w-2xl lg:pt-4">
+            {/* <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+              Fix It All, Fast &amp; Right
+            </h2> */}
+          </motion.div>
+
+          <motion.div
+            className="flex flex-col gap-6 max-w-2xl lg:pt-4"
+            initial={{ opacity: 0, x: -1330 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          >
             <div className="flex flex-col gap-3">
               <h3 className="text-lg font-semibold text-white/90">
                 We have the fix for any issue.
@@ -194,7 +218,7 @@ export default function ServicesSection() {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Carousel Grid with Fade Animation */}
@@ -208,8 +232,12 @@ export default function ServicesSection() {
               const actualIndex = displayIndex + index;
               const isActive = actualIndex === activeCardIndex;
               return (
-                <div
+                <motion.div
                   key={service.id}
+                  initial={{ opacity: 0, y: 330 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={`relative overflow-hidden rounded-[32px] p-4 flex flex-col justify-between min-h-115 h-full transition-all duration-500 ease-out border ${
                     isActive
                       ? "bg-white border-white text-zinc-900 shadow-2xl shadow-blue-950/40 scale-100 mb-10"
@@ -300,7 +328,7 @@ export default function ServicesSection() {
                       </Button>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

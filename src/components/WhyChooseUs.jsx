@@ -1,8 +1,8 @@
 "use client";
+import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const reasons = [
   {
@@ -34,22 +34,96 @@ const reasons = [
 ];
 
 export default function WhyChooseUs() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // const pathLength = useTransform(scrollYProgress, [0.05, 0.85], [0, 1]);
+  const fillOpacity = useTransform(scrollYProgress, [0.106, 0.5], [0, 1]);
+
   return (
     <section
+      ref={containerRef}
       id="why-choose-us"
       className="relative bg-[#f9f9f9] py-24 overflow-hidden"
     >
-      {/* Background glows */}
-      <div className="pointer-events-none absolute top-0 left-0 w-[500px] h-[500px] bg-blue-50 rounded-full blur-[160px] opacity-60" />
-      <div className="pointer-events-none absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-secondary2/10 rounded-full blur-[120px]" />
+      {/* Left scroll-drawn background SVG */}
+      <div className="pointer-events-none absolute left-[-2%] top-[10%] bottom-[10%] w-[20%] opacity-30 hidden lg:block z-0">
+        <svg
+          viewBox="0 0 381 785"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full object-contain"
+        >
+          <motion.path
+            d="M256.81 392.88H380.59C380.59 392.88 391.56 217.37 239.47 90.77C153.37 19.1 70.09 2.76 0 0C0 39.82 2 784.91 2 784.91C2 784.91 113.26 786.57 209.58 716.82C184.67 685.27 115.97 589.81 115.97 589.81L116.59 155.53C116.58 155.53 255.81 221.16 256.81 392.88Z"
+            fill="#9CD3D9"
+            stroke="#27727a"
+            strokeWidth={6}
+            strokeLinecap="round"
+            strokeDasharray="120 2000"
+            animate={{
+              strokeDashoffset: [0, -2120],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{
+              fillOpacity,
+            }}
+          />
+        </svg>
+      </div>
 
-      <div className="relative max-w-[1700px] mx-auto px-6 lg:px-12">
+      {/* Right scroll-drawn background SVG */}
+      <div className="pointer-events-none absolute right-[-2%] top-[10%] bottom-[10%] w-[20%] opacity-30 hidden lg:block z-0">
+        <svg
+          viewBox="0 0 368 785"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full object-contain"
+        >
+          <motion.path
+            d="M367.36 784.1C252.42 778.27 159.42 718.64 104.62 660.36C0 549.1 0 434.35 0 393C39.86 393 204.78 393.04 204.78 393.04L205.44 511.83C205.44 511.83 182.3 511.83 147.8 511.83C185.99 590.62 251.9 625.49 251.9 625.49L253.23 199.92C253.23 199.92 195.5 118.29 163.64 72.5C257.4 1.08999 367.36 0 367.36 0V784.1Z"
+            fill="#9CD3D9"
+            stroke="#27727a"
+            strokeWidth={6}
+            strokeLinecap="round"
+            strokeDasharray="120 2000"
+            animate={{
+              strokeDashoffset: [0, -2120],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{
+              fillOpacity,
+            }}
+          />
+        </svg>
+      </div>
+
+      {/* Background glows */}
+      <div className="pointer-events-none absolute top-0 left-0 w-[500px] h-[500px] bg-blue-50 rounded-full blur-[160px] opacity-60 z-0" />
+      <div className="pointer-events-none absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-secondary2/10 rounded-full blur-[120px] z-0" />
+
+      <div className="relative max-w-[1700px] mx-auto px-6 lg:px-12 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 ">
-            
           {/* ── Left Column ── */}
           <div className="lg:col-span-5 flex flex-col gap-10 lg:sticky lg:top-28">
             {/* Badge + Heading */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: -230 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+            >
               <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100 mb-5">
                 <span className="text-sm">✶</span> Why choose us
               </span>
@@ -63,25 +137,41 @@ export default function WhyChooseUs() {
                 built our reputation on speed, clarity, and relentless
                 reliability.
               </p>
-            </div>
+            </motion.div>
 
             {/* Team image */}
-            <div className="relative w-full h-84 rounded-[28px] overflow-hidden shadow-lg">
+            <motion.div
+              className="relative w-full h-84 rounded-[28px] overflow-hidden shadow-lg"
+              initial={{ opacity: 0, x: -405, y: 210 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
+            >
               <Image
                 src="/hero_tech_team.png"
                 alt="Al Jazeera Telecom team at work"
                 fill
                 className="object-cover"
               />
-             
-            </div>
+            </motion.div>
           </div>
 
           {/* ── Right Column — Accordion list ── */}
           <div className="lg:col-span-7 flex flex-col divide-y divide-zinc-200">
             {reasons.map((reason, i) => {
               return (
-                <div key={i} className="py-6 group">
+                <motion.div
+                  key={i}
+                  className="py-6 group"
+                  initial={{ opacity: 0, x: 430 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeOut",
+                    delay: i * 0.25,
+                  }}
+                >
                   <div className="flex items-start gap-6">
                     {/* Number */}
                     <span className="text-sm font-bold tabular-nums mt-0.5 text-brand-primary">
@@ -112,30 +202,28 @@ export default function WhyChooseUs() {
                           {/* Active card image + CTA */}
                           {reason.image && (
                             <div className="flex items-center gap-5">
-                              <div className="relative w-80 h-50 rounded-2xl overflow-hidden shrink-0 shadow-md">
+                              <motion.div
+                                className="relative w-80 h-50 rounded-2xl overflow-hidden shrink-0 shadow-md"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, ease: "easeOut" }}
+                              >
                                 <Image
                                   src={reason.image}
                                   alt={reason.title}
                                   fill
                                   className="object-cover"
+                                  sizes="200px"
                                 />
-                              </div>
-                              {/* {reason.cta && (
-                                  <Link
-                                    href={reason.cta.href}
-                                    className="inline-flex items-center gap-2 rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-brand-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-                                  >
-                                    {reason.cta.label}
-                                    <ArrowRight className="w-4 h-4" />
-                                  </Link>
-                                )} */}
+                              </motion.div>
                             </div>
                           )}
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

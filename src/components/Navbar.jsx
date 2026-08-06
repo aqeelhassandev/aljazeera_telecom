@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <div className="fixed top-0 z-50 w-full bg-white border-b border-zinc-100 shadow-xs">
+    <div className="fixed top-0 z-50 w-full bg-white/90  shadow-xs">
       {/* Main Navbar */}
       <nav className="max-w-[1700px] mx-auto px-6 py-5">
         <div className="flex gap-6 items-center justify-between">
@@ -19,25 +19,25 @@ export default function Navbar() {
           </Link>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center justify-center gap-8 flex-1">
-            <Link href="/" className="text-[20px] font-semibold text-blue-600">
+          <div className="hidden md:flex items-center justify-center gap-8 flex-1 text-[18px] font-semibold">
+            <Link href="/" className=" text-blue-600">
               Home
             </Link>
             <Link
               href="/about"
-              className="text-[20px] font-semibold text-zinc-600 hover:text-zinc-900 transition-colors"
+              className="text-zinc-600 hover:text-zinc-900 transition-colors"
             >
               About us
             </Link>
             <Link
               href="/services"
-              className="text-[20px] font-semibold text-zinc-600 hover:text-zinc-900 transition-colors"
+              className="text-zinc-600 hover:text-zinc-900 transition-colors"
             >
               Service
             </Link>
             <Link
-              href="/"
-              className="text-[20px] font-semibold text-zinc-600 hover:text-zinc-900 transition-colors"
+              href="#contact"
+              className="text-zinc-600 hover:text-zinc-900 transition-colors"
             >
               Contact Us
             </Link>
