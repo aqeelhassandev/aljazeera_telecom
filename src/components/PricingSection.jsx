@@ -103,7 +103,7 @@ export default function PricingSection() {
           </span>
         </div>
         {/* ── Header ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4  sm:mb-14 items-end">
           <motion.div
             initial={{ opacity: 0, x: -300, y: -90 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -111,7 +111,7 @@ export default function PricingSection() {
             transition={{ duration: 0.9, ease: "easeOut" }}
             className="lg:col-span-6"
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold tracking-tight text-zinc-900 leading-[1.15]">
               Fiber plans for{" "}
               <span className="text-brand-secondary1">every home</span>
             </h2>
@@ -123,7 +123,7 @@ export default function PricingSection() {
             transition={{ duration: 0.9, ease: "easeOut" }}
             className="lg:col-span-6 lg:pl-12"
           >
-            <p className="text-base text-zinc-500 leading-relaxed max-w-lg">
+            <p className="text-sm md:text-base text-zinc-500 leading-relaxed lg:max-w-lg">
               Four{" "}
               <span className="text-brand-primary font-semibold">FTTH</span>{" "}
               tiers on the same fiber line — unlimited data on all of them.
@@ -133,7 +133,7 @@ export default function PricingSection() {
         </div>
 
         {/* ── Cards Grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-5 mt-13">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.speed}

@@ -1,7 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, MessageSquare, ArrowRight } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  MessageSquare,
+  ArrowRight,
+} from "lucide-react";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -29,10 +36,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section
-      id="contact"
-      className="relative  py-28 overflow-hidden"
-    >
+    <section id="contact" className="relative  py-28 overflow-hidden">
       {/* High-End Background Decors */}
       <div className="pointer-events-none absolute -top-40 right-[-10%] w-[600px] h-[600px] bg-blue-200/40 rounded-full blur-[140px] z-0" />
       <div className="pointer-events-none absolute -bottom-40 left-[-10%] w-[500px] h-[500px] bg-brand-secondary2/10 rounded-full blur-[120px] z-0" />
@@ -42,7 +46,6 @@ export default function ContactSection() {
 
       <div className="relative max-w-[1700px] mx-auto px-6 lg:px-12 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
           {/* ── Left Column: Contact Info ── */}
           <div className="lg:col-span-5 flex flex-col gap-10">
             {/* Badge + Heading */}
@@ -55,11 +58,14 @@ export default function ContactSection() {
               <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100 mb-6">
                 <span className="text-sm">✶</span> Connect with Us
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.1] mb-6">
-                Ready to experience the <span className="text-brand-secondary1">fastest</span> internet?
+              <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold tracking-tight text-zinc-900 leading-[1.1] mb-6">
+                Ready to experience the{" "}
+                <span className="text-brand-secondary1">fastest</span> internet?
               </h2>
-              <p className="text-base text-zinc-500 leading-relaxed max-w-sm">
-                Get in touch with Al Jazeera Telecom today. Our network consultants are on standby to design the perfect high-speed connection for you.
+              <p className="text-sm sm:text-base text-zinc-500 leading-relaxed lg:max-w-sm">
+                Get in touch with Al Jazeera Telecom today. Our network
+                consultants are on standby to design the perfect high-speed
+                connection for you.
               </p>
             </motion.div>
 
@@ -67,26 +73,26 @@ export default function ContactSection() {
             <div className="flex flex-col gap-5">
               {[
                 {
-                  icon: <Phone className="w-5 h-5" />,
+                  icon: <Phone loading="lazy" className="w-5 h-5" />,
                   label: "Quick Support Helpline",
                   val: "6055",
                   href: "tel:6055",
-                  color: "bg-brand-secondary1/10 text-brand-secondary1"
+                  color: "bg-brand-secondary1/10 text-brand-secondary1",
                 },
                 {
-                  icon: <Mail className="w-5 h-5" />,
+                  icon: <Mail loading="lazy" className="w-5 h-5" />,
                   label: "General Inquiry Email",
                   val: "info@jt.iq",
                   href: "mailto:info@jt.iq",
-                  color: "bg-brand-primary/10 text-brand-primary"
+                  color: "bg-brand-primary/10 text-brand-primary",
                 },
                 {
-                  icon: <MapPin className="w-5 h-5" />,
+                  icon: <MapPin loading="lazy" className="w-5 h-5" />,
                   label: "Headquarters Location",
                   val: "Baghdad, Karrada Al-wehda District",
                   href: "#",
-                  color: "bg-zinc-200/50 text-zinc-700"
-                }
+                  color: "bg-zinc-200/50 text-zinc-700",
+                },
               ].map((item, idx) => (
                 <motion.a
                   key={idx}
@@ -95,14 +101,24 @@ export default function ContactSection() {
                   initial={{ opacity: 0, x: -220 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.2 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: "easeOut",
+                    delay: idx * 0.2,
+                  }}
                 >
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${item.color}`}>
+                  <div
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${item.color}`}
+                  >
                     {item.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-0.5">{item.label}</p>
-                    <p className="text-lg font-bold text-zinc-800 leading-snug truncate group-hover:text-brand-secondary1 transition-colors">{item.val}</p>
+                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-0.5">
+                      {item.label}
+                    </p>
+                    <p className="text-lg font-bold text-zinc-800 leading-snug truncate group-hover:text-brand-secondary1 transition-colors">
+                      {item.val}
+                    </p>
                   </div>
                   {item.href !== "#" && (
                     <ArrowRight className="w-5 h-5 text-zinc-300 group-hover:text-brand-secondary1 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
@@ -126,14 +142,18 @@ export default function ContactSection() {
                 <MessageSquare className="w-7 h-7 text-brand-secondary1" />
                 Send Us a Message
               </h3>
-              <p className="text-sm text-zinc-500">We'll get back to you with custom plans within 24 hours.</p>
+              <p className="text-sm text-zinc-500">
+                We'll get back to you with custom plans within 24 hours.
+              </p>
             </div>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Name */}
                 <div className="flex flex-col gap-2 relative group">
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Full Name</span>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
+                    Full Name
+                  </span>
                   <input
                     type="text"
                     id="name"
@@ -147,7 +167,9 @@ export default function ContactSection() {
                 </div>
                 {/* Email */}
                 <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Email Address</span>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
+                    Email Address
+                  </span>
                   <input
                     type="email"
                     id="email"
@@ -163,7 +185,9 @@ export default function ContactSection() {
 
               {/* Phone */}
               <div className="flex flex-col gap-2">
-                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Phone Number (Optional)</span>
+                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
+                  Phone Number (Optional)
+                </span>
                 <input
                   type="text"
                   id="phone"
@@ -177,7 +201,9 @@ export default function ContactSection() {
 
               {/* Message */}
               <div className="flex flex-col gap-2">
-                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Your Message</span>
+                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
+                  Your Message
+                </span>
                 <textarea
                   id="message"
                   name="message"
@@ -213,12 +239,12 @@ export default function ContactSection() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  ✓ Thank you! Your message has been sent successfully. We will contact you soon.
+                  ✓ Thank you! Your message has been sent successfully. We will
+                  contact you soon.
                 </motion.div>
               )}
             </form>
           </motion.div>
-
         </div>
 
         {/* ── Map Row ── */}
@@ -240,7 +266,6 @@ export default function ContactSection() {
             className="grayscale contrast-[1.1] hover:grayscale-0 transition-all duration-500"
           ></iframe>
         </motion.div>
-
       </div>
     </section>
   );

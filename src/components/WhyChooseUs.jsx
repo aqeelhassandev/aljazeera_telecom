@@ -127,11 +127,11 @@ export default function WhyChooseUs() {
               <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100 mb-5">
                 <span className="text-sm">✶</span> Why choose us
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.15] mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold tracking-tight text-zinc-900 leading-[1.15] mb-6">
                 Why We&apos;re Your Best{" "}
                 <span className="text-brand-secondary1">Connectivity</span> Ally
               </h2>
-              <p className="text-base text-zinc-500 leading-relaxed max-w-sm">
+              <p className="text-sm sm:text-base text-zinc-500 leading-relaxed lg:max-w-sm">
                 Solve your connectivity challenges fast, so you can focus on
                 what matters — running your business. From day one, we&apos;ve
                 built our reputation on speed, clarity, and relentless
@@ -152,6 +152,7 @@ export default function WhyChooseUs() {
                 alt="Al Jazeera Telecom team at work"
                 fill
                 className="object-cover"
+                loading="lazy"
               />
             </motion.div>
           </div>
@@ -194,7 +195,7 @@ export default function WhyChooseUs() {
                       </div>
 
                       <div className="overflow-hidden">
-                        <div className="pt-4 flex flex-row gap-5">
+                        <div className="pt-4 flex flex-col md:flex-row gap-5">
                           <p className="text-sm text-zinc-500 leading-relaxed">
                             {reason.description}
                           </p>
@@ -203,7 +204,7 @@ export default function WhyChooseUs() {
                           {reason.image && (
                             <div className="flex items-center gap-5">
                               <motion.div
-                                className="relative w-80 h-50 rounded-2xl overflow-hidden shrink-0 shadow-md"
+                                className="relative w-full sm:w-80 h-50 rounded-2xl overflow-hidden shrink-0 shadow-md"
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
@@ -215,6 +216,7 @@ export default function WhyChooseUs() {
                                   fill
                                   className="object-cover"
                                   sizes="200px"
+                                  loading="lazy"
                                 />
                               </motion.div>
                             </div>

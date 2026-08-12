@@ -4,7 +4,7 @@ import ServicesSection from "@/components/ServicesSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import PricingSection from "@/components/PricingSection";
 import ContactSection from "@/components/ContactSection";
-import { Button } from "@/components/ui/button";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 export default function Home() {
@@ -18,6 +18,7 @@ export default function Home() {
         <WhyChooseUs />
         <PricingSection />
         <ContactSection />
+        <Footer />
         {/* <ServicesSection /> */}
       </main>
     </div>

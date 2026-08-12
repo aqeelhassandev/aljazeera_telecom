@@ -10,20 +10,41 @@ export const LayoutTextFlip = ({
   classNameContener,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
     }, duration);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [words.length, duration]);
+
+  if (!mounted) {
+    return (
+      <div className="flex flex-wrap items-center justify-start gap-x-2 gap-y-1">
+        <span className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight drop-shadow-lg leading-tight">
+          {text}
+        </span>
+
+        <span
+          className={cn(
+            "relative w-fit overflow-hidden rounded-md border border-transparent px-3 py-1.5 font-sans text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-black shadow-sm ring shadow-black/10 ring-black/10 drop-shadow-lg dark:bg-neutral-900 dark:text-white dark:shadow-sm dark:ring-1 dark:shadow-white/10 dark:ring-white/10",
+            classNameContener,
+          )}
+        >
+          <span className="inline-block whitespace-nowrap">{words[0]}</span>
+        </span>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className="flex flex-col items-start justify-start gap-x-2 gap-y-1">
       <motion.span
         layoutId="subtext"
-        className="text-2xl font-bold tracking-tight drop-shadow-lg md:text-4xl "
+        className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight drop-shadow-lg leading-tight"
       >
         {text}
       </motion.span>
@@ -31,7 +52,7 @@ export const LayoutTextFlip = ({
       <motion.span
         layout
         className={cn(
-          "relative w-fit overflow-hidden rounded-md border border-transparent  px-4 py-2 font-sans text-2xl font-bold tracking-tight text-black shadow-sm ring shadow-black/10 ring-black/10 drop-shadow-lg md:text-3xl dark:bg-neutral-900 dark:text-white dark:shadow-sm dark:ring-1 dark:shadow-white/10 dark:ring-white/10",
+          "relative w-fit overflow-hidden rounded-md border border-transparent px-3 py-1.5 font-sans text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-black shadow-sm ring shadow-black/10 ring-black/10 drop-shadow-lg dark:bg-neutral-900 dark:text-white dark:shadow-sm dark:ring-1 dark:shadow-white/10 dark:ring-white/10",
           classNameContener,
         )}
       >

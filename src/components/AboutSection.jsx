@@ -113,7 +113,7 @@ export default function AboutSection() {
                 <span className="text-sm">✶</span> About us
               </span>
               <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-                <h2 className="text-4xl md:text-4xl font-bold tracking-tight text-zinc-900 leading-[1.1] max-w-4xl">
+                <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.1] max-w-4xl">
                   Al Jazeera Telecom:{" "}
                   <span className="text-brand-secondary1">
                     Empowering Iraq's Digital Landscape
@@ -233,6 +233,7 @@ export default function AboutSection() {
                 alt="Al Jazeera Telecom Team"
                 fill
                 className="object-cover rounded-[30px] "
+                loading="lazy"
               />
               <motion.div
                 initial={{ opacity: 0, y: -220 }}
@@ -309,7 +310,7 @@ export default function AboutSection() {
 
             {/* Stats Grid */}
             <motion.div
-              className="grid grid-cols-4 gap-4 border border-[#E5E9EF] rounded-[30px] py-13 px-3"
+              className="grid grid-cols-2 xl:grid-cols-4 gap-4 border border-[#E5E9EF] rounded-[30px] py-13 px-3"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}

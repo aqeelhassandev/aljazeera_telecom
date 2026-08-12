@@ -28,20 +28,21 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-8xl w-[80%] font-bold tracking-tight text-zinc-900 leading-[1.1] font-sans">
+          <h1 className="text-5xl sm:text-5xl md:text-7xl lg:text-[76px] w-[80%] font-bold tracking-tight text-zinc-900 leading-[1.1] font-sans">
             The fastest internet
+            <span className="text-brand-primary ml-1"> in Iraq</span>
           </h1>
 
-          <p className="text-lg text-zinc-600 w-[70%] leading-relaxed">
+          <p className="text-sm sm:text-lg text-zinc-600 sm:w-[70%] leading-relaxed">
             High-speed, reliable connectivity built on the first fiber-optic
             network laid in Iraq — engineered, installed and supported by our
             own teams.{" "}
           </p>
 
-          <div className="flex flex-wrap gap-4 mt-2">
+          <div className="flex gap-4 mt-2">
             <Link
               href="/support"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-secondary1 px-8 py-4 text-sm font-semibold text-white shadow-md hover:bg-brand-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center gap-1 rounded-full bg-brand-secondary1 px-4 sm:px-8 py-4 text-[12px] sm:text-sm font-semibold text-white shadow-md hover:bg-brand-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
               Instant Support
               <svg
@@ -65,7 +66,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 rounded-full bg-[#EEEEF1] hover:bg-[#EEEEF1]/80 px-8 py-4 text-sm font-semibold text-zinc-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center gap-2 rounded-full bg-[#EEEEF1] hover:bg-[#EEEEF1]/80 px-5 sm:px-8 py-4 text-[12px] sm:text-sm font-semibold text-zinc-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
               Discover Services
             </Link>
@@ -679,35 +680,23 @@ export default function Hero() {
           className="lg:col-span-6 relative flex flex-col gap-6"
           initial={{ opacity: 0, x: -350, y: 350 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
-          transition={{ duration: 1,  delay: 0.15 }}
+          transition={{ duration: 1, delay: 0.15 }}
         >
           {/* Main Large Image Container */}
           <div
-            className="relative rounded-[30px]  aspect-4/3 w-full bg-cover bg-center bg-no-repeat "
+            className="relative rounded-[30px] h-87.5 md:h-127.5 lg:h-auto aspect-4/3 w-full bg-cover bg-center bg-no-repeat "
             style={{ backgroundImage: "url('/hero_tech_team.png')" }}
           >
             {/* Gear Icon Badge Overlay with Inset Curves (Fillets) */}
             <div className="absolute -top-1 -left-1 w-24 h-24 z-10  shadow-none">
               <div className="w-full h-full bg-[#f9f9f9] rounded-br-[32px] rounded-tl-[32px] flex items-center justify-center">
-                <div className="bg-[#162a45] p-3.5 rounded-[20px] text-blue-300">
-                  <svg
-                    className="w-10 h-10 animate-spin-slow"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+                <div className="bg-[#162a45]  p-2 sm:p-3.5 rounded-[20px] text-blue-300">
+                  <img
+                    src="/icons/icon1.svg"
+                    alt="Hero"
+                    className="w-10 h-auto animate-spin-slow object-cover"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="absolute top-24 left-1 w-10.5 h-10.5 bg-transparent rounded-tl-[24px] shadow-[-12px_-12px_0_0_var(--background)]" />
 
@@ -715,7 +704,7 @@ export default function Hero() {
               </div>
             </div>
             {/* Play Button Overlay with Three-Layer Waves */}
-            <div className="absolute -left-9 top-1/2 -translate-y-1/2 flex items-center justify-center z-20">
+            <div className="absolute -left-5.25 lg:-left-9  top-42 sm:top-1/2 -translate-y-1/2 flex items-center justify-center z-20">
               {/* Wave 1 */}
               <div
                 className="absolute w-14 h-14 rounded-full bg-blue-600 animate-ripple"
@@ -732,7 +721,7 @@ export default function Hero() {
                 style={{ animationDelay: "1s" }}
               />
 
-              <Button className="relative bg-brand-primary hover:bg-brand-primary/80 hover:scale-105 active:scale-95 transition-all text-white p-6 rounded-full cursor-pointer flex items-center justify-center z-10 shadow-lg">
+              <Button className="relative bg-brand-primary hover:bg-brand-primary/80 hover:scale-105 active:scale-95 transition-all text-white p-4 sm:p-6 rounded-full cursor-pointer flex items-center justify-center z-10 shadow-lg">
                 <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
@@ -743,9 +732,9 @@ export default function Hero() {
           {/* Bottom Cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Rating Card */}
-            <div className="bg-[#EEEEF1] border border-[#EEEEF1] rounded-3xl p-6 flex flex-col gap-4 shadow-sm justify-end h-60">
-              <div className="flex justify-between items-end">
-                <span className="text-4xl sm:text-8xl font-light text-zinc-500 tracking-tight">
+            <div className="bg-[#EEEEF1] border border-[#EEEEF1] pt-3  rounded-3xl p-6 flex flex-col gap-4 shadow-sm justify-end h-60">
+              <div className="flex justify-between items-end ">
+                <span className="text-8xl md:text-8xl lg:text-6xl xl:text-8xl font-light text-zinc-500 tracking-tight">
                   4,9
                 </span>
                 <div className="flex gap-1 text-yellow-400 mt-2 text-[24px]">
@@ -756,8 +745,8 @@ export default function Hero() {
                   <span>★</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between mt-2">
-                <span className="text-3xl w-1/2 font-semibold text-zinc-600">
+              <div className="flex items-center justify-between flex-wrap mt-2 gap-1">
+                <span className="text-xl md:text-2xl w-1/2 font-semibold text-zinc-600">
                   Happy Customers
                 </span>
                 {/* Overlapping Avatars */}
@@ -766,16 +755,19 @@ export default function Hero() {
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-zinc-50 object-cover"
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
                     alt=""
+                    loading="lazy"
                   />
                   <img
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-zinc-50 object-cover"
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"
                     alt=""
+                    loading="lazy"
                   />
                   <img
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-zinc-50 object-cover"
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80"
                     alt=""
+                    loading="lazy"
                   />
                   <div className="flex items-center justify-center h-10 w-10 rounded-full ring-2 ring-zinc-50 bg-brand-primary text-[10px] font-bold text-white">
                     <Plus />
@@ -791,6 +783,7 @@ export default function Hero() {
                 alt="Experts On Call"
                 fill
                 className="object-cover "
+                loading="lazy"
               />
               <div className=" bg-[#072042a6] absolute inset-0"></div>
               <div className="absolute flex justify-between items-end  inset-0 p-6 ">
@@ -800,7 +793,7 @@ export default function Hero() {
                     24/7
                   </span>
                 </p>
-                <button className="bg-white w-fit hover:bg-zinc-100 text-zinc-900 rounded-full p-2.5 transition-colors shadow-xs">
+                <button className="bg-white w-fit hover:bg-brand-primary hover:text-white active:bg-brand-primary transition-all duration-300 cursor-pointer text-zinc-900 rounded-full p-2.5  shadow-xs">
                   <svg
                     className="w-4 h-4 stroke-current fill-none"
                     strokeWidth="2.5"
