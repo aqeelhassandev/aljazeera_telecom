@@ -60,9 +60,24 @@ export default function NotFound() {
               className="absolute top-23 left-0 w-23 h-23 rounded-tl-[30px] shadow-[-15px_-15px_0px_0px_#031530]  bg-transparent"
             />
             {/* right side */}
-            <div className="absolute bottom-0 right-0 w-33 h-23 rounded-tl-[30px] bg-[#031530]"></div>
-            <div className="absolute bottom-0 right-33 w-23 h-23 rounded-br-[30px] shadow-[15px_30px_0px_0px_#031530]  bg-transparent"></div>
-            <div className="absolute bottom-23 right-0 w-23 h-23 rounded-br-[30px] shadow-[15px_15px_0px_0px_#031530]  bg-transparent"></div>
+            <motion.div
+              initial={{ x: 56 }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+              className="absolute bottom-0 right-0 w-33 h-23 rounded-tl-[30px] bg-[#031530]"
+            ></motion.div>
+            <motion.div
+              initial={{ x: 56 }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+              className="absolute bottom-0 right-33 w-23 h-23 rounded-br-[30px] shadow-[15px_30px_0px_0px_#031530]  bg-transparent"
+            ></motion.div>
+            <motion.div
+              initial={{ x: 56 }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+              className="absolute bottom-23 right-0 w-23 h-23 rounded-br-[30px] shadow-[15px_15px_0px_0px_#031530]  bg-transparent"
+            ></motion.div>
           </div>
         </div>
 
