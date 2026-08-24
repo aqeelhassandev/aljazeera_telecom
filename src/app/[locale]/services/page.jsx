@@ -1,5 +1,9 @@
 import ServicesPageContent from "./ServicesPageContent";
 
+export async function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ar" }];
+}
+
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isAr = locale === "ar";
