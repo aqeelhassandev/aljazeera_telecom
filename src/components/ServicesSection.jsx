@@ -99,12 +99,24 @@ const services = [
   },
 ];
 
-export default function ServicesSection() {
+import { getTranslations } from "@/i18n";
+
+export default function ServicesSection({ locale = "en" }) {
+  const t = getTranslations(locale);
   const [api, setApi] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
+
+  // Translate service titles and descriptions dynamically
+  const activeServices = services.map((s) => ({
+    ...s,
+    title: t.services.list[s.id] ? t.services.list[s.id].title : s.title,
+    description: t.services.list[s.id]
+      ? t.services.list[s.id].description
+      : s.description,
+  }));
 
   // On desktop 3 cards are visible at once; the middle one is "active".
   // On mobile only 1 card is visible, so that single card is "active".
@@ -149,18 +161,28 @@ export default function ServicesSection() {
           >
             <div>
               <span className="inline-flex items-center gap-1.5 bg-white/10 text-white text-xs font-semibold px-4 py-1.5 rounded-full border border-white/20">
-                <span className="text-blue-400 text-sm">✶</span> Service
+                <span className="text-blue-400 text-sm">✶</span>{" "}
+                {t.pricing.badge}
               </span>
             </div>
 
             <LayoutTextFlip
-              text="Welcome to "
-              words={[
-                "Al Jazeera Telecom",
-                "Iraq's Fiber Pioneer",
-                "Unmatched Speed",
-                "24/7 Support",
-              ]}
+              text={locale === "ar" ? "مرحباً بكم في " : "Welcome to "}
+              words={
+                locale === "ar"
+                  ? [
+                      "الجزيرة للاتصالات",
+                      "رواد الألياف",
+                      "سرعة فائقة",
+                      "دعم 24/7",
+                    ]
+                  : [
+                      "Al Jazeera Telecom",
+                      "Iraq's Fiber Pioneer",
+                      "Unmatched Speed",
+                      "24/7 Support",
+                    ]
+              }
               classNameContener="bg-brand-secondary1 text-white border-brand-secondary1 "
             />
           </motion.div>
@@ -169,17 +191,19 @@ export default function ServicesSection() {
             className="flex flex-col gap-6 max-w-4xl lg:pt-4"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           >
             <div className="flex flex-col gap-3">
               <h3 className="text-lg font-semibold text-white/90">
-                We have the fix for any issue.
+                {locale === "ar"
+                  ? "لدينا الحل المناسب لأي مشكلة."
+                  : "We have the fix for any issue."}
               </h3>
               <p className="text-sm md:text-base text-zinc-400 leading-relaxed">
-                No matter the issue, we've got the fix quick, clean, and with
-                zero hassle. From daily tech glitches to long-term IT strategy,
-                our services keep you running smooth.
+                {locale === "ar"
+                  ? "مهما كانت المشكلة، لدينا الحل بسرعة وبدون أي متاعب. من المشاكل اليومية للتقنية إلى استراتيجيات تقنية المعلومات طويلة الأجل، خدماتنا تبقي أعمالك مستمرة بسلاسة."
+                  : "No matter the issue, we've got the fix quick, clean, and with zero hassle. From daily tech glitches to long-term IT strategy, our services keep you running smooth."}
               </p>
             </div>
 
@@ -191,10 +215,12 @@ export default function ServicesSection() {
                       "rounded-full bg-[#1d4ed8] hover:bg-blue-700 px-6 py-2.5 h-auto text-sm font-semibold shadow-lg hover:shadow-blue-500/20 transition-all duration-500 w-fit flex justify-center items-center gap-2",
                   }),
                 )}
-                href="/services"
+                href={`/${locale}/services`}
               >
-                All service
-                <ArrowRight className="w-4 h-4" />
+                {locale === "ar" ? "كل الخدمات" : "All services"}
+                <ArrowRight
+                  className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`}
+                />
               </Link>
 
               {/* Navigation Controls */}
@@ -206,7 +232,7 @@ export default function ServicesSection() {
                   aria-label="Previous services"
                   className="w-10 h-10 flex items-center justify-center rounded-full border border-white/15 bg-white/5 text-white hover:bg-white/10 hover:border-white/30 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
                 >
-                  <ArrowLeft className="w-4 h-4" />
+                  <ArrowLeft className="w-4 h-4 rtl:rotate-180" />
                 </button>
                 <button
                   type="button"
@@ -215,7 +241,7 @@ export default function ServicesSection() {
                   aria-label="Next services"
                   className="w-10 h-10 flex items-center justify-center rounded-full border border-white/15 bg-white/5 text-white hover:bg-white/10 hover:border-white/30 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
                 >
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </button>
               </div>
             </div>
@@ -226,11 +252,16 @@ export default function ServicesSection() {
           <div className="relative ">
             <Carousel
               setApi={setApi}
-              opts={{ align: "start", loop: false, slidesToScroll: 1 }}
+              opts={{
+                align: "start",
+                loop: false,
+                slidesToScroll: 1,
+                direction: locale === "ar" ? "rtl" : "ltr",
+              }}
               className="w-full "
             >
               <CarouselContent className="-ml-6 lg:-ml-8 py-12">
-                {services.map((service, actualIndex) => {
+                {activeServices.map((service, actualIndex) => {
                   const isActive = actualIndex === activeCardIndex;
                   return (
                     <CarouselItem
@@ -326,10 +357,12 @@ export default function ServicesSection() {
                                   }`,
                                 }),
                               )}
-                              href={`/services/${service.id}`}
+                              href={`/${locale}/services`}
                             >
-                              Get Started
-                              <ArrowRight className="w-4 h-4" />
+                              {locale === "ar" ? "ابدأ الآن" : "Get Started"}
+                              <ArrowRight
+                                className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`}
+                              />
                             </Link>
                           </div>
                         </div>

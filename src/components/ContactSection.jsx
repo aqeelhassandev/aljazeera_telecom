@@ -9,8 +9,10 @@ import {
   MessageSquare,
   ArrowRight,
 } from "lucide-react";
+import { getTranslations } from "@/i18n";
 
-export default function ContactSection() {
+export default function ContactSection({ locale = "en" }) {
+  const t = getTranslations(locale);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,22 +52,21 @@ export default function ContactSection() {
           <div className="lg:col-span-5 flex flex-col gap-10">
             {/* Badge + Heading */}
             <motion.div
-              initial={{ opacity: 0, x: -350 }}
+              initial={{ opacity: 0, x: locale === "ar" ? 350 : -350 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100 mb-6">
-                <span className="text-sm">✶</span> Connect with Us
+                <span className="text-sm">✶</span> {t.contact.badge}
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold tracking-tight text-zinc-900 leading-[1.1] mb-6">
-                Ready to experience the{" "}
-                <span className="text-brand-secondary1">fastest</span> internet?
+                {t.contact.heading1}{" "}
+                <span className="text-brand-secondary1">{t.contact.headingHighlight}</span>{" "}
+                {t.contact.heading2}
               </h2>
               <p className="text-sm sm:text-base text-zinc-500 leading-relaxed lg:max-w-sm">
-                Get in touch with Al Jazeera Telecom today. Our network
-                consultants are on standby to design the perfect high-speed
-                connection for you.
+                {t.contact.subtext}
               </p>
             </motion.div>
 
@@ -74,22 +75,22 @@ export default function ContactSection() {
               {[
                 {
                   icon: <Phone loading="lazy" className="w-5 h-5" />,
-                  label: "Quick Support Helpline",
-                  val: "6055",
+                  label: t.contact.infoCards.phone.label,
+                  val: t.contact.infoCards.phone.val,
                   href: "tel:6055",
                   color: "bg-brand-secondary1/10 text-brand-secondary1",
                 },
                 {
                   icon: <Mail loading="lazy" className="w-5 h-5" />,
-                  label: "General Inquiry Email",
-                  val: "info@jt.iq",
+                  label: t.contact.infoCards.email.label,
+                  val: t.contact.infoCards.email.val,
                   href: "mailto:info@jt.iq",
                   color: "bg-brand-primary/10 text-brand-primary",
                 },
                 {
                   icon: <MapPin loading="lazy" className="w-5 h-5" />,
-                  label: "Headquarters Location",
-                  val: "Baghdad, Karrada Al-wehda District",
+                  label: t.contact.infoCards.address.label,
+                  val: t.contact.infoCards.address.val,
                   href: "#",
                   color: "bg-zinc-200/50 text-zinc-700",
                 },
@@ -98,7 +99,7 @@ export default function ContactSection() {
                   key={idx}
                   href={item.href}
                   className="group flex gap-5 items-center bg-white/70 backdrop-blur-md p-6 rounded-[24px] border border-white/60 shadow-xs hover:shadow-lg hover:bg-white hover:-translate-y-1 transition-all duration-300"
-                  initial={{ opacity: 0, x: -220 }}
+                  initial={{ opacity: 0, x: locale === "ar" ? 220 : -220 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{
@@ -121,7 +122,7 @@ export default function ContactSection() {
                     </p>
                   </div>
                   {item.href !== "#" && (
-                    <ArrowRight className="w-5 h-5 text-zinc-300 group-hover:text-brand-secondary1 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                    <ArrowRight className={`w-5 h-5 text-zinc-300 group-hover:text-brand-secondary1 group-hover:translate-x-1 transition-all duration-300 shrink-0 ${locale === "ar" ? "rotate-180" : ""}`} />
                   )}
                 </motion.a>
               ))}
@@ -131,7 +132,7 @@ export default function ContactSection() {
           {/* ── Right Column: Interactive Form ── */}
           <motion.div
             className="lg:col-span-7 bg-white/80 backdrop-blur-md rounded-[40px] p-8 md:p-12 border border-white shadow-2xl relative"
-            initial={{ opacity: 0, x: 350, y: 150 }}
+            initial={{ opacity: 0, x: locale === "ar" ? -350 : 350, y: 150 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.1, ease: "easeOut" }}
@@ -140,10 +141,10 @@ export default function ContactSection() {
             <div className="mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-2 flex items-center gap-2">
                 <MessageSquare className="w-7 h-7 text-brand-secondary1" />
-                Send Us a Message
+                {t.contact.form.title}
               </h3>
               <p className="text-sm text-zinc-500">
-                We'll get back to you with custom plans within 24 hours.
+                {t.contact.form.subtitle}
               </p>
             </div>
 
@@ -152,7 +153,7 @@ export default function ContactSection() {
                 {/* Name */}
                 <div className="flex flex-col gap-2 relative group">
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-                    Full Name
+                    {t.contact.form.fullName}
                   </span>
                   <input
                     type="text"
@@ -161,14 +162,14 @@ export default function ContactSection() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    placeholder="E.g., John Doe"
+                    placeholder={t.contact.form.namePlaceholder}
                     className="w-full bg-[#f9f9f9]/80 border border-zinc-200 rounded-[20px] px-5 py-4 text-zinc-800 text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-secondary1/30 focus:border-brand-secondary1 focus:bg-white transition-all shadow-inner"
                   />
                 </div>
                 {/* Email */}
                 <div className="flex flex-col gap-2">
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-                    Email Address
+                    {t.contact.form.emailAddress}
                   </span>
                   <input
                     type="email"
@@ -177,7 +178,7 @@ export default function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="E.g., name@example.com"
+                    placeholder={t.contact.form.emailPlaceholder}
                     className="w-full bg-[#f9f9f9]/80 border border-zinc-200 rounded-[20px] px-5 py-4 text-zinc-800 text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-secondary1/30 focus:border-brand-secondary1 focus:bg-white transition-all shadow-inner"
                   />
                 </div>
@@ -186,7 +187,7 @@ export default function ContactSection() {
               {/* Phone */}
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-                  Phone Number (Optional)
+                  {t.contact.form.phone}
                 </span>
                 <input
                   type="text"
@@ -194,7 +195,7 @@ export default function ContactSection() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="E.g., +964 770 000 0000"
+                  placeholder={t.contact.form.phonePlaceholder}
                   className="w-full bg-[#f9f9f9]/80 border border-zinc-200 rounded-[20px] px-5 py-4 text-zinc-800 text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-secondary1/30 focus:border-brand-secondary1 focus:bg-white transition-all shadow-inner"
                 />
               </div>
@@ -202,7 +203,7 @@ export default function ContactSection() {
               {/* Message */}
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-                  Your Message
+                  {t.contact.form.message}
                 </span>
                 <textarea
                   id="message"
@@ -211,7 +212,7 @@ export default function ContactSection() {
                   onChange={handleChange}
                   required
                   rows={4}
-                  placeholder="Tell us about your internet requirements..."
+                  placeholder={t.contact.form.messagePlaceholder}
                   className="w-full bg-[#f9f9f9]/80 border border-zinc-200 rounded-[20px] px-5 py-4 text-zinc-800 text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-secondary1/30 focus:border-brand-secondary1 focus:bg-white transition-all shadow-inner resize-none"
                 />
               </div>
@@ -226,8 +227,8 @@ export default function ContactSection() {
                   <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <>
-                    Send Your Message
-                    <Send className="w-4 h-4" />
+                    {t.contact.form.submit}
+                    <Send className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`} />
                   </>
                 )}
               </button>
@@ -239,8 +240,7 @@ export default function ContactSection() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  ✓ Thank you! Your message has been sent successfully. We will
-                  contact you soon.
+                  {t.contact.form.successMsg}
                 </motion.div>
               )}
             </form>

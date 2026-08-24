@@ -2,17 +2,23 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { getTranslations } from "@/i18n";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About us" },
-  { href: "/services", label: "Services" },
-  { href: "#contact", label: "Contact Us" },
-];
-
-export default function Navbar() {
+export default function Navbar({ locale = "en" }) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const t = getTranslations(locale);
+  const isAr = locale === "ar";
+
+  const navLinks = [
+    { href: `/${locale}`, label: t.nav.home },
+    { href: `/${locale}/about`, label: t.nav.about },
+    { href: `/${locale}/services`, label: t.nav.services },
+    { href: `/${locale}/contact`, label: t.nav.contact },
+  ];
 
   // Close menu on route change / scroll lock
   useEffect(() => {
@@ -28,6 +34,14 @@ export default function Navbar() {
 
   const close = () => setIsOpen(false);
 
+  const toggleLanguage = () => {
+    const nextLocale = isAr ? "en" : "ar";
+    // Basic logic to swap out the locale in the URL path:
+    // e.g. /en/about -> /ar/about
+    const currentPathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
+    router.push(`/${nextLocale}${currentPathWithoutLocale}`);
+  };
+
   return (
     <>
       <div className="fixed top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-zinc-100">
@@ -35,7 +49,11 @@ export default function Navbar() {
         <nav className="max-w-[1700px] mx-auto px-6 py-4">
           <div className="flex items-center justify-between gap-6">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group" onClick={close}>
+            <Link
+              href={`/${locale}`}
+              className="flex items-center gap-2 group"
+              onClick={close}
+            >
               <Image
                 src="/logo.png"
                 alt="Logo"
@@ -58,11 +76,20 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right side: CTA + Hamburger */}
+            {/* Right side: Language Switcher + CTA + Hamburger */}
             <div className="flex items-center gap-3">
+              {/* Language Toggle */}
+              <button
+                onClick={toggleLanguage}
+                className="font-bold text-sm text-zinc-600 hover:text-brand-secondary1 px-2 py-1 transition-colors"
+                aria-label="Switch Language"
+              >
+                {isAr ? "EN" : "عربي"}
+              </button>
+
               {/* CTA Button — always visible */}
               <Link
-                href="/book"
+                href="tel:6055"
                 className="hidden md:inline-flex items-center gap-2 rounded-full bg-brand-secondary1 px-5 py-2.5 text-[12px] lg:text-[15px] font-semibold text-white shadow-sm hover:bg-brand-secondary1/80 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 <span
@@ -75,22 +102,24 @@ export default function Navbar() {
                     flexShrink: 0,
                   }}
                 />
-                CALL 6055
+                {t.nav.cta}
               </Link>
 
               {/* Hamburger Button — mobile only */}
               <button
                 id="nav-hamburger"
-                aria-label="Toggle navigation menu"
+                aria-label={t.nav.toggleMenu}
                 aria-expanded={isOpen}
                 onClick={() => setIsOpen((o) => !o)}
-                className="md:hidden flex flex-col justify-center items-center w-10 h-10  bg-white hover:bg-zinc-50 transition-colors gap-1.5"
+                className="md:hidden flex flex-col justify-center items-center w-10 h-10 hover:bg-zinc-50 transition-colors gap-1.5"
               >
                 {/* Animated bars */}
                 <span
                   className="block w-5 h-0.5 bg-zinc-700 rounded-full transition-all duration-300 origin-center"
                   style={{
-                    transform: isOpen ? "translateY(7px) rotate(45deg)" : "none",
+                    transform: isOpen
+                      ? "translateY(7px) rotate(45deg)"
+                      : "none",
                   }}
                 />
                 <span
@@ -103,7 +132,9 @@ export default function Navbar() {
                 <span
                   className="block w-5 h-0.5 bg-zinc-700 rounded-full transition-all duration-300 origin-center"
                   style={{
-                    transform: isOpen ? "translateY(-7px) rotate(-45deg)" : "none",
+                    transform: isOpen
+                      ? "translateY(-7px) rotate(-45deg)"
+                      : "none",
                   }}
                 />
               </button>
@@ -130,15 +161,15 @@ export default function Navbar() {
             {/* Slide-in panel */}
             <motion.div
               key="mobile-menu"
-              initial={{ x: "100%", opacity: 0 }}
+              initial={{ x: isAr ? "-100%" : "100%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0 }}
+              exit={{ x: isAr ? "-100%" : "100%", opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 z-50 h-full w-[80%] max-w-sm bg-white shadow-2xl flex flex-col md:hidden"
+              className={`fixed top-0 ${isAr ? "left-0" : "right-0"} z-50 h-full w-[80%] max-w-sm bg-white shadow-2xl flex flex-col md:hidden`}
             >
               {/* Panel header */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-zinc-100">
-                <Link href="/" onClick={close}>
+                <Link href={`/${locale}`} onClick={close}>
                   <Image
                     src="/logo.png"
                     alt="Logo"
@@ -148,11 +179,18 @@ export default function Navbar() {
                   />
                 </Link>
                 <button
-                  aria-label="Close menu"
+                  aria-label={t.nav.closeMenu}
                   onClick={close}
                   className="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition-colors"
                 >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <svg
+                    className="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  >
                     <path d="M18 6L6 18M6 6l12 12" />
                   </svg>
                 </button>
@@ -163,9 +201,13 @@ export default function Navbar() {
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
-                    initial={{ opacity: 0, x: 30 }}
+                    initial={{ opacity: 0, x: isAr ? -30 : 30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 + i * 0.07, duration: 0.35, ease: "easeOut" }}
+                    transition={{
+                      delay: 0.05 + i * 0.07,
+                      duration: 0.35,
+                      ease: "easeOut",
+                    }}
                   >
                     <Link
                       href={link.href}
@@ -187,7 +229,7 @@ export default function Navbar() {
                 transition={{ delay: 0.35, duration: 0.4, ease: "easeOut" }}
               >
                 <Link
-                  href="/book"
+                  href="tel:6055"
                   onClick={close}
                   className="flex items-center justify-center gap-2 w-full rounded-full bg-brand-secondary1 px-6 py-3.5 text-[16px] font-semibold text-white shadow hover:bg-brand-secondary1/80 active:scale-[0.98] transition-all duration-200"
                 >
@@ -201,7 +243,7 @@ export default function Navbar() {
                       flexShrink: 0,
                     }}
                   />
-                  CALL 6055
+                  {t.nav.cta}
                 </Link>
               </motion.div>
             </motion.div>

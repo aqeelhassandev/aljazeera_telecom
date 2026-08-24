@@ -6,12 +6,28 @@ import AboutSection from "@/components/AboutSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, Eye, Shield, Users, Target } from "lucide-react";
+import { Eye, Shield, Users, Target } from "lucide-react";
 
-export default function AboutPage() {
+import { getTranslations } from "@/i18n";
+
+export default function AboutPageContent({ locale = "en" }) {
+  const t = getTranslations(locale);
+
+  const icons = [
+    <Target className="w-6 h-6 text-brand-secondary1" />,
+    <Eye className="w-6 h-6 text-brand-secondary1" />,
+    <Shield className="w-6 h-6 text-brand-secondary1" />,
+    <Users className="w-6 h-6 text-brand-secondary1" />,
+  ];
+
+  const activeValues = t.about.values.map((v, idx) => ({
+    ...v,
+    icon: icons[idx],
+  }));
+
   return (
     <div className="min-h-screen bg-[#f9f9f9] flex flex-col">
-      <Navbar />
+      <Navbar locale={locale} />
 
       <section className="relative w-full h-fit pt-36 pb-15 overflow-hidden bg-[#031530] text-white">
         <div className="w-full h-[350px] lg:h-[450px] relative max-w-[2700px] mx-auto px-6 lg:px-12">
@@ -30,7 +46,7 @@ export default function AboutPage() {
             />
 
             <div className="absolute top-0 left-0 w-full h-full bg-[#031530]/60 flex items-center justify-center text-white text-3xl lg:text-5xl font-bold">
-              About us
+              {t.about.heroBanner}
             </div>
           </motion.div>
 
@@ -86,15 +102,12 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center gap-6"
           >
-           
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight max-w-5xl leading-[1.15]">
-              Connecting People, Empowering Iraq's{" "}
-              <span className="text-brand-secondary1">Digital Future</span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight max-w-5xl leading-[1.15] mt-9">
+              {locale === "ar" ? "نربط الناس، نمكّن " : "Connecting People, Empowering Iraq's "}
+              <span className="text-brand-secondary1">{locale === "ar" ? "مستقبل العراق الرقمي" : "Digital Future"}</span>
             </h1>
-            <p className="text-zinc-400 text-base sm:text-lg max-w-2xl leading-relaxed">
-              For over two decades, Al Jazeera Telecom has built the core
-              digital highway of Iraq, delivering high-speed internet and
-              professional telecom services.
+            <p className="text-zinc-400 text-[15px] sm:text-lg max-w-2xl leading-relaxed">
+              {t.about.subtext}
             </p>
           </motion.div>
         </div>
@@ -105,40 +118,15 @@ export default function AboutPage() {
         <div className="max-w-[1700px] mx-auto px-6 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col items-center gap-4">
             <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100">
-              <span className="text-sm">✶</span> Values
+              <span className="text-sm">✶</span> {t.about.valuesBadge}
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900">
-              The Principles That Guide Us
+              {t.about.valuesHeading}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: <Target className="w-6 h-6 text-brand-secondary1" />,
-                title: "Our Mission",
-                description:
-                  "To deliver reliable high-speed broadband and bespoke digital solutions across all regions of Iraq, promoting progress and digital inclusivity.",
-              },
-              {
-                icon: <Eye className="w-6 h-6 text-brand-secondary1" />,
-                title: "Our Vision",
-                description:
-                  "To lead Iraq's transition into a modern digital era by constantly expanding and updating our infrastructure with state-of-the-art telecom tech.",
-              },
-              {
-                icon: <Shield className="w-6 h-6 text-brand-secondary1" />,
-                title: "Integrity & Security",
-                description:
-                  "We secure our users' privacy and maintain full accountability, establishing bulletproof connections that companies and households trust.",
-              },
-              {
-                icon: <Users className="w-6 h-6 text-brand-secondary1" />,
-                title: "Customer Support",
-                description:
-                  "Our customer support teams operate around the clock, providing 24/7 technical expertise, maintaining consistent link reliability.",
-              },
-            ].map((value, index) => (
+            {activeValues.map((value, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -163,12 +151,12 @@ export default function AboutPage() {
       </section>
 
       {/* Standard About Section component for Journey, Counters, and Layout symmetry */}
-      <AboutSection />
+      <AboutSection locale={locale} />
 
       {/* Why Choose Us component */}
-      <WhyChooseUs />
+      <WhyChooseUs locale={locale} />
 
-      <Footer />
+      <Footer locale={locale} />
     </div>
   );
 }

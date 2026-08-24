@@ -82,12 +82,18 @@ const timeline = [
   },
 ];
 
-export default function AboutSection() {
+import { getTranslations } from "@/i18n";
+
+export default function AboutSection({ locale = "en" }) {
+  const t = getTranslations(locale);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
+
+  const activeStats = t.about.stats;
+  const activeTimeline = t.about.timeline;
 
   // Map scroll progress to line height (from top to bottom)
   const scaleY = useTransform(scrollYProgress, [0.1, 0.7], [0, 1]);
@@ -110,15 +116,15 @@ export default function AboutSection() {
               transition={{ duration: 0.9, ease: "easeOut" }}
             >
               <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100 mb-5">
-                <span className="text-sm">✶</span> About us
+                <span className="text-sm">✶</span> {t.about.badge}
               </span>
               <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
                 <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.1] max-w-4xl">
-                  Al Jazeera Telecom:{" "}
+                  {t.about.sectionHeading}{" "}
                   <span className="text-brand-secondary1">
-                    Empowering Iraq's Digital Landscape
+                    {t.about.sectionHeadingHighlight}
                   </span>{" "}
-                  since 2004
+                  {t.about.sectionSubtext}
                 </h2>
               </div>
             </motion.div>
@@ -126,11 +132,13 @@ export default function AboutSection() {
             {/* Timeline */}
             <div className="flex flex-col gap-0">
               <p className="text-xs font-bold tracking-[0.2em] text-zinc-400 uppercase mb-6">
-                Our Journey
+                {t.about.timelineTitle}
               </p>
               <div ref={containerRef} className="relative flex flex-col gap-0">
                 {/* SVG Scroll-drawn vertical line */}
-                <svg className="absolute left-5.75 top-3 bottom-3 w-0.5 h-[calc(100%-24px)] overflow-visible pointer-events-none">
+                <svg
+                  className={`absolute ${locale === "ar" ? "right-5.75" : "left-5.75"} top-3 bottom-3 w-0.5 h-[calc(100%-24px)] overflow-visible pointer-events-none`}
+                >
                   <line
                     x1="0"
                     y1="0"
@@ -150,11 +158,11 @@ export default function AboutSection() {
                   />
                 </svg>
 
-                {timeline.map((item, i) => (
+                {activeTimeline.map((item, i) => (
                   <motion.div
                     key={i}
                     className="flex gap-6 pb-10 last:pb-0 relative"
-                    initial={{ opacity: 0, x: -220 }}
+                    initial={{ opacity: 0, x: locale === "ar" ? 220 : -220 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{
@@ -172,8 +180,10 @@ export default function AboutSection() {
                             : "bg-white border-zinc-200 text-zinc-700"
                         }`}
                       >
-                        {item.year === "Today" ? (
-                          <span className="text-[10px] font-bold">NOW</span>
+                        {item.year === "Today" || item.year === "اليوم" ? (
+                          <span className="text-[10px] font-bold">
+                            {locale === "ar" ? "الآن" : "NOW"}
+                          </span>
                         ) : (
                           <span className="text-[10px] font-bold leading-tight text-center">
                             {item.year}
@@ -198,23 +208,25 @@ export default function AboutSection() {
             {/* CTA */}
             <motion.div
               className="flex items-center gap-4"
-              initial={{ opacity: 0, x: -220 }}
+              initial={{ opacity: 0, x: locale === "ar" ? 220 : -220 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 1.3 }}
             >
               <Link
-                href="/about"
+                href={`/${locale}/about`}
                 className="inline-flex items-center gap-2 rounded-full bg-brand-secondary1 px-7 py-3.5 text-sm font-semibold text-white shadow-md hover:bg-brand-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
-                Learn More About Us
-                <ArrowRight className="w-4 h-4" />
+                {t.about.learnMore}
+                <ArrowRight
+                  className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`}
+                />
               </Link>
               <Link
-                href="/services"
+                href={`/${locale}/services`}
                 className="inline-flex items-center gap-2 rounded-full bg-[#EEEEF1] hover:bg-[#EEEEF1]/80 px-7 py-3.5 text-sm font-semibold text-zinc-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
-                Our Services
+                {t.nav.services}
               </Link>
             </motion.div>
           </div>
@@ -243,7 +255,7 @@ export default function AboutSection() {
                   duration: 0.8,
                   ease: "easeOut",
                 }}
-                className="absolute left-0 top-11 -translate-y-1/2 flex items-center justify-center z-20  bg-background p-4  rounded-br-[30px]"
+                className={`absolute left-0 top-11 -translate-y-1/2 flex items-center justify-center z-20  bg-background p-4  rounded-br-[30px]`}
               >
                 {/* Wave 1 */}
                 <div
@@ -267,8 +279,12 @@ export default function AboutSection() {
                   </svg>
                 </Button>
 
-                <div className="absolute bg-transparent top-3 left-28 w-16 h-16 rounded-tl-3xl shadow-[-2px_-13px_0_0_var(--background)] z-0" />
-                <div className="absolute bg-transparent top-28 left-0 w-16 h-16 rounded-tl-3xl shadow-[-25px_-1px_0_0_var(--background)] z-0" />
+                <div
+                  className={`absolute bg-transparent top-3 left-28 w-16 h-16 rounded-tl-3xl shadow-[-2px_-13px_0_0_var(--background)] z-0`}
+                />
+                <div
+                  className={`absolute bg-transparent top-28 left-0 w-16 h-16 rounded-tl-3xl shadow-[-25px_-1px_0_0_var(--background)] z-0`}
+                />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 220 }}
@@ -278,7 +294,7 @@ export default function AboutSection() {
                   duration: 0.7,
                   ease: "easeOut",
                 }}
-                className="absolute -bottom-1 -right-1 flex items-center gap-3 bg-background rounded-tl-[25px]  px-7 py-5"
+                className={`absolute -bottom-1 -right-1 flex items-center gap-3 bg-background rounded-tl-[25px]  px-7 py-5`}
               >
                 <div className="w-9 h-9 rounded-xl bg-brand-secondary1 flex items-center justify-center shrink-0 z-10">
                   <svg
@@ -297,14 +313,22 @@ export default function AboutSection() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-zinc-900 leading-tight">
-                    Iraq's First Fiber-Optic ISP
+                    {locale === "ar"
+                      ? "أول مزود ألياف ضوئية في العراق"
+                      : "Iraq's First Fiber-Optic ISP"}
                   </p>
                   <p className="text-[11px] text-zinc-500">
-                    Pioneering since 2004
+                    {locale === "ar"
+                      ? "رائدون منذ عام 2004"
+                      : "Pioneering since 2004"}
                   </p>
                 </div>
-                <div className="absolute bg-transparent bottom-19 right-1 w-16 h-16 rounded-br-3xl shadow-[2px_14px_0_0_var(--background)] z-0" />
-                <div className="absolute bg-transparent bottom-1 -left-16 w-16 h-16 rounded-br-3xl shadow-[32px_14px_0_0_var(--background)] z-0" />
+                <div
+                  className={`absolute bg-transparent bottom-19 right-1 w-16 h-16 rounded-br-3xl shadow-[2px_14px_0_0_var(--background)] z-0`}
+                />
+                <div
+                  className={`absolute bg-transparent bottom-1 ${locale === "ar" ? "-left-16 shadow-[13px_14px_0_0_var(--background)]" : "-left-16 shadow-[32px_14px_0_0_var(--background)]"} w-16 h-16 rounded-br-3xl  z-0`}
+                />
               </motion.div>
             </motion.div>
 
@@ -316,7 +340,7 @@ export default function AboutSection() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             >
-              {stats.map((stat, idx) => (
+              {activeStats.map((stat, idx) => (
                 <motion.div
                   key={stat.label}
                   className="rounded-2xl px-5 py-4"

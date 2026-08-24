@@ -3,6 +3,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { getTranslations } from "@/i18n";
 
 const reasons = [
   {
@@ -33,12 +34,23 @@ const reasons = [
   },
 ];
 
-export default function WhyChooseUs() {
+export default function WhyChooseUs({ locale = "en" }) {
+  const t = getTranslations(locale);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
+
+  const activeReasons = reasons.map((reason, idx) => ({
+    ...reason,
+    title: t.whyChooseUs.reasons[idx]
+      ? t.whyChooseUs.reasons[idx].title
+      : reason.title,
+    description: t.whyChooseUs.reasons[idx]
+      ? t.whyChooseUs.reasons[idx].description
+      : reason.description,
+  }));
 
   // const pathLength = useTransform(scrollYProgress, [0.05, 0.85], [0, 1]);
   const fillOpacity = useTransform(scrollYProgress, [0.106, 0.5], [0, 1]);
@@ -117,33 +129,74 @@ export default function WhyChooseUs() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 ">
           {/* ── Left Column ── */}
           <div className="lg:col-span-5 flex flex-col gap-10 lg:sticky lg:top-28">
-            {/* Badge + Heading */}
+            {/* Badge + Heading (Desktop) */}
             <motion.div
+              className="hidden md:block"
               initial={{ opacity: 0, y: -230 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+            >
+              <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100 mb-5">
+                <span className="text-sm">✶</span> {t.whyChooseUs.badge}
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold tracking-tight text-zinc-900 leading-[1.15] mb-6">
+                {t.whyChooseUs.heading}{" "}
+                <span className="text-brand-secondary1">
+                  {t.whyChooseUs.headingHighlight}
+                </span>{" "}
+                {t.whyChooseUs.headingEnd}
+              </h2>
+              <p className="text-sm sm:text-base text-zinc-500 leading-relaxed lg:max-w-sm">
+                {t.whyChooseUs.subtext}
+              </p>
+            </motion.div>
+
+            {/* Badge + Heading (Mobile) */}
+            <motion.div
+              className="md:hidden"
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
             >
               <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100 mb-5">
-                <span className="text-sm">✶</span> Why choose us
+                <span className="text-sm">✶</span> {t.whyChooseUs.badge}
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold tracking-tight text-zinc-900 leading-[1.15] mb-6">
-                Why We&apos;re Your Best{" "}
-                <span className="text-brand-secondary1">Connectivity</span> Ally
+                {t.whyChooseUs.heading}{" "}
+                <span className="text-brand-secondary1">
+                  {t.whyChooseUs.headingHighlight}
+                </span>{" "}
+                {t.whyChooseUs.headingEnd}
               </h2>
               <p className="text-sm sm:text-base text-zinc-500 leading-relaxed lg:max-w-sm">
-                Solve your connectivity challenges fast, so you can focus on
-                what matters — running your business. From day one, we&apos;ve
-                built our reputation on speed, clarity, and relentless
-                reliability.
+                {t.whyChooseUs.subtext}
               </p>
             </motion.div>
 
-            {/* Team image */}
+            {/* Team image (Desktop) */}
             <motion.div
-              className="relative w-full h-84 rounded-[28px] overflow-hidden shadow-lg"
+              className="relative w-full h-84 rounded-[28px] overflow-hidden shadow-lg hidden md:block"
               initial={{ opacity: 0, x: -405, y: 210 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Image
+                src="/hero_tech_team.png"
+                alt="Al Jazeera Telecom team at work"
+                fill
+                className="object-cover"
+                loading="lazy"
+              />
+            </motion.div>
+
+            {/* Team image (Mobile) */}
+            <motion.div
+              className="relative w-full h-84 rounded-[28px] overflow-hidden shadow-lg md:hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8 }}
             >
@@ -159,73 +212,117 @@ export default function WhyChooseUs() {
 
           {/* ── Right Column — Accordion list ── */}
           <div className="lg:col-span-7 flex flex-col divide-y divide-zinc-200">
-            {reasons.map((reason, i) => {
+            {activeReasons.map((reason, i) => {
               return (
-                <motion.div
-                  key={i}
-                  className="py-6 group"
-                  initial={{ opacity: 0, x: 430 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{
-                    duration: 0.5,
-                    ease: "easeOut",
-                    delay: i * 0.25,
-                  }}
-                >
-                  <div className="flex items-start gap-6">
-                    {/* Number */}
-                    <span className="text-sm font-bold tabular-nums mt-0.5 text-brand-primary">
-                      {reason.number}.
-                    </span>
+                <div key={i}>
+                  {/* Desktop Item */}
+                  <motion.div
+                    className="py-6 group hidden md:block"
+                    initial={{ opacity: 0, x: locale === "ar" ? -430 : 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.5,
+                      ease: "easeOut",
+                      delay: i * 0.25,
+                    }}
+                  >
+                    <div className="flex items-start gap-6">
+                      {/* Number */}
+                      <span className="text-sm font-bold tabular-nums mt-0.5 text-brand-primary">
+                        {reason.number}.
+                      </span>
 
-                    {/* Content */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-4">
-                        <h3 className="text-lg font-bold text-zinc-900">
-                          {reason.title}
-                        </h3>
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-4">
+                          <h3 className="text-lg font-bold text-zinc-900">
+                            {reason.title}
+                          </h3>
 
-                        {/* Arrow button */}
-                        {!i == 0 && (
-                          <div className="shrink-0 w-9 h-9 rounded-full border-2 border-brand-primary bg-brand-primary text-white flex items-center justify-center">
-                            <ArrowRight className="w-4 h-4" />
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="overflow-hidden">
-                        <div className="pt-4 flex flex-col md:flex-row gap-5">
-                          <p className="text-sm text-zinc-500 leading-relaxed">
-                            {reason.description}
-                          </p>
-
-                          {/* Active card image + CTA */}
-                          {reason.image && (
-                            <div className="flex items-center gap-5">
-                              <motion.div
-                                className="relative w-full sm:w-80 h-50 rounded-2xl overflow-hidden shrink-0 shadow-md"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, ease: "easeOut" }}
-                              >
-                                <Image
-                                  src={reason.image}
-                                  alt={reason.title}
-                                  fill
-                                  className="object-cover"
-                                  sizes="200px"
-                                  loading="lazy"
-                                />
-                              </motion.div>
+                          {/* Arrow button */}
+                          {!i == 0 && (
+                            <div className="shrink-0 w-9 h-9 rounded-full border-2 border-brand-primary bg-brand-primary text-white flex items-center justify-center">
+                              <ArrowRight
+                                className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`}
+                              />
                             </div>
                           )}
                         </div>
+
+                        <div className="overflow-hidden">
+                          <div className="pt-4 flex flex-col md:flex-row gap-5">
+                            <p className="text-sm text-zinc-500 leading-relaxed">
+                              {reason.description}
+                            </p>
+
+                            {/* Active card image + CTA */}
+                            {reason.image && (
+                              <div className="flex items-center gap-5">
+                                <motion.div
+                                  className="relative w-full sm:w-80 h-50 rounded-2xl overflow-hidden shrink-0 shadow-md"
+                                  initial={{ opacity: 0, scale: 0.9 }}
+                                  whileInView={{ opacity: 1, scale: 1 }}
+                                  viewport={{ once: true }}
+                                  transition={{
+                                    duration: 0.6,
+                                    ease: "easeOut",
+                                  }}
+                                >
+                                  <Image
+                                    src={reason.image}
+                                    alt={reason.title}
+                                    fill
+                                    className="object-cover"
+                                    sizes="200px"
+                                    loading="lazy"
+                                  />
+                                </motion.div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Mobile Item */}
+                  <div className="py-6 group md:hidden">
+                    <div className="flex items-start gap-6">
+                      {/* Number */}
+                      <span className="text-sm font-bold tabular-nums mt-0.5 text-brand-primary">
+                        {reason.number}.
+                      </span>
+
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-4">
+                          <h3 className="text-lg font-bold text-zinc-900">
+                            {reason.title}
+                          </h3>
+                        </div>
+
+                        <p className="text-sm text-zinc-500 leading-relaxed pt-3">
+                          {reason.description}
+                        </p>
+
+                        {/* Active card image */}
+                        {reason.image && (
+                          <div className="relative w-full h-48 rounded-2xl overflow-hidden shadow-md mt-4">
+                            <Image
+                              src={reason.image}
+                              alt={reason.title}
+                              fill
+                              className="object-cover"
+                              sizes="100vw"
+                              loading="lazy"
+                            />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>

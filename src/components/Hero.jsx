@@ -6,8 +6,11 @@ import { Button } from "@base-ui/react";
 import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
 import HeroFiberLines from "./HeroFiberLines";
+import { getTranslations } from "@/i18n";
 
-export default function Hero() {
+export default function Hero({ locale = "en" }) {
+  const t = getTranslations(locale);
+
   return (
     <section className="relative  pt-32 pb-24 overflow-hidden mt-10 bg-transparent">
       <HeroFiberLines />
@@ -21,30 +24,28 @@ export default function Hero() {
         >
           <div className="flex gap-3">
             <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-blue-100">
-              <span className="text-[14px]">✶</span> Solution
+              <span className="text-[14px]">✶</span> {t.hero.badge1}
             </span>
             <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-blue-100">
-              <span className="text-[14px]">✶</span> Service
+              <span className="text-[14px]">✶</span> {t.hero.badge2}
             </span>
           </div>
 
           <h1 className="text-5xl sm:text-5xl md:text-7xl lg:text-[76px] w-[80%] font-bold tracking-tight text-zinc-900 leading-[1.1] font-sans">
-            The fastest internet
-            <span className="text-brand-primary ml-1"> in Iraq</span>
+            {t.hero.headline1}
+            <span className="text-brand-primary ml-1">{t.hero.headlineHighlight}</span>
           </h1>
 
           <p className="text-sm sm:text-lg text-zinc-600 sm:w-[70%] leading-relaxed">
-            High-speed, reliable connectivity built on the first fiber-optic
-            network laid in Iraq — engineered, installed and supported by our
-            own teams.{" "}
+            {t.hero.subtext}
           </p>
 
           <div className="flex gap-4 mt-2">
             <Link
-              href="/support"
+              href={`/${locale}/contact`}
               className="inline-flex items-center gap-1 rounded-full bg-brand-secondary1 px-4 sm:px-8 py-4 text-[12px] sm:text-sm font-semibold text-white shadow-md hover:bg-brand-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
-              Instant Support
+              {t.hero.ctaSupport}
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -65,17 +66,17 @@ export default function Hero() {
               </svg>
             </Link>
             <Link
-              href="/services"
+              href={`/${locale}/services`}
               className="inline-flex items-center gap-2 rounded-full bg-[#EEEEF1] hover:bg-[#EEEEF1]/80 px-5 sm:px-8 py-4 text-[12px] sm:text-sm font-semibold text-zinc-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
-              Discover Services
+              {t.hero.ctaServices}
             </Link>
           </div>
 
           {/* ── OUR PARTNERS marquee ── */}
           <div className="mt-10 pt-8 border-t border-zinc-100">
             <p className="text-xl mb-3 font-semibold tracking-widest text-zinc-400 uppercase mb-5">
-              Our Partners
+              {t.hero.partners}
             </p>
 
             {/* Marquee track — overflow hidden, fade edges */}
@@ -91,6 +92,7 @@ export default function Hero() {
               <div
                 className="flex items-center gap-10 w-max animate-marquee"
                 style={{ animationDuration: "32s" }}
+                 dir={locale === "ar" ? "rtl" : "ltr"}
               >
                 {/* ── original set ── */}
                 {[
@@ -747,7 +749,7 @@ export default function Hero() {
               </div>
               <div className="flex items-center justify-between flex-wrap mt-2 gap-1">
                 <span className="text-xl md:text-2xl w-1/2 font-semibold text-zinc-600">
-                  Happy Customers
+                  {locale === "ar" ? "عملاء سعداء" : "Happy Customers"}
                 </span>
                 {/* Overlapping Avatars */}
                 <div className="flex -space-x-3 overflow-hidden">
@@ -788,12 +790,12 @@ export default function Hero() {
               <div className=" bg-[#072042a6] absolute inset-0"></div>
               <div className="absolute flex justify-between items-end  inset-0 p-6 ">
                 <p className="text-white font-bold text-2xl leading-tight w-1/2 h-fit">
-                  Experts On Call{" "}
+                  {locale === "ar" ? "خبراء الدعم" : "Experts On Call"}{" "}
                   <span className="text-brand-secondary1 text-xl font-bold italic">
                     24/7
                   </span>
                 </p>
-                <button className="bg-white w-fit hover:bg-brand-primary hover:text-white active:bg-brand-primary transition-all duration-300 cursor-pointer text-zinc-900 rounded-full p-2.5  shadow-xs">
+                <Link href={`/${locale}/contact`} className="bg-white w-fit hover:bg-brand-primary hover:text-white active:bg-brand-primary transition-all duration-300 cursor-pointer text-zinc-900 rounded-full p-2.5  shadow-xs">
                   <svg
                     className="w-4 h-4 stroke-current fill-none"
                     strokeWidth="2.5"
@@ -805,7 +807,7 @@ export default function Hero() {
                       d="M14 5l7 7m0 0l-7 7m7-7H3"
                     />
                   </svg>
-                </button>
+                </Link>
               </div>
             </div>
           </div>

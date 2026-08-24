@@ -86,7 +86,21 @@ const plans = [
   },
 ];
 
-export default function PricingSection() {
+import { getTranslations } from "@/i18n";
+
+export default function PricingSection({ locale = "en" }) {
+  const t = getTranslations(locale);
+
+  // Translate plan names, descriptions and features dynamically
+  const activePlans = plans.map((plan, idx) => ({
+    ...plan,
+    name: t.pricing.plans[idx] ? t.pricing.plans[idx].name : plan.name,
+    description: t.pricing.plans[idx]
+      ? t.pricing.plans[idx].description
+      : plan.description,
+    features: t.pricing.features,
+  }));
+
   return (
     <section
       id="pricing"
@@ -99,45 +113,44 @@ export default function PricingSection() {
       <div className="relative max-w-[1700px] mx-auto px-6 lg:px-12">
         <div>
           <span className="inline-flex items-center gap-1.5 bg-brand-primary mb-6 text-white text-xs font-semibold px-4 py-1.5 rounded-full border border-white/20">
-            <span className="text-blue-400 text-sm">✶</span> Service
+            <span className="text-blue-400 text-sm">✶</span> {t.pricing.badge}
           </span>
         </div>
         {/* ── Header ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4  sm:mb-14 items-end">
           <motion.div
-            initial={{ opacity: 0, x: -300, y: -90 }}
+            initial={{ opacity: 0, x: locale === "ar" ? 300 : -300, y: -90 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.9, ease: "easeOut" }}
             className="lg:col-span-6"
           >
             <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold tracking-tight text-zinc-900 leading-[1.15]">
-              Fiber plans for{" "}
-              <span className="text-brand-secondary1">every home</span>
+              {t.pricing.heading}{" "}
+              <span className="text-brand-secondary1">
+                {t.pricing.headingHighlight}
+              </span>
             </h2>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 300, y: -90 }}
+            initial={{ opacity: 0, x: locale === "ar" ? -300 : 300, y: -90 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.9, ease: "easeOut" }}
             className="lg:col-span-6 lg:pl-12"
           >
             <p className="text-sm md:text-base text-zinc-500 leading-relaxed lg:max-w-lg">
-              Four{" "}
-              <span className="text-brand-primary font-semibold">FTTH</span>{" "}
-              tiers on the same fiber line — unlimited data on all of them.
-              Prices are monthly, in Iraqi dinar.
+              {t.pricing.subtext}
             </p>
           </motion.div>
         </div>
 
         {/* ── Cards Grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-5 mt-13">
-          {plans.map((plan, index) => (
+          {activePlans.map((plan, index) => (
             <motion.div
               key={plan.speed}
-              initial={{ opacity: 0, x: -300 }}
+              initial={{ opacity: 0, x: locale === "ar" ? 300 : -300 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{
@@ -158,7 +171,7 @@ export default function PricingSection() {
                   {/* Popular banner */}
                   {plan.popular && (
                     <div className="absolute top-0 right-0 left-0 bg-brand-secondary1 text-white text-[10px] font-bold tracking-[0.18em] uppercase text-center py-2 rounded-t-3xl">
-                      Most Popular
+                      {t.pricing.mostPopular}
                     </div>
                   )}
 
@@ -219,10 +232,13 @@ export default function PricingSection() {
                       className="grid grid-cols-2 gap-x-4 gap-y-3 border border-zinc-100 dark:border-zinc-800 rounded-2xl p-4 bg-zinc-50/60 dark:bg-zinc-900/60 w-full"
                     >
                       {[
-                        { label: "Devices", value: plan.devices },
-                        { label: "4K Streams", value: plan.streams },
-                        { label: "5 GB File", value: plan.fileTime },
-                        { label: "Per Mbps", value: plan.perMbps },
+                        { label: t.pricing.stats.devices, value: plan.devices },
+                        { label: t.pricing.stats.streams, value: plan.streams },
+                        {
+                          label: t.pricing.stats.fileSize,
+                          value: plan.fileTime,
+                        },
+                        { label: t.pricing.stats.perMbps, value: plan.perMbps },
                       ].map((stat) => (
                         <div key={stat.label}>
                           <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-zinc-400 mb-0.5 dark:text-zinc-500">
@@ -273,7 +289,7 @@ export default function PricingSection() {
                         {plan.price}
                       </span>
                       <span className="text-xs text-zinc-400 dark:text-zinc-500 font-medium">
-                        IQD / month
+                        {t.pricing.perMonth}
                       </span>
                     </CardItem>
 
@@ -287,7 +303,7 @@ export default function PricingSection() {
                             : "border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-brand-secondary1 hover:text-white"
                         }`}
                       >
-                        Subscribe — 6055
+                        {t.pricing.subscribe}
                       </Link>
                     </CardItem>
                   </div>
