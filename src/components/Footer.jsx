@@ -38,7 +38,7 @@ export default function Footer({ locale = "en" }) {
                 alt="Logo"
                 width={100}
                 height={100}
-                className="invert brightness-0 w-fit h-fit"
+                className="invert brightness-0 w-40.75 h-auto"
               />
             </Link>
             <p className="text-sm leading-relaxed text-zinc-400 max-w-sm">

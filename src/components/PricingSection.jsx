@@ -6,79 +6,75 @@ import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 const plans = [
   {
     tag: "FTTH",
-    speed: "50",
+    speed: "60",
     unit: "Mbps",
-    name: "Everyday Home",
-    description:
-      "Browsing, social, HD streaming and homework for a small household.",
+    name: "Speed Plus",
+    description: "",
     devices: "6+",
     streams: "2",
-    fileTime: "13.7 min",
-    perMbps: "700 IQD",
+    fileTime: "11 min",
+    perMbps: "583 IQD",
     features: [
-      "Unlimited data, no fair-use cap",
-      "Fiber straight into the home",
-      "24/7 support on 6055",
+      "mbps Peak Times 60",
+      "Unlimited Data",
+      "Low Gaming Latency"
     ],
     price: "35,000",
     popular: false,
-    barWidth: "w-[17%]",
+    barWidth: "w-[20%]",
   },
   {
     tag: "FTTH",
-    speed: "80",
+    speed: "100",
     unit: "Mbps",
-    name: "Family Plus",
-    description:
-      "Several people online at once, video calls and console downloads.",
-    devices: "10+",
-    streams: "3",
-    fileTime: "8.5 min",
-    perMbps: "563 IQD",
+    name: "Speed Pro",
+    description: "",
+    devices: "12+",
+    streams: "4",
+    fileTime: "6.8 min",
+    perMbps: "450 IQD",
     features: [
-      "Unlimited data, no fair-use cap",
-      "Fiber straight into the home",
-      "24/7 support on 6055",
+      "mbps Peak Times 100",
+      "Unlimited Data",
+      "Low Gaming Latency"
     ],
     price: "45,000",
-    popular: false,
-    barWidth: "w-[27%]",
+    popular: true,
+    barWidth: "w-[33%]",
   },
   {
     tag: "FTTH",
     speed: "180",
     unit: "Mbps",
-    name: "Gaming & 4K",
-    description:
-      "Low-latency ranked sessions, 4K on every screen, heavy uploads.",
+    name: "Speed Max",
+    description: "",
     devices: "20+",
     streams: "7",
     fileTime: "3.8 min",
     perMbps: "361 IQD",
     features: [
-      "Unlimited data, no fair-use cap",
-      "Fiber straight into the home",
-      "24/7 support on 6055",
+      "mbps Peak Times 180",
+      "Unlimited Data",
+      "Low Gaming Latency"
     ],
     price: "65,000",
-    popular: true,
+    popular: false,
     barWidth: "w-[60%]",
   },
   {
     tag: "FTTH",
     speed: "300",
     unit: "Mbps",
-    name: "Pro & Small Office",
-    description:
-      "Work from home, servers, CCTV upload and a full office of devices.",
+    name: "Speed Ultra",
+    description: "",
     devices: "30+",
     streams: "12",
     fileTime: "2.3 min",
     perMbps: "333 IQD",
     features: [
-      "Unlimited data, no fair-use cap",
-      "Fiber straight into the home",
-      "24/7 support on 6055",
+      "mbps Peak Times 300",
+      "Unlimited Data",
+      "Low Gaming Latency"
     ],
     price: "100,000",
     popular: false,
@@ -98,7 +94,11 @@ export default function PricingSection({ locale = "en" }) {
     description: t.pricing.plans[idx]
       ? t.pricing.plans[idx].description
       : plan.description,
-    features: t.pricing.features,
+    features: [
+      `${t.pricing.features[0]} ${plan.speed}`,
+      t.pricing.features[1],
+      t.pricing.features[2],
+    ],
   }));
 
   return (
@@ -305,6 +305,9 @@ export default function PricingSection({ locale = "en" }) {
                       >
                         {t.pricing.subscribe}
                       </Link>
+                      <p className="text-[11px] text-zinc-400 text-center mt-2.5 leading-normal">
+                        {t.pricing.contactPrompt}
+                      </p>
                     </CardItem>
                   </div>
                 </CardBody>

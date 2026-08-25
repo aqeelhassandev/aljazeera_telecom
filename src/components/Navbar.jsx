@@ -36,8 +36,6 @@ export default function Navbar({ locale = "en" }) {
 
   const toggleLanguage = () => {
     const nextLocale = isAr ? "en" : "ar";
-    // Basic logic to swap out the locale in the URL path:
-    // e.g. /en/about -> /ar/about
     const currentPathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
     router.push(`/${nextLocale}${currentPathWithoutLocale}`);
   };
@@ -59,12 +57,12 @@ export default function Navbar({ locale = "en" }) {
                 alt="Logo"
                 width={100}
                 height={100}
-                className="brightness-0 w-fit h-fit"
+                className="brightness-0 w-35.75 h-auto"
               />
             </Link>
 
             {/* Desktop Navigation Links */}
-            <div className="hidden md:flex items-center justify-center gap-8 flex-1 text-[18px] font-semibold">
+            <div className="hidden md:flex items-center justify-center gap-8 flex-1 text-[17px] font-semibold">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -81,7 +79,7 @@ export default function Navbar({ locale = "en" }) {
               {/* Language Toggle */}
               <button
                 onClick={toggleLanguage}
-                className="font-bold text-sm text-zinc-600 hover:text-brand-secondary1 px-2 py-1 transition-colors"
+                className="font-bold text-sm cursor-pointer text-zinc-600 hover:text-brand-secondary1 px-2 py-1 transition-colors"
                 aria-label="Switch Language"
               >
                 {isAr ? "EN" : "عربي"}
@@ -173,9 +171,9 @@ export default function Navbar({ locale = "en" }) {
                   <Image
                     src="/logo.png"
                     alt="Logo"
-                    width={90}
-                    height={90}
-                    className="brightness-0 w-fit h-fit"
+                    width={100}
+                    height={100}
+                    className="brightness-0 w-35.75 h-auto"
                   />
                 </Link>
                 <button

@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef } from "react";
 
 export default function HeroFiberLines({
   strands = 5,
-  zIndex = 0,
+  zIndex = 10,
   className,
   style,
 }) {
@@ -18,7 +18,7 @@ export default function HeroFiberLines({
       freq: 1.0 + (i % 3) * 0.45,
       phase: i * 0.75,
       speed: 0.1 + (i % 5) * 0.03,
-      alpha: 0.10 + (i % 3) * 0.07,
+      alpha: 0.1 + (i % 3) * 0.07,
       // color variant: 0=teal, 1=pink, 2=blue
       colorIdx: i % 3,
     }));
@@ -38,7 +38,9 @@ export default function HeroFiberLines({
     if (!wrap || !canvas) return;
 
     const ctx = canvas.getContext("2d");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     let w = 0;
     let h = 0;
@@ -49,11 +51,26 @@ export default function HeroFiberLines({
 
     const COLORS = [
       // teal
-      { line: (a) => `rgba(156,211,211,${a})`, glow0: "rgba(210,245,245,0.9)", glow1: "rgba(156,211,211,0.4)", glow2: "rgba(156,211,211,0)" },
+      {
+        line: (a) => `rgba(156,211,211,${a})`,
+        glow0: "rgba(210,245,245,0.9)",
+        glow1: "rgba(156,211,211,0.4)",
+        glow2: "rgba(156,211,211,0)",
+      },
       // pink / brand-secondary1
-      { line: (a) => `rgba(204,27,104,${a})`,  glow0: "rgba(255,125,180,0.9)", glow1: "rgba(204,27,104,0.4)",  glow2: "rgba(204,27,104,0)"  },
+      {
+        line: (a) => `rgba(204,27,104,${a})`,
+        glow0: "rgba(255,125,180,0.9)",
+        glow1: "rgba(204,27,104,0.4)",
+        glow2: "rgba(204,27,104,0)",
+      },
       // brand-primary blue
-      { line: (a) => `rgba(33,58,143,${a})`,   glow0: "rgba(100,140,230,0.85)", glow1: "rgba(33,58,143,0.4)", glow2: "rgba(33,58,143,0)"   },
+      {
+        line: (a) => `rgba(33,58,143,${a})`,
+        glow0: "rgba(100,140,230,0.85)",
+        glow1: "rgba(33,58,143,0.4)",
+        glow2: "rgba(33,58,143,0)",
+      },
     ];
 
     const yAt = (s, p, t) =>
@@ -63,10 +80,10 @@ export default function HeroFiberLines({
 
     const resize = () => {
       // Use offsetWidth/Height so it works even without an explicit height on the parent
-      w = wrap.offsetWidth  || window.innerWidth;
+      w = wrap.offsetWidth || window.innerWidth;
       h = wrap.offsetHeight || window.innerHeight;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width  = Math.round(w * dpr);
+      canvas.width = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
@@ -101,9 +118,9 @@ export default function HeroFiberLines({
         const c = COLORS[pl.s.colorIdx];
 
         const g = ctx.createRadialGradient(x, y, 0, x, y, 44);
-        g.addColorStop(0,    c.glow0);
+        g.addColorStop(0, c.glow0);
         g.addColorStop(0.22, c.glow1);
-        g.addColorStop(1,    c.glow2);
+        g.addColorStop(1, c.glow2);
 
         ctx.fillStyle = g;
         ctx.beginPath();
@@ -138,7 +155,7 @@ export default function HeroFiberLines({
         inset: 0,
         width: "100%",
         height: "100%",
-        zIndex ,
+        zIndex: zIndex,
         pointerEvents: "none",
         overflow: "hidden",
         ...style,

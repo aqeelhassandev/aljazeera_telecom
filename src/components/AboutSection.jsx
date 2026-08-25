@@ -2,9 +2,9 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { Button } from "@base-ui/react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 
 function AnimatedCounter({ value }) {
   const ref = useRef(null);
@@ -86,6 +86,7 @@ import { getTranslations } from "@/i18n";
 
 export default function AboutSection({ locale = "en" }) {
   const t = getTranslations(locale);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -273,7 +274,10 @@ export default function AboutSection({ locale = "en" }) {
                   style={{ animationDelay: "1s" }}
                 />
 
-                <Button className="relative bg-brand-primary hover:bg-brand-primary/80 hover:scale-105 active:scale-95 transition-all text-white p-6 rounded-full cursor-pointer flex items-center justify-center z-10 shadow-lg">
+                <Button 
+                  onClick={() => setIsVideoOpen(true)}
+                  className="relative bg-brand-primary hover:bg-brand-primary/80 hover:scale-105 active:scale-95 transition-all text-white p-6 rounded-full cursor-pointer flex items-center justify-center z-10 shadow-lg"
+                >
                   <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
@@ -361,6 +365,49 @@ export default function AboutSection({ locale = "en" }) {
           </div>
         </div>
       </div>
+
+      {/* Video Modal Overlay */}
+      <AnimatePresence>
+        {isVideoOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-xl p-4 sm:p-6 md:p-10"
+            onClick={() => setIsVideoOpen(false)}
+          >
+            {/* Close Button at top corner */}
+            <button
+              onClick={() => setIsVideoOpen(false)}
+              className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-300 hover:rotate-90 z-[110]"
+              aria-label="Close video"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Glassmorphic Frame containing the responsive video player */}
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 350 }}
+              className="relative w-full max-w-5xl aspect-video rounded-[24px] sm:rounded-[32px] overflow-hidden border border-white/10 shadow-2xl bg-black"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                title="Al Jazeera Telecom Video Showcase"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

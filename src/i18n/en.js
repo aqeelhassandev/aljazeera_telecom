@@ -203,9 +203,10 @@ const en = {
     headingHighlight: "every home",
     subtext:
       "Four FTTH tiers on the same fiber line — unlimited data on all of them. Prices are monthly, in Iraqi dinar.",
-    mostPopular: "Most Popular",
-    perMonth: "IQD / month",
-    subscribe: "Subscribe — 6055",
+    mostPopular: "POPULAR",
+    perMonth: "IQD/mo",
+    subscribe: "Contact Us",
+    contactPrompt: "Please contact us so we can guide you.",
     stats: {
       devices: "Devices",
       streams: "4K Streams",
@@ -213,15 +214,15 @@ const en = {
       perMbps: "Per Mbps",
     },
     plans: [
-      { name: "Everyday Home", description: "Browsing, social, HD streaming and homework for a small household." },
-      { name: "Family Plus", description: "Several people online at once, video calls and console downloads." },
-      { name: "Gaming & 4K", description: "Low-latency ranked sessions, 4K on every screen, heavy uploads." },
-      { name: "Pro & Small Office", description: "Work from home, servers, CCTV upload and a full office of devices." },
+      { name: "Speed Plus", description: "Browsing, social, HD streaming and homework for a small household." },
+      { name: "Speed Pro", description: "Several people online at once, video calls and console downloads." },
+      { name: "Speed Max", description: "Low-latency ranked sessions, 4K on every screen, heavy uploads." },
+      { name: "Speed Ultra", description: "Work from home, servers, CCTV upload and a full office of devices." },
     ],
     features: [
-      "Unlimited data, no fair-use cap",
-      "Fiber straight into the home",
-      "24/7 support on 6055",
+      "mbps Peak Times",
+      "Unlimited Data",
+      "Low Gaming Latency",
     ],
   },
 

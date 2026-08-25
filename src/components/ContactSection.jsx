@@ -20,17 +20,24 @@ export default function ContactSection({ locale = "en" }) {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API request
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    const subject = encodeURIComponent(
+      `Contact Form - ${formData.name}`
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nPhone: ${formData.phone || "N/A"}\n\nMessage:\n${formData.message}`
+    );
+    const mailtoLink = `mailto:info@jt.iq?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
+
     setIsSubmitting(false);
-    setSubmitted(true);
+
     setFormData({ name: "", email: "", phone: "", message: "" });
-    setTimeout(() => setSubmitted(false), 5000);
   };
 
   const handleChange = (e) => {
@@ -231,18 +238,7 @@ export default function ContactSection({ locale = "en" }) {
                     <Send className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`} />
                   </>
                 )}
-              </button>
-
-              {/* Feedback Success Box */}
-              {submitted && (
-                <motion.div
-                  className="p-4 bg-emerald-50 border border-emerald-100 rounded-2xl text-emerald-800 text-sm font-medium text-center"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  {t.contact.form.successMsg}
-                </motion.div>
-              )}
+              </button>             
             </form>
           </motion.div>
         </div>

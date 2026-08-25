@@ -202,9 +202,10 @@ const ar = {
     headingHighlight: "كل منزل",
     subtext:
       "أربع مستويات FTTH على نفس خط الألياف — بيانات غير محدودة في جميعها. الأسعار شهرية بالدينار العراقي.",
-    mostPopular: "الأكثر شيوعاً",
-    perMonth: "دينار / شهر",
-    subscribe: "اشترك — 6055",
+    mostPopular: "POPULAR",
+    perMonth: "IQD/mo",
+    subscribe: "اتصل بنا",
+    contactPrompt: "الرجاء التواصل معنا لكي نتمكن من توجيهك.",
     stats: {
       devices: "الأجهزة",
       streams: "بث 4K",
@@ -212,15 +213,15 @@ const ar = {
       perMbps: "لكل Mbps",
     },
     plans: [
-      { name: "الاستخدام اليومي", description: "تصفح، سوشيال ميديا، بث HD وواجبات المنزل لأسرة صغيرة." },
-      { name: "العائلة بلس", description: "عدة أشخاص متصلون في وقت واحد، مكالمات مرئية وتنزيلات." },
-      { name: "الألعاب و4K", description: "جلسات ألعاب بزمن استجابة منخفض، 4K على كل شاشة." },
-      { name: "برو ومكتب صغير", description: "عمل من المنزل، خوادم، رفع CCTV وجهاز مكتب كامل." },
+      { name: "Speed Plus", description: "تصفح، سوشيال ميديا، بث HD وواجبات المنزل لأسرة صغيرة." },
+      { name: "Speed Pro", description: "عدة أشخاص متصلون في وقت واحد، مكالمات مرئية وتنزيلات." },
+      { name: "Speed Max", description: "جلسات ألعاب بزمن استجابة منخفض، 4K على كل شاشة." },
+      { name: "Speed Ultra", description: "عمل من المنزل، خوادم، رفع CCTV وجهاز مكتب كامل." },
     ],
     features: [
-      "بيانات غير محدودة",
-      "ألياف مباشرة إلى المنزل",
-      "دعم 24/7 على 6055",
+      "mbps Peak Times",
+      "Unlimited Data",
+      "Low Gaming Latency",
     ],
   },
 
