@@ -27,75 +27,24 @@ import {
 const services = [
   {
     id: 0,
-    title: "FTTx",
-    description:
-      "Ultra-fast fiber-to-the-premises internet delivering reliable, high-speed connectivity for homes and businesses.",
-    image: "/service_fttx.png",
+    image: "/services/service_fttx.webp",
     icon: <Zap className="w-5 h-5" />,
-    tag: "Fiber",
   },
+
   {
     id: 1,
-    title: "Wireless",
-    description:
-      "Cutting-edge wireless solutions providing seamless coverage and high-speed connectivity across your entire premises.",
-    image: "/service_wireless.png",
+    image: "/services/service_cloud_migration.webp",
     icon: <Wifi className="w-5 h-5" />,
-    tag: "Wireless",
   },
   {
     id: 2,
-    title: "Software Solutions",
-    description:
-      "Custom software development and enterprise solutions tailored to streamline your business operations.",
-    image: "/service_software.png",
-    icon: <Code className="w-5 h-5" />,
-    tag: "Software",
+    image: "/services/service_software.webp",
+    icon: <Wifi className="w-5 h-5" />,
   },
   {
     id: 3,
-    title: "VoIP",
-    description:
-      "Feature-rich digital telephony systems delivering crystal-clear voice communication for modern businesses.",
-    image: "/service_tech_support.png",
-    icon: <Wrench className="w-5 h-5" />,
-    tag: "VoIP",
-  },
-  {
-    id: 4,
-    title: "Cyber Security",
-    description:
-      "Comprehensive cybersecurity services protecting your digital infrastructure against evolving threats 24/7.",
-    image: "/service_it_consulting.png",
-    icon: <Shield className="w-5 h-5" />,
-    tag: "Security",
-  },
-  {
-    id: 5,
-    title: "Hosting",
-    description:
-      "Reliable cloud and dedicated hosting solutions with maximum uptime guarantees and enterprise-grade security.",
-    image: "/service_cloud_migration.png",
-    icon: <Server className="w-5 h-5" />,
-    tag: "Hosting",
-  },
-  {
-    id: 6,
-    title: "Network Consulting",
-    description:
-      "Expert network design, implementation, and optimization services to build a robust digital foundation.",
-    image: "/service_it_consulting.png",
-    icon: <Network className="w-5 h-5" />,
-    tag: "Network",
-  },
-  {
-    id: 7,
-    title: "SBS for Businesses",
-    description:
-      "Scalable business solutions designed to integrate accounting, HR, and operations into a unified platform.",
-    image: "/service_tech_support.png",
-    icon: <Calculator className="w-5 h-5" />,
-    tag: "Business",
+    image: "/services/service_it_consulting.webp",
+    icon: <Wifi className="w-5 h-5" />,
   },
 ];
 
@@ -167,22 +116,8 @@ export default function ServicesSection({ locale = "en" }) {
             </div>
 
             <LayoutTextFlip
-              text={locale === "ar" ? "مرحباً بكم في " : "Welcome to "}
-              words={
-                locale === "ar"
-                  ? [
-                      "الجزيرة للاتصالات",
-                      "رواد الألياف",
-                      "سرعة فائقة",
-                      "دعم 24/7",
-                    ]
-                  : [
-                      "Al Jazeera Telecom",
-                      "Iraq's Fiber Pioneer",
-                      "Unmatched Speed",
-                      "24/7 Support",
-                    ]
-              }
+              text={t.services.welcomeText}
+              words={t.services.flipWords}
               classNameContener="bg-brand-secondary1 text-white border-brand-secondary1 "
             />
           </motion.div>
@@ -195,15 +130,11 @@ export default function ServicesSection({ locale = "en" }) {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           >
             <div className="flex flex-col gap-3">
-              <h3 className="text-lg font-semibold text-white/90">
-                {locale === "ar"
-                  ? "لدينا الحل المناسب لأي مشكلة."
-                  : "We have the fix for any issue."}
-              </h3>
+              <h1 className="text-lg font-semibold text-white/90">
+                {t.services.sectionHeading}
+              </h1>
               <p className="text-sm md:text-base text-zinc-400 leading-relaxed">
-                {locale === "ar"
-                  ? "مهما كانت المشكلة، لدينا الحل بسرعة وبدون أي متاعب. من المشاكل اليومية للتقنية إلى استراتيجيات تقنية المعلومات طويلة الأجل، خدماتنا تبقي أعمالك مستمرة بسلاسة."
-                  : "No matter the issue, we've got the fix quick, clean, and with zero hassle. From daily tech glitches to long-term IT strategy, our services keep you running smooth."}
+                {t.services.sectionBody}
               </p>
             </div>
 
@@ -217,7 +148,7 @@ export default function ServicesSection({ locale = "en" }) {
                 )}
                 href={`/${locale}/services`}
               >
-                {locale === "ar" ? "كل الخدمات" : "All services"}
+                {t.services.allServices}
                 <ArrowRight
                   className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`}
                 />
@@ -359,7 +290,7 @@ export default function ServicesSection({ locale = "en" }) {
                               )}
                               href={`/${locale}/services`}
                             >
-                              {locale === "ar" ? "ابدأ الآن" : "Get Started"}
+                              {t.services.getStarted}
                               <ArrowRight
                                 className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`}
                               />

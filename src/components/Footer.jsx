@@ -210,7 +210,7 @@ export default function Footer({ locale = "en" }) {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-8 text-xs text-zinc-500">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-8 text-xs text-zinc-300">
           <div className="flex flex-wrap items-center gap-6 justify-center sm:justify-start">
             <span>
               &copy; {new Date().getFullYear()} Al Jazeera Telecom.{" "}

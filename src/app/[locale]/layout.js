@@ -1,6 +1,6 @@
 import { Alexandria, Geist_Mono, Noto_Kufi_Arabic } from "next/font/google";
 import "../globals.css";
-import { locales, defaultLocale } from "@/i18n";
+import { locales } from "@/i18n";
 
 const alexandria = Alexandria({
   variable: "--font-alexandria",
@@ -17,6 +17,8 @@ const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -71,7 +73,7 @@ export async function generateMetadata({ params }) {
         : "Ultra-fast FTTx fiber internet, wireless solutions, VoIP, cybersecurity across Iraq.",
       images: [
         {
-          url: "/notfound.png",
+          url: "/notfound.webp",
           width: 1200,
           height: 630,
           alt: "Al Jazeera Telecom",
@@ -84,7 +86,7 @@ export async function generateMetadata({ params }) {
       description: isAr
         ? "إنترنت فائق السرعة في العراق"
         : "Ultra-fast fiber internet across Iraq",
-      images: ["/notfound.png"],
+      images: ["/notfound.webp"],
     },
     robots: {
       index: true,

@@ -4,7 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
 import { Button } from "@base-ui/react";
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  AnimatePresence,
+} from "framer-motion";
 
 function AnimatedCounter({ value }) {
   const ref = useRef(null);
@@ -53,34 +59,6 @@ function AnimatedCounter({ value }) {
 
   return <span ref={ref}>{count || "0"}</span>;
 }
-
-const stats = [
-  { value: "490M+", label: "happy Clients" },
-  { value: "4.9/5", label: "Clients Rating" },
-  { value: "20+", label: "Years of Excellence" },
-  { value: "24/7", label: "Expert Support" },
-];
-
-const timeline = [
-  {
-    year: "2004",
-    title: "Foundational Growth",
-    description:
-      "Our journey began by delivering Internet connectivity via Vast, covering every corner of Iraq. In 2006, we expanded our offerings to include P2P connections, broadening our reach.",
-  },
-  {
-    year: "2010",
-    title: "Fiber-Optic Era Begins",
-    description:
-      "We proudly became the official partner of the General Company for Communications and Informatics, gaining access to a fiber-optic network and embarking on a new era.",
-  },
-  {
-    year: "Today",
-    title: "Commitment to Excellence",
-    description:
-      "Through diligent analysis of user needs, we have dedicated ourselves to meeting the expectations of our diverse customer base — agents, subscribers, and commercial entities alike.",
-  },
-];
 
 import { getTranslations } from "@/i18n";
 
@@ -183,7 +161,7 @@ export default function AboutSection({ locale = "en" }) {
                       >
                         {item.year === "Today" || item.year === "اليوم" ? (
                           <span className="text-[10px] font-bold">
-                            {locale === "ar" ? "الآن" : "NOW"}
+                            {t.about.now}
                           </span>
                         ) : (
                           <span className="text-[10px] font-bold leading-tight text-center">
@@ -242,7 +220,7 @@ export default function AboutSection({ locale = "en" }) {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <Image
-                src="/hero_tech_team.png"
+                src="/services/service_it_consulting.webp"
                 alt="Al Jazeera Telecom Team"
                 fill
                 className="object-cover rounded-[30px] "
@@ -274,8 +252,9 @@ export default function AboutSection({ locale = "en" }) {
                   style={{ animationDelay: "1s" }}
                 />
 
-                <Button 
+                <Button
                   onClick={() => setIsVideoOpen(true)}
+                  aria-label="Play video"
                   className="relative bg-brand-primary hover:bg-brand-primary/80 hover:scale-105 active:scale-95 transition-all text-white p-6 rounded-full cursor-pointer flex items-center justify-center z-10 shadow-lg"
                 >
                   <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24">

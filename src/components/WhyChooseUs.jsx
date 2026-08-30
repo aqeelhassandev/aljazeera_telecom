@@ -5,35 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { getTranslations } from "@/i18n";
 
-const reasons = [
-  {
-    number: "01",
-    title: "Iraq's Pioneer in Fiber-Optic Internet",
-    description:
-      "We were the first ISP in Iraq to deploy and operate a fiber-optic network, partnering officially with the General Company for Communications and Informatics. Our infrastructure spans the entire country — built to last.",
-    image: "/hero_tech_team.png",
-    cta: { label: "Explore Our Network", href: "/services" },
-  },
-  {
-    number: "02",
-    title: "20+ Years of Uninterrupted Reliability",
-    description:
-      "Since 2004, we have delivered consistent, high-speed connectivity to homes and businesses across Iraq. Our track record of uptime and stability is unmatched in the region.",
-  },
-  {
-    number: "03",
-    title: "Dedicated 24/7 Expert Support",
-    description:
-      "Our certified technical team is on standby around the clock. We don't rely on scripts — we diagnose, respond, and resolve. Every call is answered by a real engineer who knows our network inside and out.",
-  },
-  {
-    number: "04",
-    title: "Tailored Solutions for Every Client",
-    description:
-      "Whether you're a residential subscriber, a commercial enterprise, or a wholesale agent, we engineer connectivity packages that match your exact needs — with scalable bandwidth, dedicated lines, and SLA guarantees.",
-  },
-];
-
 export default function WhyChooseUs({ locale = "en" }) {
   const t = getTranslations(locale);
   const containerRef = useRef(null);
@@ -41,8 +12,9 @@ export default function WhyChooseUs({ locale = "en" }) {
     target: containerRef,
     offset: ["start end", "end start"],
   });
+  console.log(t.whyChooseUs.reasons);
 
-  const activeReasons = reasons.map((reason, idx) => ({
+  const activeReasons = t.whyChooseUs?.reasons.map((reason, idx) => ({
     ...reason,
     title: t.whyChooseUs.reasons[idx]
       ? t.whyChooseUs.reasons[idx].title
@@ -147,7 +119,7 @@ export default function WhyChooseUs({ locale = "en" }) {
                 </span>{" "}
                 {t.whyChooseUs.headingEnd}
               </h2>
-              <p className="text-sm sm:text-base text-zinc-500 leading-relaxed lg:max-w-sm">
+              <p className="text-sm sm:text-base text-zinc-500 leading-relaxed lg:max-w-xl">
                 {t.whyChooseUs.subtext}
               </p>
             </motion.div>
@@ -184,7 +156,7 @@ export default function WhyChooseUs({ locale = "en" }) {
               transition={{ duration: 0.8 }}
             >
               <Image
-                src="/hero_tech_team.png"
+                src="/hero/hero_tech_team.webp"
                 alt="Al Jazeera Telecom team at work"
                 fill
                 className="object-cover"
@@ -201,7 +173,7 @@ export default function WhyChooseUs({ locale = "en" }) {
               transition={{ duration: 0.8 }}
             >
               <Image
-                src="/hero_tech_team.png"
+                src="/hero/hero_tech_team.webp"
                 alt="Al Jazeera Telecom team at work"
                 fill
                 className="object-cover"

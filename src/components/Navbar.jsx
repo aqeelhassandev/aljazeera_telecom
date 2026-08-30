@@ -169,7 +169,7 @@ export default function Navbar({ locale = "en" }) {
               <div className="flex items-center justify-between px-6 py-5 border-b border-zinc-100">
                 <Link href={`/${locale}`} onClick={close}>
                   <Image
-                    src="/logo.png"
+                    src="/logo.webp"
                     alt="Logo"
                     width={100}
                     height={100}

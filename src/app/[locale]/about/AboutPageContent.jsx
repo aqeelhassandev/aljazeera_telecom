@@ -38,7 +38,7 @@ export default function AboutPageContent({ locale = "en" }) {
             className="w-full h-full relative rounded-2xl overflow-hidden"
           >
             <Image
-              src={"/notfound.png"}
+              src={"/notfound.webp"}
               alt="Tech Team"
               fill
               className="object-cover"
@@ -103,8 +103,10 @@ export default function AboutPageContent({ locale = "en" }) {
             className="flex flex-col items-center gap-6"
           >
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight max-w-5xl leading-[1.15] mt-9">
-              {locale === "ar" ? "نربط الناس، نمكّن " : "Connecting People, Empowering Iraq's "}
-              <span className="text-brand-secondary1">{locale === "ar" ? "مستقبل العراق الرقمي" : "Digital Future"}</span>
+              {t.about.headline}{" "}
+              <span className="text-brand-secondary1">
+                {t.about.headlineHighlight}
+              </span>
             </h1>
             <p className="text-zinc-400 text-[15px] sm:text-lg max-w-2xl leading-relaxed">
               {t.about.subtext}

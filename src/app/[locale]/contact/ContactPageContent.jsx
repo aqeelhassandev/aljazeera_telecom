@@ -25,7 +25,7 @@ export default function ContactPageContent({ locale = "en" }) {
             className="w-full h-full relative rounded-2xl overflow-hidden"
           >
             <Image
-              src={"/notfound.png"}
+              src={"/notfound.webp"}
               alt="Contact Us"
               fill
               className="object-cover"

@@ -25,11 +25,9 @@ export default function ContactSection({ locale = "en" }) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const subject = encodeURIComponent(
-      `Contact Form - ${formData.name}`
-    );
+    const subject = encodeURIComponent(`Contact Form - ${formData.name}`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nPhone: ${formData.phone || "N/A"}\n\nMessage:\n${formData.message}`
+      `Name: ${formData.name}\nPhone: ${formData.phone || "N/A"}\n\nMessage:\n${formData.message}`,
     );
     const mailtoLink = `mailto:info@jt.iq?subject=${subject}&body=${body}`;
 
@@ -69,7 +67,9 @@ export default function ContactSection({ locale = "en" }) {
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold tracking-tight text-zinc-900 leading-[1.1] mb-6">
                 {t.contact.heading1}{" "}
-                <span className="text-brand-secondary1">{t.contact.headingHighlight}</span>{" "}
+                <span className="text-brand-secondary1">
+                  {t.contact.headingHighlight}
+                </span>{" "}
                 {t.contact.heading2}
               </h2>
               <p className="text-sm sm:text-base text-zinc-500 leading-relaxed lg:max-w-sm">
@@ -124,12 +124,14 @@ export default function ContactSection({ locale = "en" }) {
                     <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-0.5">
                       {item.label}
                     </p>
-                    <p className="text-lg font-bold text-zinc-800 leading-snug truncate group-hover:text-brand-secondary1 transition-colors">
+                    <p className="text-lg font-bold text-zinc-800  group-hover:text-brand-secondary1 transition-colors">
                       {item.val}
                     </p>
                   </div>
                   {item.href !== "#" && (
-                    <ArrowRight className={`w-5 h-5 text-zinc-300 group-hover:text-brand-secondary1 group-hover:translate-x-1 transition-all duration-300 shrink-0 ${locale === "ar" ? "rotate-180" : ""}`} />
+                    <ArrowRight
+                      className={`w-5 h-5 text-zinc-300 group-hover:text-brand-secondary1 group-hover:translate-x-1 transition-all duration-300 shrink-0 ${locale === "ar" ? "rotate-180" : ""}`}
+                    />
                   )}
                 </motion.a>
               ))}
@@ -150,9 +152,7 @@ export default function ContactSection({ locale = "en" }) {
                 <MessageSquare className="w-7 h-7 text-brand-secondary1" />
                 {t.contact.form.title}
               </h3>
-              <p className="text-sm text-zinc-500">
-                {t.contact.form.subtitle}
-              </p>
+              <p className="text-sm text-zinc-500">{t.contact.form.subtitle}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -235,10 +235,12 @@ export default function ContactSection({ locale = "en" }) {
                 ) : (
                   <>
                     {t.contact.form.submit}
-                    <Send className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`} />
+                    <Send
+                      className={`w-4 h-4 ${locale === "ar" ? "rotate-180" : ""}`}
+                    />
                   </>
                 )}
-              </button>             
+              </button>
             </form>
           </motion.div>
         </div>
@@ -252,12 +254,13 @@ export default function ContactSection({ locale = "en" }) {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.8728448834925!2d44.43615467634629!3d33.308738373446056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x155781a7b45f44ab%3A0xe21ba57fc1c5cf1!2sKarrada%2C%20Baghdad!5e0!3m2!1sen!2siq!4v1700000000000!5m2!1sen!2siq"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.6313324688977!2d44.434704676410405!3d33.302306673448534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1557810487d9a04f%3A0x42dd0b1a08305639!2sAljazeera%20Telecom!5e0!3m2!1sen!2siq!4v1788098104592!5m2!1sen!2siq"
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen=""
             loading="lazy"
+            title="Google Maps - Jazeera Telecom"
             referrerPolicy="no-referrer-when-downgrade"
             className="grayscale contrast-[1.1] hover:grayscale-0 transition-all duration-500"
           ></iframe>

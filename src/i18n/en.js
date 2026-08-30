@@ -14,13 +14,22 @@ const en = {
   hero: {
     badge1: "Solution",
     badge2: "Service",
-    headline1: "The fastest internet",
-    headlineHighlight: " in Iraq",
+    headline1: "+ 20 years ",
+    headlineHighlight: " of experience",
     subtext:
-      "High-speed, reliable connectivity built on the first fiber-optic network laid in Iraq — engineered, installed and supported by our own teams.",
+      "Since 2004, and for over twenty years, we have been building a telecommunications network to be the first choice for individuals and institutions in service speed and stability. ",
     ctaSupport: "Instant Support",
     ctaServices: "Discover Services",
     partners: "Our Partners",
+    nationalFiberTitle: "National Fiber Backbone",
+    nationalFiberDesc:
+      "The digital foundation crossing cities and provinces of Iraq.",
+    expertsOnCall: "Experts On Call",
+    partnerCardTitle: "Trusted global partners",
+    partnerCardDesc:
+      "Such as Cisco, Google, and Huawei supporting your growth.",
+    partnershipCardTitle: "Official partnership",
+    partnershipCardDesc: "With the Iraqi Ministry of Communications & the CMC.",
   },
 
   // About Page & Section
@@ -56,7 +65,7 @@ const en = {
     ],
     // AboutSection component
     badge: "About us",
-    sectionHeading: "Pioneers of",
+    sectionHeading: "Our Legacy ",
     sectionHeadingHighlight: "Fiber Connectivity",
     sectionSubtext: "in Iraq",
     sectionBody:
@@ -65,21 +74,21 @@ const en = {
     timeline: [
       {
         year: "2004",
-        title: "Foundational Growth",
+        title: "The Beginning",
         description:
-          "Our journey began by delivering Internet connectivity via Vast, covering every corner of Iraq. In 2006, we expanded our offerings to include P2P connections, broadening our reach.",
+          "Al Jazeera Telecom was founded in Baghdad, providing Internet connectivity through VSAT technology and beginning its journey as one of Iraq’s early Internet service providers.",
       },
       {
         year: "2010",
-        title: "Fiber-Optic Era Begins",
+        title: "National Expansion",
         description:
-          "We proudly became the official partner of the General Company for Communications and Informatics, gaining access to a fiber-optic network and embarking on a new era.",
+          "We partnered with the Iraqi Ministry of Communications to provide and market international capacity, expanding our network and strengthening connectivity across Iraq.",
       },
       {
         year: "Today",
-        title: "Commitment to Excellence",
+        title: "Connecting Iraq’s Future",
         description:
-          "We deliver fiber-grade ISP services, enterprise IT solutions, and cutting-edge telecom infrastructure to individuals, businesses, and government entities across Iraq.",
+          "Today, Al Jazeera Telecom delivers reliable Internet, FTTH, enterprise connectivity, data centers, hosting, surveillance, web solutions, and infrastructure services across Baghdad and Diyala.",
       },
     ],
     stats: [
@@ -89,41 +98,38 @@ const en = {
       { value: "24/7", label: "Expert Support" },
     ],
     learnMore: "Learn More About Us",
+    now: "NOW",
   },
 
   // Why Choose Us
   whyChooseUs: {
     badge: "Why choose us",
-    heading: "Why We're Your Best",
-    headingHighlight: "Connectivity",
-    headingEnd: "Ally",
+    heading: "Over   ",
+    headingHighlight: "two decades",
+    headingEnd: "trust and continuity.",
     subtext:
-      "Solve your connectivity challenges fast, so you can focus on what matters — running your business. From day one, we've built our reputation on speed, clarity, and relentless reliability.",
+      "To continue solidifying its position as one of the oldest and most trusted internet service providers in Rusafa and Diyala. To be the first choice for individuals and institutions thanks to the speed and stability of its service, which has proven its quality over past years as it will continue to do so in the years ahead.",
     reasons: [
       {
         number: "01",
-        title: "Iraq's Pioneer in Fiber-Optic Internet",
+        title: "Exclusive rights for FTTH fiber-optic service",
         description:
-          "We were the first ISP in Iraq to deploy and operate a fiber-optic network, partnering officially with the General Company for Communications and Informatics. Our infrastructure spans the entire country — built to last.",
+          "The authorized provider for implementing and marketing this service in the Rusafa area of Baghdad, through an official partnership with the Ministry of Communications. ",
+        image: "/hero/hero_tech_team.webp",
         cta: { label: "Explore Our Network", href: "/services" },
       },
       {
         number: "02",
-        title: "20+ Years of Uninterrupted Reliability",
+        title: "Integrated solutions beyond internet",
         description:
-          "Since 2004, we have delivered consistent, high-speed connectivity to homes and businesses across Iraq. Our track record of uptime and stability is unmatched in the region.",
+          "Alongside internet services, Al Jazeera offers alternative energy solutions, data centers, security surveillance systems, internal networks, and IoT (Internet of Things) solutions. ",
       },
       {
         number: "03",
-        title: "Dedicated 24/7 Expert Support",
+        title: "Over 20 years of experience",
         description:
-          "Our certified technical team is on standby around the clock. We don't rely on scripts — we diagnose, respond, and resolve. Every call is answered by a real engineer who knows our network inside and out.",
-      },
-      {
-        number: "04",
-        title: "Tailored Solutions for Every Client",
-        description:
-          "Whether you're a residential subscriber, a commercial enterprise, or a wholesale agent, we engineer connectivity packages that match your exact needs — with scalable bandwidth, dedicated lines, and SLA guarantees.",
+          "One of the first companies to provide internet service in Iraq, since 2004. ",
+        cta: { label: "Explore Our Network", href: "/services" },
       },
     ],
   },
@@ -136,62 +142,46 @@ const en = {
     subtext:
       "Explore our full suite of professional services designed to keep your business connected, secure, and running smoothly. From high-speed fiber solutions to enterprise system architectures.",
     ctaButton: "Request Consultation",
+    welcomeText: "Welcome to ",
+    flipWords: [
+      "Al Jazeera Telecom",
+      "Iraq's Fiber Pioneer",
+      "Unmatched Speed",
+      "24/7 Support",
+    ],
+    sectionHeading: "Services designed to fit your needs .",
+    sectionBody:
+      "We offer internet services for individuals and institutions, data centers, and networking, power, and civil works solutions. ",
+    allServices: "All services",
+    getStarted: "Get Started",
     list: [
       {
-        title: "FTTx (Fiber to the x)",
+        title: "Fiber Optic Internet (FTTH)",
         description:
-          "Ultra-fast fiber-to-the-premises internet delivering reliable, high-speed connectivity for homes and businesses.",
-        details:
+          "High speeds and stable data flow, ideal for high-quality streaming and gaming. ",
+        detailsds:
           "Using cutting-edge GPON and XGS-PON technologies, we deliver Gigabit speeds directly to your building with minimal latency.",
       },
       {
-        title: "Wireless Solutions",
+        title: "Corporate & Institutional Solutions",
         description:
-          "Cutting-edge wireless solutions providing seamless coverage and high-speed connectivity across your entire premises.",
+          "Customized internet packages with speeds ranging from 1 Mbps up to 10 Gbps.",
+        details:
+          "Tailored SLAs, dedicated bandwidth, redundant routes, and guaranteed uptime to ensure corporate business stability.",
+      },
+      {
+        title: "Data Centers & Monitoring Systems",
+        description:
+          "Design, implementation, and management of secure data centers, along with integrated surveillance camera systems.",
+        details:
+          "Professional rack design, reliable backup systems, cooling management, and centralized security monitoring solutions.",
+      },
+      {
+        title: "Wireless Internet",
+        description:
+          "Coverage reaching areas difficult to connect via fiber optic cable, through advanced towers and transmission equipment.",
         details:
           "Point-to-Point (P2P) and Point-to-Multipoint (P2MP) wireless systems bridging long distances and providing wide coverage area.",
-      },
-      {
-        title: "Software Solutions",
-        description:
-          "Custom software development and enterprise solutions tailored to streamline your business operations.",
-        details:
-          "From bespoke web and mobile applications to full-scale ERP and CRM system integrations customized for your operational workflows.",
-      },
-      {
-        title: "VoIP & Digital Telephony",
-        description:
-          "Feature-rich digital telephony systems delivering crystal-clear voice communication for modern businesses.",
-        details:
-          "Save on communication costs with cloud-hosted PBX, call routing, auto-attendant features, and multi-line business setups.",
-      },
-      {
-        title: "Cyber Security",
-        description:
-          "Comprehensive cybersecurity services protecting your digital infrastructure against evolving threats 24/7.",
-        details:
-          "Security audits, firewalls, network monitoring, DDoS mitigation, and continuous threat prevention for enterprise infrastructure.",
-      },
-      {
-        title: "Enterprise Hosting",
-        description:
-          "Reliable cloud and dedicated hosting solutions with maximum uptime guarantees and enterprise-grade security.",
-        details:
-          "High-performance dedicated servers, VPS, CDN distribution, and automated secure backups managed by our operations center.",
-      },
-      {
-        title: "Network Consulting",
-        description:
-          "Expert network design, implementation, and optimization services to build a robust digital foundation.",
-        details:
-          "Experienced network engineers auditing routing, cabling infrastructure, optical connections, and active equipment parameters.",
-      },
-      {
-        title: "SBS for Businesses",
-        description:
-          "Scalable business solutions designed to integrate accounting, HR, and operations into a unified platform.",
-        details:
-          "Manage finance, inventory, human resources, and customer relations using advanced modular corporate frameworks.",
       },
     ],
   },
@@ -214,31 +204,46 @@ const en = {
       perMbps: "Per Mbps",
     },
     plans: [
-      { name: "Speed Plus", description: "Browsing, social, HD streaming and homework for a small household." },
-      { name: "Speed Pro", description: "Several people online at once, video calls and console downloads." },
-      { name: "Speed Max", description: "Low-latency ranked sessions, 4K on every screen, heavy uploads." },
-      { name: "Speed Ultra", description: "Work from home, servers, CCTV upload and a full office of devices." },
+      {
+        name: "Speed Plus",
+        description:
+          "Browsing, social, HD streaming and homework for a small household.",
+      },
+      {
+        name: "Speed Pro",
+        description:
+          "Several people online at once, video calls and console downloads.",
+      },
+      {
+        name: "Speed Max",
+        description:
+          "Low-latency ranked sessions, 4K on every screen, heavy uploads.",
+      },
+      {
+        name: "Speed Ultra",
+        description:
+          "Work from home, servers, CCTV upload and a full office of devices.",
+      },
     ],
-    features: [
-      "mbps Peak Times",
-      "Unlimited Data",
-      "Low Gaming Latency",
-    ],
+    features: ["mbps Peak Times", "Unlimited Data", "Low Gaming Latency"],
   },
 
   // Contact Section
   contact: {
     heroBanner: "Contact Us",
     badge: "Connect with Us",
-    heading1: "Ready to experience the",
-    headingHighlight: "fastest",
-    heading2: "internet?",
+    heading1: "Ready to connect,  ",
+    headingHighlight: "grow, and build",
+    heading2: "with us?",
     subtext:
-      "Get in touch with Al Jazeera Telecom today. Our network consultants are on standby to design the perfect high-speed connection for you.",
+      "Whether you're looking for fast home internet, integrated solutions for your company, or a  large infrastructure project, our team is ready to help you. ",
     infoCards: {
-      phone: { label: "Quick Support Helpline", val: "6055" },
-      email: { label: "General Inquiry Email", val: "info@jt.iq" },
-      address: { label: "Headquarters Location", val: "Baghdad, Karrada Al-wehda District" },
+      phone: { label: "Phone", val: "6055" },
+      email: { label: "Email", val: "info@jt.iq" },
+      address: {
+        label: "Address",
+        val: "Karrada – Al-Wahda District, near Uqba Square, opposite Ashur Bank, Baghdad, Iraq ",
+      },
     },
     form: {
       title: "Send Us a Message",
@@ -252,7 +257,8 @@ const en = {
       message: "Your Message",
       messagePlaceholder: "Tell us about your internet requirements...",
       submit: "Send Your Message",
-      successMsg: "✓ Thank you! Your message has been sent successfully. We will contact you soon.",
+      successMsg:
+        "✓ Thank you! Your message has been sent successfully. We will contact you soon.",
     },
   },
 
@@ -275,7 +281,8 @@ const en = {
       "Cyber Security",
     ],
     stayConnected: "Stay Connected",
-    newsletterText: "Subscribe to receive updates on service expansions and tech insights.",
+    newsletterText:
+      "Subscribe to receive updates on service expansions and tech insights.",
     emailPlaceholder: "Enter email address",
     subscribed: "Thanks for subscribing!",
     copyright: "All rights reserved.",

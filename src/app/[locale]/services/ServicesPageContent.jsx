@@ -27,7 +27,7 @@ const allServices = [
     icon: <Zap className="w-6 h-6 text-blue-500" />,
     details:
       "Using cutting-edge GPON and XGS-PON technologies, we deliver Gigabit speeds directly to your building with minimal latency.",
-    image: "/service_fttx.png",
+    image: "/services/service_fttx.webp",
   },
   {
     title: "Wireless Solutions",
@@ -36,7 +36,7 @@ const allServices = [
     icon: <Wifi className="w-6 h-6 text-blue-500" />,
     details:
       "Point-to-Point (P2P) and Point-to-Multipoint (P2MP) wireless systems bridging long distances and providing wide coverage area.",
-    image: "/service_wireless.png",
+    image: "/services/service_wireless.webp",
   },
   {
     title: "Software Solutions",
@@ -45,7 +45,7 @@ const allServices = [
     icon: <Code className="w-6 h-6 text-blue-500" />,
     details:
       "From bespoke web and mobile applications to full-scale ERP and CRM system integrations customized for your operational workflows.",
-    image: "/service_software.png",
+    image: "/services/service_software.webp",
   },
   {
     title: "VoIP & Digital Telephony",
@@ -54,7 +54,7 @@ const allServices = [
     icon: <Wrench className="w-6 h-6 text-blue-500" />,
     details:
       "Save on communication costs with cloud-hosted PBX, call routing, auto-attendant features, and multi-line business setups.",
-    image: "/service_tech_support.png",
+    image: "/services/service_tech_support.webp",
   },
   {
     title: "Cyber Security",
@@ -63,7 +63,7 @@ const allServices = [
     icon: <Shield className="w-6 h-6 text-blue-500" />,
     details:
       "Security audits, firewalls, network monitoring, DDoS mitigation, and continuous threat prevention for enterprise infrastructure.",
-    image: "/service_it_consulting.png",
+    image: "/services/service_it_consulting.webp",
   },
   {
     title: "Enterprise Hosting",
@@ -72,7 +72,7 @@ const allServices = [
     icon: <Server className="w-6 h-6 text-blue-500" />,
     details:
       "High-performance dedicated servers, VPS, CDN distribution, and automated secure backups managed by our operations center.",
-    image: "/service_cloud_migration.png",
+    image: "/services/service_cloud_migration.webp",
   },
   {
     title: "Network Consulting",
@@ -81,7 +81,7 @@ const allServices = [
     icon: <Network className="w-6 h-6 text-blue-500" />,
     details:
       "Experienced network engineers auditing routing, cabling infrastructure, optical connections, and active equipment parameters.",
-    image: "/service_it_consulting.png",
+    image: "/services/service_it_consulting.webp",
   },
   {
     title: "SBS for Businesses",
@@ -90,7 +90,7 @@ const allServices = [
     icon: <Calculator className="w-6 h-6 text-blue-500" />,
     details:
       "Manage finance, inventory, human resources, and customer relations using advanced modular corporate frameworks.",
-    image: "/service_tech_support.png",
+    image: "/services/service_tech_support.webp",
   },
 ];
 
@@ -124,7 +124,7 @@ export default function ServicesPageContent({ locale = "en" }) {
             className="w-full h-full relative rounded-2xl overflow-hidden"
           >
             <Image
-              src={"/notfound.png"}
+              src={"/notfound.webp"}
               alt="Tech Team"
               fill
               className="object-cover"

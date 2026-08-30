@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
 import { getTranslations } from "@/i18n";
+import { Marquee } from "./ui/marquee";
 
 export default function PartnersMarquee({ locale = "en" }) {
   const t = getTranslations(locale);
 
   const partnersLogos = [
-    /* MOC */
+    /* MOC — State Company for Internet & Communications */
     <span key="moc" className="flex flex-col items-center gap-1 min-w-[56px]">
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none">
         <circle cx="24" cy="24" r="22" stroke="#213a8f" strokeWidth="2" />
@@ -17,7 +18,7 @@ export default function PartnersMarquee({ locale = "en" }) {
       <span className="text-[9px] font-bold text-zinc-400 tracking-widest">MOC</span>
     </span>,
 
-    /* ITPC */
+    /* ITPC — Al-Salam Company */
     <span key="itpc" className="flex flex-col items-center gap-1 min-w-[56px]">
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none">
         <circle cx="24" cy="24" r="22" stroke="#1e8a3c" strokeWidth="1.5" />
@@ -26,7 +27,7 @@ export default function PartnersMarquee({ locale = "en" }) {
       <span className="text-[9px] font-bold text-zinc-400 tracking-widest">ITPC</span>
     </span>,
 
-    /* CMC */
+    /* CMC — Communications & Media Commission */
     <span key="cmc" className="flex flex-col items-center gap-1 min-w-[56px]">
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none">
         <circle cx="24" cy="24" r="22" stroke="#8b1a1a" strokeWidth="1.5" />
@@ -49,23 +50,6 @@ export default function PartnersMarquee({ locale = "en" }) {
       </svg>
     </span>,
 
-    /* MikroTik */
-    <span key="mikrotik" className="flex items-center min-w-[80px]">
-      <svg viewBox="0 0 120 32" className="h-7 w-auto">
-        <text x="0" y="24" fontSize="22" fontWeight="800" fill="#333" fontFamily="sans-serif">Mikro</text>
-        <text x="72" y="24" fontSize="22" fontWeight="800" fill="#cc1b68" fontFamily="sans-serif">Tik</text>
-      </svg>
-    </span>,
-
-    /* Ubiquiti */
-    <span key="ubiquiti" className="flex flex-col items-center gap-0.5 min-w-[56px]">
-      <svg viewBox="0 0 40 44" className="h-9 w-auto" fill="none">
-        <path d="M20 2 L36 10 L36 30 Q20 42 4 30 L4 10 Z" fill="#213a8f" />
-        <text x="20" y="26" textAnchor="middle" fontSize="14" fontWeight="900" fill="white" fontFamily="sans-serif">U</text>
-      </svg>
-      <span className="text-[8px] font-bold text-zinc-400 tracking-widest">UBIQUITI</span>
-    </span>,
-
     /* Google */
     <span key="google" className="flex items-center min-w-[80px]">
       <svg viewBox="0 0 120 40" className="h-8 w-auto">
@@ -80,21 +64,24 @@ export default function PartnersMarquee({ locale = "en" }) {
       </svg>
     </span>,
 
-    /* YouTube */
-    <span key="youtube" className="flex items-center min-w-[96px]">
-      <svg viewBox="0 0 130 32" className="h-8 w-auto" fill="none">
-        <rect x="0" y="2" width="40" height="28" rx="7" fill="#FF0000" />
-        <path d="M16 9 L28 16 L16 23Z" fill="white" />
-        <text x="46" y="24" fontSize="20" fontWeight="700" fill="#212121" fontFamily="sans-serif">YouTube</text>
+    /* Huawei */
+    <span key="huawei" className="flex items-center min-w-[80px]">
+      <svg viewBox="0 0 120 36" className="h-8 w-auto">
+        <text x="0" y="27" fontSize="22" fontWeight="700" fill="#CF0A2C" fontFamily="sans-serif">HUAWEI</text>
       </svg>
     </span>,
 
     /* Meta */
     <span key="meta" className="flex flex-col items-center gap-0.5 min-w-[52px]">
       <svg viewBox="0 0 60 36" className="h-8 w-auto" fill="none">
-        <path d="M6 26 Q6 10 14 10 Q20 10 24 20 Q28 10 34 10 Q42 10 42 24 Q42 34 34 34 Q28 34 24 24 Q20 34 14 34 Q6 34 6 26Z" stroke="url(#metaGrad)" strokeWidth="3.5" fill="none" />
+        <path
+          d="M6 26 Q6 10 14 10 Q20 10 24 20 Q28 10 34 10 Q42 10 42 24 Q42 34 34 34 Q28 34 24 24 Q20 34 14 34 Q6 34 6 26Z"
+          stroke="url(#metaGrad2)"
+          strokeWidth="3.5"
+          fill="none"
+        />
         <defs>
-          <linearGradient id="metaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="metaGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#0082FB" />
             <stop offset="100%" stopColor="#00D4FF" />
           </linearGradient>
@@ -103,31 +90,66 @@ export default function PartnersMarquee({ locale = "en" }) {
       <span className="text-[10px] font-bold text-zinc-500 tracking-wider">Meta</span>
     </span>,
 
-    /* Apple */
-    <span key="apple" className="flex items-center min-w-[36px]">
-      <svg viewBox="0 0 32 38" className="h-9 w-auto" fill="#1d1d1f">
-        <path d="M26.5 19.5c0-4.5 3.7-6.7 3.9-6.8-2.1-3.1-5.4-3.5-6.6-3.6-2.8-.3-5.5 1.6-6.9 1.6-1.4 0-3.6-1.6-5.9-1.5-3 0-5.8 1.7-7.3 4.4-3.2 5.5-.8 13.5 2.2 18 1.5 2.2 3.3 4.6 5.6 4.5 2.3-.1 3.1-1.4 5.8-1.4 2.7 0 3.5 1.4 5.9 1.4 2.4 0 3.9-2.2 5.4-4.4 1.7-2.5 2.4-5 2.4-5.1-.1-.1-4.5-1.7-4.5-6.6zM21.8 6c1.2-1.5 2-3.5 1.8-5.5-1.7.1-3.8 1.1-5 2.6-1.1 1.3-2.1 3.3-1.8 5.3 1.9.1 3.8-.9 5-2.4z" />
+    /* Aqaba IX */
+    <span key="aqaba-ix" className="flex flex-col items-center gap-1 min-w-[64px]">
+      <svg viewBox="0 0 80 36" className="h-8 w-auto">
+        <text x="0" y="26" fontSize="18" fontWeight="800" fill="#1a6b9e" fontFamily="sans-serif">Aqaba</text>
+        <text x="60" y="26" fontSize="18" fontWeight="800" fill="#e85d04" fontFamily="sans-serif">IX</text>
       </svg>
     </span>,
 
-    /* Huawei */
-    <span key="huawei" className="flex items-center min-w-[80px]">
-      <svg viewBox="0 0 120 36" className="h-8 w-auto">
-        <text x="0" y="27" fontSize="22" fontWeight="700" fill="#CF0A2C" fontFamily="sans-serif">HUAWEI</text>
+    /* Mimosa */
+    <span key="mimosa" className="flex items-center min-w-[72px]">
+      <svg viewBox="0 0 110 36" className="h-7 w-auto">
+        <text x="0" y="26" fontSize="20" fontWeight="700" fill="#4caf50" fontFamily="sans-serif">Mimosa</text>
       </svg>
     </span>,
 
-    /* TP-Link */
-    <span key="tplink" className="flex items-center min-w-[80px]">
-      <svg viewBox="0 0 120 36" className="h-8 w-auto">
-        <text x="0" y="27" fontSize="22" fontWeight="800" fill="#CC0000" fontFamily="sans-serif">TP-LINK</text>
+    /* Limelight Networks */
+    <span key="limelight" className="flex items-center min-w-[80px]">
+      <svg viewBox="0 0 160 36" className="h-7 w-auto">
+        <text x="0" y="26" fontSize="14" fontWeight="700" fill="#84cc16" fontFamily="sans-serif">Limelight</text>
+        <text x="82" y="26" fontSize="14" fontWeight="400" fill="#64748b" fontFamily="sans-serif">Networks</text>
+      </svg>
+    </span>,
+
+    /* Sofia IX */
+    <span key="sofia-ix" className="flex items-center min-w-[68px]">
+      <svg viewBox="0 0 100 36" className="h-7 w-auto">
+        <text x="0" y="26" fontSize="18" fontWeight="700" fill="#6366f1" fontFamily="sans-serif">Sofia</text>
+        <text x="58" y="26" fontSize="18" fontWeight="800" fill="#e85d04" fontFamily="sans-serif">IX</text>
+      </svg>
+    </span>,
+
+    /* Akamai */
+    <span key="akamai" className="flex items-center min-w-[72px]">
+      <svg viewBox="0 0 110 36" className="h-7 w-auto">
+        <text x="0" y="26" fontSize="20" fontWeight="700" fill="#009bde" fontFamily="sans-serif">akamai</text>
+      </svg>
+    </span>,
+
+    /* Ubiquiti */
+    <span key="ubiquiti" className="flex flex-col items-center gap-0.5 min-w-[56px]">
+      <svg viewBox="0 0 40 44" className="h-9 w-auto" fill="none">
+        <path d="M20 2 L36 10 L36 30 Q20 42 4 30 L4 10 Z" fill="#213a8f" />
+        <text x="20" y="26" textAnchor="middle" fontSize="14" fontWeight="900" fill="white" fontFamily="sans-serif">U</text>
+      </svg>
+      <span className="text-[8px] font-bold text-zinc-400 tracking-widest">UBIQUITI</span>
+    </span>,
+
+    /* MikroTik */
+    <span key="mikrotik" className="flex items-center min-w-[80px]">
+      <svg viewBox="0 0 120 32" className="h-7 w-auto">
+        <text x="0" y="24" fontSize="22" fontWeight="800" fill="#333" fontFamily="sans-serif">Mikro</text>
+        <text x="72" y="24" fontSize="22" fontWeight="800" fill="#cc1b68" fontFamily="sans-serif">Tik</text>
       </svg>
     </span>,
   ];
 
   return (
     <div className="w-full">
-      <p className="text-xl mb-3 font-semibold tracking-widest text-zinc-400 uppercase mb-5">
+      <p className="text-xl mb-5 font-semibold tracking-widest text-zinc-600 uppercase">
+        {" "}
         {t.hero.partners}
       </p>
 
@@ -141,16 +163,12 @@ export default function PartnersMarquee({ locale = "en" }) {
             "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
         }}
       >
-        <div
-          className="flex items-center gap-10 w-max animate-marquee"
-          style={{ animationDuration: "32s" }}
-          dir={locale === "ar" ? "rtl" : "ltr"}
-        >
+        <Marquee >
           {/* Double list for smooth seamless loop */}
           {[...partnersLogos, ...partnersLogos].map((logo, idx) => (
             <React.Fragment key={idx}>{logo}</React.Fragment>
           ))}
-        </div>
+        </Marquee>
       </div>
     </div>
   );

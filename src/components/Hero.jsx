@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@base-ui/react";
-import { Plus, X } from "lucide-react";
+import { Wifi, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroFiberLines from "./HeroFiberLines";
 import PartnersMarquee from "./PartnersMarquee";
@@ -93,7 +93,7 @@ export default function Hero({ locale = "en" }) {
           {/* Main Large Image Container */}
           <div
             className="relative rounded-[30px] h-87.5 md:h-127.5 lg:h-auto aspect-4/3 w-full bg-cover bg-center bg-no-repeat "
-            style={{ backgroundImage: "url('/hero_tech_team.png')" }}
+            style={{ backgroundImage: "url('/hero/hero_tech_team.webp')" }}
           >
             {/* Gear Icon Badge Overlay with Inset Curves (Fillets) */}
             <div className="absolute -top-1 -left-1 w-24 h-24 z-10  shadow-none">
@@ -131,6 +131,7 @@ export default function Hero({ locale = "en" }) {
 
               <Button
                 onClick={() => setIsVideoOpen(true)}
+                aria-label="Play video"
                 className="relative bg-brand-primary hover:bg-brand-primary/80 hover:scale-105 active:scale-95 transition-all text-white p-4 sm:p-6 rounded-full cursor-pointer flex items-center justify-center z-10 shadow-lg"
               >
                 <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24">
@@ -141,71 +142,52 @@ export default function Hero({ locale = "en" }) {
           </div>
 
           {/* Bottom Cards grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-60">
             {/* Rating Card */}
-            <div className="bg-[#EEEEF1] border border-[#EEEEF1] pt-3  rounded-3xl p-6 flex flex-col gap-4 shadow-sm justify-end h-60">
-              <div className="flex justify-between items-end ">
-                <span className="text-8xl md:text-8xl lg:text-6xl xl:text-8xl font-light text-zinc-500 tracking-tight">
-                  4,9
-                </span>
-                <div className="flex gap-1 text-yellow-400 mt-2 text-[24px]">
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
+            <div className="bg-[#EEEEF1] border border-[#EEEEF1] rounded-3xl p-6 flex flex-col justify-between h-60 shadow-sm">
+              {/* Top: icon + coverage tag */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center justify-center h-11 w-11 rounded-full bg-brand-primary text-white">
+                  <Wifi size={20} />
                 </div>
-              </div>
-              <div className="flex items-center justify-between flex-wrap mt-2 gap-1">
-                <span className="text-xl md:text-2xl w-1/2 font-semibold text-zinc-600">
-                  {locale === "ar" ? "عملاء سعداء" : "Happy Customers"}
+                <span className="text-sm text-zinc-400">
+                  {locale === "ar" ? "الرصافة وديالى" : "Rusafa & Diyala"}
                 </span>
-                {/* Overlapping Avatars */}
-                <div className="flex -space-x-3 overflow-hidden">
-                  <img
-                    className="inline-block h-10 w-10 rounded-full ring-2 ring-zinc-50 object-cover"
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-                    alt=""
-                    loading="lazy"
-                  />
-                  <img
-                    className="inline-block h-10 w-10 rounded-full ring-2 ring-zinc-50 object-cover"
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"
-                    alt=""
-                    loading="lazy"
-                  />
-                  <img
-                    className="inline-block h-10 w-10 rounded-full ring-2 ring-zinc-50 object-cover"
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80"
-                    alt=""
-                    loading="lazy"
-                  />
-                  <div className="flex items-center justify-center h-10 w-10 rounded-full ring-2 ring-zinc-50 bg-brand-primary text-[10px] font-bold text-white">
-                    <Plus />
-                  </div>
-                </div>
               </div>
+
+              {/* Middle: big number */}
+              <span className="text-6xl md:text-7xl font-light text-zinc-500 tracking-tight leading-none">
+                {locale === "ar" ? "+20" : "20+"}
+              </span>
+
+              {/* Bottom: label */}
+              <span className="text-xl md:text-2xl font-semibold text-zinc-600">
+                {locale === "ar"
+                  ? "سنوات من الثقة والاستقرار"
+                  : "Years of Trusted Stability"}
+              </span>
             </div>
 
             {/* Experts on Call Card */}
             <div className="relative rounded-3xl h-full overflow-hidden shadow-sm aspect-2/1 md:aspect-auto bg-zinc-950">
               <Image
-                src="/hero_experts_on_call.png"
+                src="/hero/fastiniraq.webp"
                 alt="Experts On Call"
                 fill
                 className="object-cover "
                 loading="lazy"
               />
-              <div className=" bg-[#072042a6] absolute inset-0"></div>
+              {/* <div className=" bg-[#072042a6] absolute inset-0"></div> */}
               <div className="absolute flex justify-between items-end  inset-0 p-6 ">
                 <p className="text-white font-bold text-2xl leading-tight w-1/2 h-fit">
-                  {locale === "ar" ? "خبراء الدعم" : "Experts On Call"}{" "}
+                  {t.hero.expertsOnCall}{" "}
                   <span className="text-brand-secondary1 text-xl font-bold italic">
                     24/7
                   </span>
                 </p>
                 <Link
                   href={`/${locale}/contact`}
+                  aria-label="Contact us"
                   className="bg-white w-fit hover:bg-brand-primary hover:text-white active:bg-brand-primary transition-all duration-300 cursor-pointer text-zinc-900 rounded-full p-2.5  shadow-xs"
                 >
                   <svg
