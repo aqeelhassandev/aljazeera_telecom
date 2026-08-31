@@ -6,6 +6,8 @@ import PricingSection from "@/components/PricingSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import ProjectsSection from "@/components/ProjectsSection";
+
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -29,6 +31,7 @@ export default async function Home({ params }) {
         <ServicesSection locale={locale} />
         <AboutSection locale={locale} />
         <WhyChooseUs locale={locale} />
+        <ProjectsSection locale={locale} />
         <PricingSection locale={locale} />
         <ContactSection locale={locale} />
         <Footer locale={locale} />

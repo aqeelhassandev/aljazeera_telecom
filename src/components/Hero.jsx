@@ -33,7 +33,7 @@ export default function Hero({ locale = "en" }) {
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-5xl md:text-7xl lg:text-[76px] w-[80%] font-bold tracking-tight text-zinc-900 leading-[1.1] font-sans">
+          <h1 className="text-5xl  sm:text-5xl md:text-7xl lg:text-[76px] w-[80%] font-bold tracking-tight text-zinc-900 leading-[1.1] font-sans">
             {t.hero.headline1}
             <span className="text-brand-primary ml-1">
               {t.hero.headlineHighlight}

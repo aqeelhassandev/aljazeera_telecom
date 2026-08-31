@@ -12,7 +12,6 @@ export default function WhyChooseUs({ locale = "en" }) {
     target: containerRef,
     offset: ["start end", "end start"],
   });
-  console.log(t.whyChooseUs.reasons);
 
   const activeReasons = t.whyChooseUs?.reasons.map((reason, idx) => ({
     ...reason,
@@ -208,7 +207,7 @@ export default function WhyChooseUs({ locale = "en" }) {
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-4">
-                          <h3 className="text-lg font-bold text-zinc-900">
+                          <h3 className="text-xl font-bold text-zinc-900">
                             {reason.title}
                           </h3>
 
@@ -224,7 +223,7 @@ export default function WhyChooseUs({ locale = "en" }) {
 
                         <div className="overflow-hidden">
                           <div className="pt-4 flex flex-col md:flex-row gap-5">
-                            <p className="text-sm text-zinc-500 leading-relaxed">
+                            <p className="text-lg text-zinc-500 leading-relaxed">
                               {reason.description}
                             </p>
 

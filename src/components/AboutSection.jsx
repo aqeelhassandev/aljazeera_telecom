@@ -172,12 +172,9 @@ export default function AboutSection({ locale = "en" }) {
                     </div>
 
                     <div className="flex flex-col gap-2 pt-1.5">
-                      <h3 className="text-lg font-bold text-zinc-900">
+                      <h3 className="text-sm text-zinc-600 leading-relaxed">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-zinc-500 leading-relaxed">
-                        {item.description}
-                      </p>
                     </div>
                   </motion.div>
                 ))}

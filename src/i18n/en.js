@@ -1,3 +1,5 @@
+import { Shield, Wifi, Wrench, Zap } from "lucide-react";
+
 const en = {
   // Navbar
   nav: {
@@ -24,7 +26,7 @@ const en = {
     nationalFiberTitle: "National Fiber Backbone",
     nationalFiberDesc:
       "The digital foundation crossing cities and provinces of Iraq.",
-    expertsOnCall: "Experts On Call",
+    expertsOnCall: "We're here for you, ",
     partnerCardTitle: "Trusted global partners",
     partnerCardDesc:
       "Such as Cisco, Google, and Huawei supporting your growth.",
@@ -65,30 +67,26 @@ const en = {
     ],
     // AboutSection component
     badge: "About us",
-    sectionHeading: "Our Legacy ",
+    sectionHeading: "Iraq's trusted name in ",
     sectionHeadingHighlight: "Fiber Connectivity",
-    sectionSubtext: "in Iraq",
+    sectionSubtext: "",
     sectionBody:
       "Al Jazeera Telecom is Iraq's leading fiber-optic internet provider, connecting homes, businesses, and institutions with ultra-fast, reliable broadband. Since 2004, we've grown from a single-city ISP into a nationwide infrastructure operator, working hand-in-hand with government agencies, enterprise clients, and residential communities.",
     timelineTitle: "Our Journey",
     timeline: [
       {
         year: "2004",
-        title: "The Beginning",
-        description:
-          "Al Jazeera Telecom was founded in Baghdad, providing Internet connectivity through VSAT technology and beginning its journey as one of Iraq’s early Internet service providers.",
+        title: "Company founded and launched via VSAT technology in Baghdad ",
       },
       {
         year: "2010",
-        title: "National Expansion",
-        description:
-          "We partnered with the Iraqi Ministry of Communications to provide and market international capacity, expanding our network and strengthening connectivity across Iraq.",
+        title:
+          " Signed first partnership contract with the Iraqi Ministry of Communications to market and transit international capacity through land border crossings ",
       },
       {
         year: "Today",
-        title: "Connecting Iraq’s Future",
-        description:
-          "Today, Al Jazeera Telecom delivers reliable Internet, FTTH, enterprise connectivity, data centers, hosting, surveillance, web solutions, and infrastructure services across Baghdad and Diyala.",
+        title:
+          "Al Jazeera Telecom selected by the Ministry of Communications to implement and market the transition project from Wireless to Fiber-to-the-Home (FTTH) in Baghdad – Rusafa side ",
       },
     ],
     stats: [
@@ -99,12 +97,48 @@ const en = {
     ],
     learnMore: "Learn More About Us",
     now: "NOW",
+    companyBadge: "About Us",
+    companyHeading: "About the Company",
+    companyParagraphs: [
+      "In late 2004, as internet usage began spreading in Iraq, Al Jazeera Telecom was founded by a group of young Iraqi engineers, becoming one of the first companies to provide internet service within the country.",
+      "The company started in Baghdad, then gradually expanded to cover 14 Iraqi provinces, gaining extensive experience across the country. Today, Al Jazeera Telecom focuses its services on the Rusafa side of Baghdad and Diyala delivering the highest levels of quality and stability to its customers. Its services are not limited to home internet only, but extend to include customized packages and capacities for companies and institutions, implementation and management of data centers, intranet services, management of surveillance camera networks, as well as design, implementation, and management of websites and applications along with website and data hosting services.",
+      "The company also provides civil solutions including tower installation and construction works, alongside power solutions. Through this, Al Jazeera Telecom has contributed to providing thousands of jobs directly or through agents and contractors.",
+    ],
+    yearsTimelineTitle: "Al Jazeera Telecom Through the Years:",
+    yearsTimeline: [
+      {
+        year: "2004",
+        text: "Company founded and launched via VSAT technology in Baghdad",
+      },
+      { year: "2006", text: "Provided internet services via VSAT technology" },
+      {
+        year: "2007",
+        text: "Began transitioning from VSAT to fiber optics to increase international capacity and lower prices, relying on Wireless technology for local service delivery",
+      },
+      {
+        year: "2010",
+        text: "Signed first partnership contract with the Iraqi Ministry of Communications to market and transit international capacity through land border crossings",
+      },
+      {
+        year: "2015",
+        text: "Renewed partnership contract with the Iraqi Ministry of Communications",
+      },
+      { year: "2016", text: "Network coverage reached all 14 Iraqi provinces" },
+      {
+        year: "2020",
+        text: "Renewed partnership contract with the Iraqi Ministry of Communications for the second time",
+      },
+      {
+        year: "2021",
+        text: "Al Jazeera Telecom selected by the Ministry of Communications to implement and market the transition project from Wireless to Fiber-to-the-Home (FTTH) in Baghdad – Rusafa side",
+      },
+    ],
   },
 
   // Why Choose Us
   whyChooseUs: {
     badge: "Why choose us",
-    heading: "Over   ",
+    heading: "Over  ",
     headingHighlight: "two decades",
     headingEnd: "trust and continuity.",
     subtext:
@@ -134,8 +168,63 @@ const en = {
     ],
   },
 
+  // Projects Section
+  projects: {
+    badge: "Pioneering Projects",
+    heading: "Key achievements and partnerships",
+    headingHighlight: "with official entities",
+    viewAll: "View All Projects →",
+    list: [
+      {
+        title: "Rusafa Fiber Optic Network",
+        description:
+          "Under an official contract with the Ministry of Communications, we're bringing fiber-optic internet directly to homes across Baghdad's Rusafa district.",
+        bullets: [
+          "Official Ministry of Communications contract",
+          "FTTH deployment across Rusafa district",
+          "Gigabit speeds to every household",
+        ],
+        image: "/services/service_fttx.webp",
+      },
+      {
+        title: "Advanced Data Centers",
+        description:
+          "Our large-scale data center runs on the latest technology, delivering high-performance internet and telecom services to our users.",
+        bullets: [
+          "State-of-the-art server infrastructure",
+          "High-performance internet & telecom services",
+          "24/7 monitoring and management",
+        ],
+        image: "/services/service_cloud_migration.webp",
+      },
+      {
+        title: "Government Telecom Hubs",
+        description:
+          "We've built a network of medium and small data centers within government telecom complexes, tailored to meet subscriber needs.",
+        bullets: [
+          "Medium & small-scale data centers",
+          "Located in official telecom complexes",
+          "Subscriber-tailored capacity planning",
+        ],
+        image: "/hero/hero_tech_team.webp",
+      },
+      {
+        title: "Infrastructure Development",
+        description:
+          "Establishment, implementation, and development of an infrastructure and fiber-optic cable network to transfer internet capacity from border crossings to city centers.",
+        bullets: [
+          "Fiber-optic backbone across border crossings",
+          "National capacity transit infrastructure",
+          "City-center internet distribution network",
+        ],
+        image: "/services/service_wireless.webp",
+      },
+    ],
+  },
+
   // Services Page
   services: {
+
     heroBanner: "Our Services",
     badge: "Our Services",
     heading: "Comprehensive Tech & Telecom Solutions",
@@ -161,6 +250,10 @@ const en = {
           "High speeds and stable data flow, ideal for high-quality streaming and gaming. ",
         detailsds:
           "Using cutting-edge GPON and XGS-PON technologies, we deliver Gigabit speeds directly to your building with minimal latency.",
+        icon: <Zap className="w-6 h-6 text-blue-500" />,
+        details:
+          "Using cutting-edge GPON and XGS-PON technologies, we deliver Gigabit speeds directly to your building with minimal latency.",
+        image: "/services/service_fttx.webp",
       },
       {
         title: "Corporate & Institutional Solutions",
@@ -168,6 +261,10 @@ const en = {
           "Customized internet packages with speeds ranging from 1 Mbps up to 10 Gbps.",
         details:
           "Tailored SLAs, dedicated bandwidth, redundant routes, and guaranteed uptime to ensure corporate business stability.",
+        icon: <Wrench className="w-6 h-6 text-blue-500" />,
+        details:
+          "Save on communication costs with cloud-hosted PBX, call routing, auto-attendant features, and multi-line business setups.",
+        image: "/services/service_tech_support.webp",
       },
       {
         title: "Data Centers & Monitoring Systems",
@@ -175,6 +272,10 @@ const en = {
           "Design, implementation, and management of secure data centers, along with integrated surveillance camera systems.",
         details:
           "Professional rack design, reliable backup systems, cooling management, and centralized security monitoring solutions.",
+        icon: <Shield className="w-6 h-6 text-blue-500" />,
+        details:
+          "Security audits, firewalls, network monitoring, DDoS mitigation, and continuous threat prevention for enterprise infrastructure.",
+        image: "/services/service_it_consulting.webp",
       },
       {
         title: "Wireless Internet",
@@ -182,6 +283,10 @@ const en = {
           "Coverage reaching areas difficult to connect via fiber optic cable, through advanced towers and transmission equipment.",
         details:
           "Point-to-Point (P2P) and Point-to-Multipoint (P2MP) wireless systems bridging long distances and providing wide coverage area.",
+        icon: <Wifi className="w-6 h-6 text-blue-500" />,
+        details:
+          "Point-to-Point (P2P) and Point-to-Multipoint (P2MP) wireless systems bridging long distances and providing wide coverage area.",
+        image: "/services/service_wireless.webp",
       },
     ],
   },

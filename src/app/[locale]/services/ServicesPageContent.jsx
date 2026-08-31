@@ -2,113 +2,17 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ServicesSection from "@/components/ServicesSection";
 import PricingSection from "@/components/PricingSection";
 import { motion } from "framer-motion";
-import {
-  Wrench,
-  Wifi,
-  Code,
-  ArrowRight,
-  Shield,
-  Server,
-  Network,
-  Calculator,
-  Zap,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import ContactSection from "@/components/ContactSection";
-
-const allServices = [
-  {
-    title: "FTTx (Fiber to the x)",
-    description:
-      "Ultra-fast fiber-to-the-premises internet delivering reliable, high-speed connectivity for homes and businesses.",
-    icon: <Zap className="w-6 h-6 text-blue-500" />,
-    details:
-      "Using cutting-edge GPON and XGS-PON technologies, we deliver Gigabit speeds directly to your building with minimal latency.",
-    image: "/services/service_fttx.webp",
-  },
-  {
-    title: "Wireless Solutions",
-    description:
-      "Cutting-edge wireless solutions providing seamless coverage and high-speed connectivity across your entire premises.",
-    icon: <Wifi className="w-6 h-6 text-blue-500" />,
-    details:
-      "Point-to-Point (P2P) and Point-to-Multipoint (P2MP) wireless systems bridging long distances and providing wide coverage area.",
-    image: "/services/service_wireless.webp",
-  },
-  {
-    title: "Software Solutions",
-    description:
-      "Custom software development and enterprise solutions tailored to streamline your business operations.",
-    icon: <Code className="w-6 h-6 text-blue-500" />,
-    details:
-      "From bespoke web and mobile applications to full-scale ERP and CRM system integrations customized for your operational workflows.",
-    image: "/services/service_software.webp",
-  },
-  {
-    title: "VoIP & Digital Telephony",
-    description:
-      "Feature-rich digital telephony systems delivering crystal-clear voice communication for modern businesses.",
-    icon: <Wrench className="w-6 h-6 text-blue-500" />,
-    details:
-      "Save on communication costs with cloud-hosted PBX, call routing, auto-attendant features, and multi-line business setups.",
-    image: "/services/service_tech_support.webp",
-  },
-  {
-    title: "Cyber Security",
-    description:
-      "Comprehensive cybersecurity services protecting your digital infrastructure against evolving threats 24/7.",
-    icon: <Shield className="w-6 h-6 text-blue-500" />,
-    details:
-      "Security audits, firewalls, network monitoring, DDoS mitigation, and continuous threat prevention for enterprise infrastructure.",
-    image: "/services/service_it_consulting.webp",
-  },
-  {
-    title: "Enterprise Hosting",
-    description:
-      "Reliable cloud and dedicated hosting solutions with maximum uptime guarantees and enterprise-grade security.",
-    icon: <Server className="w-6 h-6 text-blue-500" />,
-    details:
-      "High-performance dedicated servers, VPS, CDN distribution, and automated secure backups managed by our operations center.",
-    image: "/services/service_cloud_migration.webp",
-  },
-  {
-    title: "Network Consulting",
-    description:
-      "Expert network design, implementation, and optimization services to build a robust digital foundation.",
-    icon: <Network className="w-6 h-6 text-blue-500" />,
-    details:
-      "Experienced network engineers auditing routing, cabling infrastructure, optical connections, and active equipment parameters.",
-    image: "/services/service_it_consulting.webp",
-  },
-  {
-    title: "SBS for Businesses",
-    description:
-      "Scalable business solutions designed to integrate accounting, HR, and operations into a unified platform.",
-    icon: <Calculator className="w-6 h-6 text-blue-500" />,
-    details:
-      "Manage finance, inventory, human resources, and customer relations using advanced modular corporate frameworks.",
-    image: "/services/service_tech_support.webp",
-  },
-];
 
 import { getTranslations } from "@/i18n";
 import Link from "next/link";
 
 export default function ServicesPageContent({ locale = "en" }) {
   const t = getTranslations(locale);
-
-  // Dynamically translate all services
-  const activeServices = allServices.map((s, idx) => ({
-    ...s,
-    title: t.services.list[idx] ? t.services.list[idx].title : s.title,
-    description: t.services.list[idx]
-      ? t.services.list[idx].description
-      : s.description,
-    details: t.services.list[idx] ? t.services.list[idx].details : s.details,
-  }));
 
   return (
     <div className="min-h-screen bg-[#f9f9f9] flex flex-col">
@@ -195,15 +99,15 @@ export default function ServicesPageContent({ locale = "en" }) {
               {t.services.badge}
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mt-2">
-              {t.services.heading}
+              {t.services.sectionHeading}
             </h2>
             <p className="text-sm md:text-base text-zinc-400 leading-relaxed max-w-2xl">
-              {t.services.subtext}
+              {t.services.sectionBody}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {activeServices.map((service, index) => {
+            {t?.services?.list?.map((service, index) => {
               const serviceIconBorder = [1, 4, 7].includes(index);
               return (
                 <motion.div

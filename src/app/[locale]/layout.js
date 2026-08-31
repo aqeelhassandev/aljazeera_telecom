@@ -6,7 +6,6 @@ const alexandria = Alexandria({
   variable: "--font-alexandria",
   subsets: ["latin"],
 });
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -98,11 +97,10 @@ export async function generateMetadata({ params }) {
 
 export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
-  const isAr = locale === "ar";
+  const isAr = locale == "ar";
   const dir = isAr ? "rtl" : "ltr";
-  const fontVars = isAr
-    ? `${notoKufi.variable} ${geistMono.variable}`
-    : `${alexandria.variable} ${geistMono.variable}`;
+  const fontVars = isAr ? `${alexandria.variable} ` : `${alexandria.variable} `;
+  console.log(fontVars);
 
   return (
     <html
@@ -111,7 +109,7 @@ export default async function LocaleLayout({ children, params }) {
       suppressHydrationWarning
       className={`${fontVars} h-full antialiased`}
     >
-      <body suppressHydrationWarning className="min-h-full flex flex-col">
+      <body suppressHydrationWarning className="min-h-full flex flex-col ">
         {children}
       </body>
     </html>
