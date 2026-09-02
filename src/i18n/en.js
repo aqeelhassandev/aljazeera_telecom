@@ -19,7 +19,7 @@ const en = {
     headline1: "+ 20 years ",
     headlineHighlight: " of experience",
     subtext:
-      "Since 2004, and for over twenty years, we have been building a telecommunications network to be the first choice for individuals and institutions in service speed and stability. ",
+      "We continue to advance the telecommunications sector by building a modern network and delivering reliable solutions that place service speed, stability, and quality at the heart of everything we do.",
     ctaSupport: "Instant Support",
     ctaServices: "Discover Services",
     partners: "Our Partners",
@@ -90,8 +90,8 @@ const en = {
       },
     ],
     stats: [
-      { value: "490M+", label: "Happy Clients" },
-      { value: "4.9/5", label: "Clients Rating" },
+      { value: "100%", label: "Commitment to Quality" },
+      { value: "365", label: "Days of Service" },
       { value: "20+", label: "Years of Excellence" },
       { value: "24/7", label: "Expert Support" },
     ],
@@ -149,7 +149,7 @@ const en = {
         title: "Exclusive rights for FTTH fiber-optic service",
         description:
           "The authorized provider for implementing and marketing this service in the Rusafa area of Baghdad, through an official partnership with the Ministry of Communications. ",
-        image: "/hero/hero_tech_team.webp",
+        image: "/whychooseus/small.webp",
         cta: { label: "Explore Our Network", href: "/services" },
       },
       {
@@ -160,9 +160,9 @@ const en = {
       },
       {
         number: "03",
-        title: "Over 20 years of experience",
+        title: "Built for Better Connections",
         description:
-          "One of the first companies to provide internet service in Iraq, since 2004. ",
+          "Delivering fast, reliable, and seamless connectivity for every need. ",
         cta: { label: "Explore Our Network", href: "/services" },
       },
     ],
@@ -184,7 +184,7 @@ const en = {
           "FTTH deployment across Rusafa district",
           "Gigabit speeds to every household",
         ],
-        image: "/services/service_fttx.webp",
+        image: "/projects/image4.webp",
       },
       {
         title: "Advanced Data Centers",
@@ -195,7 +195,7 @@ const en = {
           "High-performance internet & telecom services",
           "24/7 monitoring and management",
         ],
-        image: "/services/service_cloud_migration.webp",
+        image: "/projects/image2.webp",
       },
       {
         title: "Government Telecom Hubs",
@@ -206,7 +206,7 @@ const en = {
           "Located in official telecom complexes",
           "Subscriber-tailored capacity planning",
         ],
-        image: "/hero/hero_tech_team.webp",
+        image: "/projects/image1.webp",
       },
       {
         title: "Infrastructure Development",
@@ -217,14 +217,13 @@ const en = {
           "National capacity transit infrastructure",
           "City-center internet distribution network",
         ],
-        image: "/services/service_wireless.webp",
+        image: "/projects/image3.webp",
       },
     ],
   },
 
   // Services Page
   services: {
-
     heroBanner: "Our Services",
     badge: "Our Services",
     heading: "Comprehensive Tech & Telecom Solutions",
@@ -264,7 +263,7 @@ const en = {
         icon: <Wrench className="w-6 h-6 text-blue-500" />,
         details:
           "Save on communication costs with cloud-hosted PBX, call routing, auto-attendant features, and multi-line business setups.",
-        image: "/services/service_tech_support.webp",
+        image: "/services/service_cloud_migration.webp",
       },
       {
         title: "Data Centers & Monitoring Systems",
@@ -275,7 +274,7 @@ const en = {
         icon: <Shield className="w-6 h-6 text-blue-500" />,
         details:
           "Security audits, firewalls, network monitoring, DDoS mitigation, and continuous threat prevention for enterprise infrastructure.",
-        image: "/services/service_it_consulting.webp",
+        image: "/services/service_software.png",
       },
       {
         title: "Wireless Internet",
@@ -286,7 +285,7 @@ const en = {
         icon: <Wifi className="w-6 h-6 text-blue-500" />,
         details:
           "Point-to-Point (P2P) and Point-to-Multipoint (P2MP) wireless systems bridging long distances and providing wide coverage area.",
-        image: "/services/service_wireless.webp",
+        image: "/services/service_it_consulting.webp",
       },
     ],
   },
@@ -330,7 +329,7 @@ const en = {
           "Work from home, servers, CCTV upload and a full office of devices.",
       },
     ],
-    features: ["mbps Peak Times", "Unlimited Data", "Low Gaming Latency"],
+    features: ["Unlimited Data", "Low Gaming Latency"],
   },
 
   // Contact Section

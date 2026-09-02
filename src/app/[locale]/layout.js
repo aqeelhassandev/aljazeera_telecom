@@ -1,20 +1,12 @@
-import { Alexandria, Geist_Mono, Noto_Kufi_Arabic } from "next/font/google";
+import { Alexandria } from "next/font/google";
 import "../globals.css";
 import { locales } from "@/i18n";
 
 const alexandria = Alexandria({
   variable: "--font-alexandria",
   subsets: ["latin"],
-});
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const notoKufi = Noto_Kufi_Arabic({
-  variable: "--font-noto-kufi",
-  subsets: ["arabic"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  preload: true,
 });
 
 export const dynamicParams = false;
@@ -100,7 +92,6 @@ export default async function LocaleLayout({ children, params }) {
   const isAr = locale == "ar";
   const dir = isAr ? "rtl" : "ltr";
   const fontVars = isAr ? `${alexandria.variable} ` : `${alexandria.variable} `;
-  console.log(fontVars);
 
   return (
     <html

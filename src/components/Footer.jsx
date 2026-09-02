@@ -1,23 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Send, ArrowUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { getTranslations } from "@/i18n";
 
 export default function Footer({ locale = "en" }) {
   const t = getTranslations(locale);
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (!email) return;
-    setSubscribed(true);
-    setEmail("");
-    setTimeout(() => setSubscribed(false), 5000);
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -34,7 +23,7 @@ export default function Footer({ locale = "en" }) {
           <div className="lg:col-span-4 flex flex-col gap-6">
             <Link href={`/${locale}`} className="flex items-center gap-2">
               <Image
-                src="/logo.png"
+                src="/logo3.png"
                 alt="Logo"
                 width={100}
                 height={100}
@@ -180,32 +169,6 @@ export default function Footer({ locale = "en" }) {
                 {t.footer.newsletterText}
               </p>
             </div>
-
-            <form
-              onSubmit={handleSubscribe}
-              className="relative flex items-center"
-            >
-              <input
-                type="email"
-                placeholder={t.footer.emailPlaceholder}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-full py-2.5 pl-4 pr-12 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-brand-secondary1 transition-all duration-300"
-              />
-              <button
-                type="submit"
-                className="absolute right-1.5 w-8 h-8 flex items-center justify-center rounded-full bg-brand-secondary1 text-white hover:bg-brand-secondary1/90 transition-colors"
-                aria-label="Subscribe"
-              >
-                <Send className="w-3.5 h-3.5" />
-              </button>
-            </form>
-
-            {subscribed && (
-              <span className="text-xs text-green-400 animate-pulse">
-                {t.footer.subscribed}
-              </span>
-            )}
           </div>
         </div>
 

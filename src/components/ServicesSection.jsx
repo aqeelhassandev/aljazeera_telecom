@@ -14,6 +14,7 @@ import {
   Network,
   Calculator,
   Zap,
+  Hand,
 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -34,12 +35,12 @@ const services = [
   {
     id: 1,
     image: "/services/service_cloud_migration.webp",
-    icon: <Wifi className="w-5 h-5" />,
+    icon: <Hand className="w-5 h-5" />,
   },
   {
     id: 2,
-    image: "/services/service_software.webp",
-    icon: <Wifi className="w-5 h-5" />,
+    image: "/services/service_software.png",
+    icon: <Server className="w-5 h-5" />,
   },
   {
     id: 3,

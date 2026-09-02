@@ -98,7 +98,7 @@ export default function AboutSection({ locale = "en" }) {
                 <span className="text-sm">✶</span> {t.about.badge}
               </span>
               <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-                <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.1] max-w-4xl">
+                <h2 className="text-3xl leading-[1.6] sm:text-4xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 max-w-4xl">
                   {t.about.sectionHeading}{" "}
                   <span className="text-brand-secondary1">
                     {t.about.sectionHeadingHighlight}
@@ -217,10 +217,10 @@ export default function AboutSection({ locale = "en" }) {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <Image
-                src="/services/service_it_consulting.webp"
+                src={locale === "ar" ? "/about2.webp" : "/about1.webp"}
                 alt="Al Jazeera Telecom Team"
                 fill
-                className="object-cover rounded-[30px] "
+                className="lg:object-cover object-fill rounded-[30px] "
                 loading="lazy"
               />
               <motion.div
@@ -373,7 +373,7 @@ export default function AboutSection({ locale = "en" }) {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                src="https://www.youtube.com/embed/bbhwSQVt-vc?autoplay=1"
                 title="Al Jazeera Telecom Video Showcase"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

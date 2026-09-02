@@ -27,11 +27,11 @@ export default function AboutPageContent({ locale = "en" }) {
               src={"/notfound.webp"}
               alt="Contact Us"
               fill
-              className="object-cover"
+              className="object-cover lg:object-cover"
               loading="lazy"
             />
 
-            <div className="absolute top-0 left-0 w-full h-full bg-[#031530]/60 flex items-center justify-center text-white text-3xl lg:text-5xl font-bold">
+            <div className="absolute top-0 left-0 w-full h-full bg-[#031530]/20 flex items-center justify-center text-white text-3xl lg:text-5xl font-bold">
               {t.about.heroBanner}
             </div>
           </motion.div>
@@ -94,7 +94,9 @@ export default function AboutPageContent({ locale = "en" }) {
               <div className="absolute inset-0 bg-brand-secondary1/5 rounded-2xl sm:rounded-[32px] transform -rotate-2 sm:-rotate-3" />
               <div className="relative w-full h-full rounded-2xl sm:rounded-[32px] overflow-hidden shadow-xl border border-zinc-100">
                 <Image
-                  src="/hero/hero_tech_team.webp"
+                  src={
+                    locale === "ar" ? "/aboutpage1.webp" : "/aboutpage2.webp"
+                  }
                   alt="Al Jazeera Telecom Team"
                   fill
                   sizes="(max-width: 1024px) 100vw, 42vw"

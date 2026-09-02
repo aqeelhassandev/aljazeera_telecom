@@ -25,14 +25,14 @@ export default function ContactPageContent({ locale = "en" }) {
             className="w-full h-full relative rounded-2xl overflow-hidden"
           >
             <Image
-              src={"/notfound.webp"}
+              src={"/notfound2.webp"}
               alt="Contact Us"
               fill
               className="object-cover"
               loading="lazy"
             />
 
-            <div className="absolute top-0 left-0 w-full h-full bg-[#031530]/60 flex items-center justify-center text-white text-3xl lg:text-5xl font-bold">
+            <div className="absolute top-0 left-0 w-full h-full bg-[#031530]/20 flex items-center justify-center text-white text-3xl lg:text-5xl font-bold">
               {t.contact.heroBanner}
             </div>
           </motion.div>

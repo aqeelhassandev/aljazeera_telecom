@@ -47,19 +47,24 @@ export default function Navbar({ locale = "en" }) {
         <nav className="max-w-[1700px] mx-auto px-6 py-4">
           <div className="flex items-center justify-between gap-6">
             {/* Logo */}
-            <Link
-              href={`/${locale}`}
-              className="flex items-center gap-2 group"
-              onClick={close}
-            >
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={100}
-                height={100}
-                className="brightness-0 w-35.75 h-auto"
-              />
-            </Link>
+            {isOpen ? (
+              <div className="w-25"></div>
+            ) : (
+              <Link
+                href={`/${locale}`}
+                className="flex items-center gap-2 group"
+                onClick={close}
+              >
+                <Image
+                  src="/logo3.png"
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  className=" w-41.75 h-auto"
+                  priority={true}
+                />
+              </Link>
+            )}
 
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center justify-center gap-8 flex-1 text-[17px] font-semibold">
@@ -169,11 +174,12 @@ export default function Navbar({ locale = "en" }) {
               <div className="flex items-center justify-between px-6 py-5 border-b border-zinc-100">
                 <Link href={`/${locale}`} onClick={close}>
                   <Image
-                    src="/logo.webp"
+                    src="/logo3.png"
                     alt="Logo"
                     width={100}
                     height={100}
-                    className="brightness-0 w-35.75 h-auto"
+                    className=" w-35.75 h-auto"
+                    loading="lazy"
                   />
                 </Link>
                 <button

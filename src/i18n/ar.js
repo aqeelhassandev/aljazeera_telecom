@@ -19,7 +19,7 @@ const ar = {
     headline1: "+20 عاماً ",
     headlineHighlight: "من الخبرة",
     subtext:
-      "منذ عام 2004، ولأكثر من عشرين عاماً، نبني شبكة اتصالات لنكون الخيار الأول للأفراد والمؤسسات في سرعة الخدمة واستقرارها.",
+      "نواصل مسيرتنا في تطوير قطاع الاتصالات، من خلال بناء شبكة متطورة وحلول موثوقة تضع سرعة الخدمة واستقرارها وجودتها في مقدمة أولوياتنا.",
     ctaSupport: "دعم فوري",
     ctaServices: "اكتشف خدماتنا",
     partners: "شركاؤنا",
@@ -89,8 +89,8 @@ const ar = {
       },
     ],
     stats: [
-      { value: "490م+", label: "عميل سعيد" },
-      { value: "4.9/5", label: "تقييم العملاء" },
+      { value: "100%", label: "التزام بالجودة" },
+      { value: "365", label: "يومًا من الخدمة" },
       { value: "+20", label: "سنوات من التميز" },
       { value: "24/7", label: "دعم متخصص" },
     ],
@@ -146,7 +146,7 @@ const ar = {
         description:
           "الجهة المخولة لتنفيذ وتسويق هذه الخدمة بمنطقة الرصافة ببغداد. بشراكة رسمية مع وزارة الاتصالات",
         cta: { label: "استكشف شبكتنا", href: "/services" },
-        image: "/hero/hero_tech_team.webp",
+        image: "/whychooseus/small.webp",
       },
       {
         number: "02",
@@ -156,8 +156,8 @@ const ar = {
       },
       {
         number: "03",
-        title: "خبرة تتجاوز 20 عام ",
-        description: "من أوائل الشركات اللي وفرت الإنترنت بالعراق من عام 2004",
+        title: "نبني اتصالات أفضل",
+        description: "نقدم خدمات إنترنت سريعة وموثوقة لتبقى دائمًا على اتصال.",
       },
     ],
   },
@@ -178,7 +178,7 @@ const ar = {
           "نشر FTTH في منطقة الرصافة",
           "سرعات جيجابت لكل منزل",
         ],
-        image: "/services/service_fttx.webp",
+        image: "/projects/image4.webp",
       },
       {
         title: "مراكز البيانات المتقدمة",
@@ -189,7 +189,7 @@ const ar = {
           "خدمات إنترنت واتصالات عالية الأداء",
           "مراقبة وإدارة على مدار الساعة",
         ],
-        image: "/services/service_cloud_migration.webp",
+        image: "/projects/image2.webp",
       },
       {
         title: "مجمعات الاتصالات الحكومية",
@@ -200,7 +200,7 @@ const ar = {
           "تقع داخل مجمعات الاتصالات الرسمية",
           "تخطيط سعة مخصص للمشتركين",
         ],
-        image: "/hero/hero_tech_team.webp",
+        image: "/projects/image1.webp",
       },
       {
         title: "تأهيل البنى التحتية",
@@ -211,7 +211,7 @@ const ar = {
           "بنية تحتية لنقل السعة الوطنية",
           "شبكة توزيع إنترنت لمراكز المدن",
         ],
-        image: "/services/service_wireless.webp",
+        image: "/projects/image3.webp",
       },
     ],
   },
@@ -245,7 +245,7 @@ const ar = {
         title: "حلول الشركات والمؤسسات",
         description: "يقدم حزماً مخصصة بسرعة تبدأ من 1 Mbps وتصل إلى 10 Gbps",
         icon: <Wrench className="w-6 h-6 text-blue-500" />,
-        image: "/services/service_tech_support.webp",
+        image: "/services/service_cloud_migration.webp",
 
         details:
           "اتفاقيات مستوى خدمة مخصصة (SLA)، سعات إنترنت مخصصة، مسارات بديلة، وضمان جهوزية كامل لدعم استقرار الأعمال.",
@@ -257,7 +257,7 @@ const ar = {
         details:
           "تصميم احترافي للكابينات، أنظمة طاقة بديلة موثوقة، إدارة التبريد، وحلول مراقبة مركزية متكاملة.",
         icon: <Shield className="w-6 h-6 text-blue-500" />,
-        image: "/services/service_it_consulting.webp",
+        image: "/services/service_software.png",
       },
       {
         title: "الإنترنت اللاسلكي (Wireless)",
@@ -306,7 +306,7 @@ const ar = {
         description: "عمل من المنزل، خوادم، رفع CCTV وجهاز مكتب كامل.",
       },
     ],
-    features: ["mbps Peak Times", "Unlimited Data", "Low Gaming Latency"],
+    features: ["بيانات غير محدودة", "زمن استجابة منخفض للألعاب"],
   },
 
   // Contact Section

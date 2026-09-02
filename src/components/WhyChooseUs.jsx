@@ -155,7 +155,11 @@ export default function WhyChooseUs({ locale = "en" }) {
               transition={{ duration: 0.8 }}
             >
               <Image
-                src="/hero/hero_tech_team.webp"
+                src={
+                  locale === "ar"
+                    ? "/whychooseus/image2.webp"
+                    : "/whychooseus/image1.webp"
+                }
                 alt="Al Jazeera Telecom team at work"
                 fill
                 className="object-cover"
@@ -172,10 +176,14 @@ export default function WhyChooseUs({ locale = "en" }) {
               transition={{ duration: 0.8 }}
             >
               <Image
-                src="/hero/hero_tech_team.webp"
+                src={
+                  locale === "ar"
+                    ? "/whychooseus/image1.webp"
+                    : "/whychooseus/image2.webp"
+                }
                 alt="Al Jazeera Telecom team at work"
                 fill
-                className="object-cover"
+                className="object-fill"
                 loading="lazy"
               />
             </motion.div>

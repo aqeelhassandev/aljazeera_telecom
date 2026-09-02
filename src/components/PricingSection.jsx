@@ -14,11 +14,7 @@ const plans = [
     streams: "2",
     fileTime: "11 min",
     perMbps: "583 IQD",
-    features: [
-      "mbps Peak Times 60",
-      "Unlimited Data",
-      "Low Gaming Latency"
-    ],
+    features: ["Unlimited Data", "Low Gaming Latency"],
     price: "35,000",
     popular: false,
     barWidth: "w-[20%]",
@@ -33,11 +29,7 @@ const plans = [
     streams: "4",
     fileTime: "6.8 min",
     perMbps: "450 IQD",
-    features: [
-      "mbps Peak Times 100",
-      "Unlimited Data",
-      "Low Gaming Latency"
-    ],
+    features: ["Unlimited Data", "Low Gaming Latency"],
     price: "45,000",
     popular: true,
     barWidth: "w-[33%]",
@@ -52,11 +44,7 @@ const plans = [
     streams: "7",
     fileTime: "3.8 min",
     perMbps: "361 IQD",
-    features: [
-      "mbps Peak Times 180",
-      "Unlimited Data",
-      "Low Gaming Latency"
-    ],
+    features: ["Unlimited Data", "Low Gaming Latency"],
     price: "65,000",
     popular: false,
     barWidth: "w-[60%]",
@@ -71,11 +59,7 @@ const plans = [
     streams: "12",
     fileTime: "2.3 min",
     perMbps: "333 IQD",
-    features: [
-      "mbps Peak Times 300",
-      "Unlimited Data",
-      "Low Gaming Latency"
-    ],
+    features: ["Unlimited Data", "Low Gaming Latency"],
     price: "100,000",
     popular: false,
     barWidth: "w-[100%]",
@@ -94,11 +78,7 @@ export default function PricingSection({ locale = "en" }) {
     description: t.pricing.plans[idx]
       ? t.pricing.plans[idx].description
       : plan.description,
-    features: [
-      `${t.pricing.features[0]} ${plan.speed}`,
-      t.pricing.features[1],
-      t.pricing.features[2],
-    ],
+    features: (t.pricing.features || []).filter(Boolean),
   }));
 
   return (
@@ -238,7 +218,6 @@ export default function PricingSection({ locale = "en" }) {
                           label: t.pricing.stats.fileSize,
                           value: plan.fileTime,
                         },
-                        { label: t.pricing.stats.perMbps, value: plan.perMbps },
                       ].map((stat) => (
                         <div key={stat.label}>
                           <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-zinc-400 mb-0.5 dark:text-zinc-500">

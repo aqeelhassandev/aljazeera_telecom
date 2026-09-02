@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PricingSection from "@/components/PricingSection";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChartBarStacked } from "lucide-react";
 import Image from "next/image";
 import ContactSection from "@/components/ContactSection";
 
@@ -35,7 +35,7 @@ export default function ServicesPageContent({ locale = "en" }) {
               loading="lazy"
             />
 
-            <div className="absolute top-0 left-0 w-full h-full bg-[#031530]/60 flex items-center justify-center text-white text-3xl lg:text-5xl font-bold">
+            <div className="absolute top-0 left-0 w-full h-full bg-[#031530]/20 flex items-center justify-center text-white text-3xl lg:text-5xl font-bold">
               {t.services.heroBanner}
             </div>
           </motion.div>
@@ -109,6 +109,7 @@ export default function ServicesPageContent({ locale = "en" }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {t?.services?.list?.map((service, index) => {
               const serviceIconBorder = [1, 4, 7].includes(index);
+              console.log(service);
               return (
                 <motion.div
                   key={index}

@@ -93,8 +93,21 @@ export default function Hero({ locale = "en" }) {
           {/* Main Large Image Container */}
           <div
             className="relative rounded-[30px] h-87.5 md:h-127.5 lg:h-auto aspect-4/3 w-full bg-cover bg-center bg-no-repeat "
-            style={{ backgroundImage: "url('/hero/hero_tech_team.webp')" }}
+            style={{
+              backgroundImage:
+                locale == "ar"
+                  ? "url('/hero/hero1ar.webp')"
+                  : "url('/hero/hero1en.webp')",
+            }}
           >
+            {/* Hidden preloader — tells browser to fetch the BG image at high priority */}
+            <img
+              src={locale == "ar" ? "/hero/hero1ar.webp" : "/hero/hero1en.webp"}
+              alt="Hero Banner"
+              aria-hidden="true"
+              fetchPriority="high"
+              className="absolute inset-0 w-0 h-0 opacity-0 pointer-events-none"
+            />
             {/* Gear Icon Badge Overlay with Inset Curves (Fillets) */}
             <div className="absolute -top-1 -left-1 w-24 h-24 z-10  shadow-none">
               <div className="w-full h-full bg-[#f9f9f9] rounded-br-[32px] rounded-tl-[32px] flex items-center justify-center">
@@ -102,7 +115,7 @@ export default function Hero({ locale = "en" }) {
                   <img
                     src="/icons/icon1.svg"
                     alt="Hero"
-                    className="w-10 h-auto animate-spin-slow object-cover"
+                    className="w-10 h-10 animate-spin-slow object-cover"
                     loading="lazy"
                   />
                 </div>
@@ -175,7 +188,8 @@ export default function Hero({ locale = "en" }) {
                 alt="Experts On Call"
                 fill
                 className="object-cover "
-                loading="lazy"
+                sizes="100%"
+                priority={true}
               />
               {/* <div className=" bg-[#072042a6] absolute inset-0"></div> */}
               <div className="absolute flex justify-between items-end  inset-0 p-6 ">
@@ -239,7 +253,7 @@ export default function Hero({ locale = "en" }) {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                src="https://www.youtube.com/embed/f5spwMLFyks?autoplay=1"
                 title="Al Jazeera Telecom Video Showcase"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
