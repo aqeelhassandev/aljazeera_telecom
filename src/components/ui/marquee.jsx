@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 export function Marquee({
   className,
@@ -18,8 +18,9 @@ export function Marquee({
           "flex-row": !vertical,
           "flex-col": vertical,
         },
-        className
-      )}>
+        className,
+      )}
+    >
       {Array(repeat)
         .fill(0)
         .map((_, i) => (
@@ -29,8 +30,10 @@ export function Marquee({
               "animate-marquee flex-row": !vertical,
               "animate-marquee-vertical flex-col": vertical,
               "group-hover:[animation-play-state:paused]": pauseOnHover,
+              "group-hover:paused": pauseOnHover,
               "[animation-direction:reverse]": reverse,
-            })}>
+            })}
+          >
             {children}
           </div>
         ))}

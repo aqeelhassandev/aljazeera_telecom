@@ -88,7 +88,7 @@ export default function Hero({ locale = "en" }) {
 
           {/* ── OUR PARTNERS marquee ── */}
           <div className="mt-10 pt-8 border-t border-zinc-100">
-            <PartnersMarquee locale={locale} />
+            <PartnersMarquee  locale={locale} />
           </div>
         </motion.div>
 

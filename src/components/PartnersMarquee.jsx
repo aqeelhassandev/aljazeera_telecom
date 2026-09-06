@@ -339,7 +339,7 @@ export default function PartnersMarquee({ locale = "en" }) {
             "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
         }}
       >
-        <Marquee>
+        <Marquee pauseOnHover={true}>
           {/* Double list for smooth seamless loop */}
           {[...partnersLogos, ...partnersLogos].map((logo, idx) => (
             <React.Fragment key={idx}>{logo}</React.Fragment>
