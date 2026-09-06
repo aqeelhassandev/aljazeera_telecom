@@ -65,7 +65,17 @@ import { getTranslations } from "@/i18n";
 export default function AboutSection({ locale = "en" }) {
   const t = getTranslations(locale);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -79,20 +89,19 @@ export default function AboutSection({ locale = "en" }) {
 
   return (
     <section id="about" className="relative bg-[#f9f9f9] pt-24 overflow-hidden">
-      {/* Subtle background decoration */}
-
-      <div className="pointer-events-none absolute top-0 right-0 w-150 h-150 bg-blue-50 rounded-full blur-[160px] opacity-60" />
-      <div className="pointer-events-none absolute bottom-0 left-0 w-100 h-100 bg-brand-secondary2/10 rounded-full blur-[120px]" />
+      {/* Subtle background decoration — hidden on mobile to avoid GPU-intensive blurs */}
+      <div className="pointer-events-none absolute top-0 right-0 w-150 h-150 bg-blue-50 rounded-full blur-[160px] opacity-60 hidden md:block" />
+      <div className="pointer-events-none absolute bottom-0 left-0 w-100 h-100 bg-brand-secondary2/10 rounded-full blur-[120px] hidden md:block" />
       <div className="relative max-w-[1700px] mx-auto px-6 lg:px-12">
         {/* ── Main Grid: Image + Content ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 ">
           {/* Right — Content */}
           <div className="lg:col-span-6 flex flex-col gap-12">
             <motion.div
-              initial={{ opacity: 0, y: 330 }}
+              initial={{ opacity: 0, y: isMobile ? 30 : 330 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.9, ease: "easeOut" }}
+              transition={{ duration: isMobile ? 0.4 : 0.9, ease: "easeOut" }}
             >
               <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-100 mb-5">
                 <span className="text-sm">✶</span> {t.about.badge}
@@ -141,13 +150,13 @@ export default function AboutSection({ locale = "en" }) {
                   <motion.div
                     key={i}
                     className="flex gap-6 pb-10 last:pb-0 relative"
-                    initial={{ opacity: 0, x: locale === "ar" ? 220 : -220 }}
+                    initial={{ opacity: 0, x: locale === "ar" ? (isMobile ? 20 : 220) : (isMobile ? -20 : -220) }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{
-                      duration: 0.8,
+                      duration: isMobile ? 0.35 : 0.8,
                       ease: "easeOut",
-                      delay: i * 0.4,
+                      delay: isMobile ? 0 : i * 0.4,
                     }}
                   >
                     {/* Dot */}
@@ -184,10 +193,10 @@ export default function AboutSection({ locale = "en" }) {
             {/* CTA */}
             <motion.div
               className="flex items-center gap-4"
-              initial={{ opacity: 0, x: locale === "ar" ? 220 : -220 }}
+              initial={{ opacity: 0, x: locale === "ar" ? (isMobile ? 20 : 220) : (isMobile ? -20 : -220) }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 1.3 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: isMobile ? 0.1 : 1.3 }}
             >
               <Link
                 href={`/${locale}/about`}
@@ -211,10 +220,10 @@ export default function AboutSection({ locale = "en" }) {
             {/* Main image */}
             <motion.div
               className="relative aspect-4/3 w-full h-100 shadow-zinc-200"
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, scale: isMobile ? 0.95 : 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: isMobile ? 0.4 : 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <Image
                 src={locale === "ar" ? "/about2.webp" : "/about1.webp"}
@@ -224,11 +233,11 @@ export default function AboutSection({ locale = "en" }) {
                 loading="lazy"
               />
               <motion.div
-                initial={{ opacity: 0, y: -220 }}
+                initial={{ opacity: 0, y: isMobile ? -20 : -220 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
-                  duration: 0.8,
+                  duration: isMobile ? 0.4 : 0.8,
                   ease: "easeOut",
                 }}
                 className={`absolute left-0 top-11 -translate-y-1/2 flex items-center justify-center z-20  bg-background p-4  rounded-br-[30px]`}
@@ -267,11 +276,11 @@ export default function AboutSection({ locale = "en" }) {
                 />
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, y: 220 }}
+                initial={{ opacity: 0, y: isMobile ? 20 : 220 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
-                  duration: 0.7,
+                  duration: isMobile ? 0.4 : 0.7,
                   ease: "easeOut",
                 }}
                 className={`absolute -bottom-1 -right-1 flex items-center gap-3 bg-background rounded-tl-[25px]  px-7 py-5`}

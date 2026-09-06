@@ -54,32 +54,18 @@
   --animate-marquee: marquee 28s linear infinite;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
-  from {
-    transform: translateX(0);
-    }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-    }
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-100% - var(--gap))); }
   }
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-    }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-    }
+    from { transform: translateY(0); }
+    to   { transform: translateY(calc(-100% - var(--gap))); }
   }
 }
 
 @keyframes ripple {
-  0% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  100% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
+  0%   { transform: scale(1);   opacity: 0.75; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
 
 @keyframes marquee {
@@ -168,5 +154,25 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* ── Mobile Performance ── */
+@media (max-width: 767px) {
+  /* Skip paint/layout for off-screen sections — big LCP + TBT win */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+  }
+
+  /* Reduce ripple animation cost on mobile */
+  .animate-ripple {
+    animation-iteration-count: 3 !important;
+    animation-duration: 2s !important;
+  }
+
+  /* Disable continuous spin animation on mobile icon */
+  .animate-spin-slow {
+    animation: none !important;
   }
 }

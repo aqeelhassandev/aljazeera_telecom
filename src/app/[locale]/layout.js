@@ -5,8 +5,8 @@ import { locales } from "@/i18n";
 const alexandria = Alexandria({
   variable: "--font-alexandria",
   subsets: ["latin", "arabic"],
-  display: "swap",
-  preload: true,
+  display: "optional",
+  preload: false,
 });
 
 export const dynamicParams = false;

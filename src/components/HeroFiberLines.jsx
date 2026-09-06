@@ -38,16 +38,18 @@ export default function HeroFiberLines({
     if (!wrap || !canvas) return;
 
     const ctx = canvas.getContext("2d");
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const isMobile = window.innerWidth < 768;
+    const reduce =
+      isMobile ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let w = 0;
     let h = 0;
     let dpr = 1;
     let raf = 0;
 
-    const pulses = strandData.pulses.map((p) => ({ ...p }));
+    // On mobile we skip pulses (no radial gradients = no GPU-heavy compositing)
+    const pulses = reduce ? [] : strandData.pulses.map((p) => ({ ...p }));
 
     const COLORS = [
       // teal
@@ -79,27 +81,27 @@ export default function HeroFiberLines({
       Math.sin(p * Math.PI * 5 + t * s.speed * 2) * (s.amp * 0.2);
 
     const resize = () => {
-      // Use offsetWidth/Height so it works even without an explicit height on the parent
       w = wrap.offsetWidth || window.innerWidth;
       h = wrap.offsetHeight || window.innerHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // Cap DPR at 1 on mobile, 1.5 on desktop to reduce GPU load
+      dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    const draw = (time) => {
-      raf = requestAnimationFrame(draw);
-      if (!w || !h) return;
+    // Use larger step on mobile to reduce per-frame draw calls
+    const step = isMobile ? 14 : 6;
 
+    const drawFrame = (time) => {
+      if (!w || !h) return;
       ctx.clearRect(0, 0, w, h);
       const t = time * 0.001;
 
-      // Draw wave strands
       strandData.strands.forEach((s) => {
         const color = COLORS[s.colorIdx];
         ctx.beginPath();
-        for (let x = 0; x <= w; x += 6) {
+        for (let x = 0; x <= w; x += step) {
           const y = yAt(s, x / w, t);
           x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         }
@@ -108,9 +110,9 @@ export default function HeroFiberLines({
         ctx.stroke();
       });
 
-      // Draw travelling glows
+      // Glowing pulses — desktop only
       pulses.forEach((pl) => {
-        if (!reduce) pl.t += pl.v;
+        pl.t += pl.v;
         if (pl.t > 1.06) pl.t = -0.06;
         const p = Math.max(0, Math.min(1, pl.t));
         const x = p * w;
@@ -127,7 +129,6 @@ export default function HeroFiberLines({
         ctx.arc(x, y, 44, 0, Math.PI * 2);
         ctx.fill();
 
-        // bright centre dot
         ctx.fillStyle = "rgba(255,255,255,0.95)";
         ctx.beginPath();
         ctx.arc(x, y, 1.6, 0, Math.PI * 2);
@@ -135,9 +136,20 @@ export default function HeroFiberLines({
       });
     };
 
+    const draw = (time) => {
+      raf = requestAnimationFrame(draw);
+      drawFrame(time);
+    };
+
     window.addEventListener("resize", resize);
     resize();
-    raf = requestAnimationFrame(draw);
+
+    if (isMobile) {
+      // Single static draw on mobile — no RAF loop
+      drawFrame(0);
+    } else {
+      raf = requestAnimationFrame(draw);
+    }
 
     return () => {
       cancelAnimationFrame(raf);

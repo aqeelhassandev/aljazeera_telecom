@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@base-ui/react";
@@ -12,6 +12,15 @@ import { getTranslations } from "@/i18n";
 export default function Hero({ locale = "en" }) {
   const t = getTranslations(locale);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   return (
     <section className="relative  pt-32 pb-24 overflow-hidden mt-10 bg-transparent">
@@ -20,9 +29,9 @@ export default function Hero({ locale = "en" }) {
         {/* Left Content */}
         <motion.div
           className="lg:col-span-6 flex flex-col gap-6"
-          initial={{ opacity: 0, x: 350 }}
+          initial={{ opacity: 0, x: isMobile ? 30 : 350 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: isMobile ? 0.5 : 1, ease: "easeOut" }}
         >
           <div className="flex gap-3">
             <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-blue-100">
@@ -86,27 +95,30 @@ export default function Hero({ locale = "en" }) {
         {/* Right Media Grid */}
         <motion.div
           className="lg:col-span-6 relative flex flex-col gap-6"
-          initial={{ opacity: 0, x: -350, y: 350 }}
+          initial={{
+            opacity: 0,
+            x: isMobile ? -20 : -350,
+            y: isMobile ? 20 : 350,
+          }}
           animate={{ opacity: 1, x: 0, y: 0 }}
-          transition={{ duration: 1, delay: 0.15 }}
+          transition={{
+            duration: isMobile ? 0.5 : 1,
+            delay: isMobile ? 0 : 0.15,
+          }}
         >
           {/* Main Large Image Container */}
-          <div
-            className="relative rounded-[30px] h-87.5 md:h-127.5 lg:h-auto aspect-4/3 w-full bg-cover bg-center bg-no-repeat "
-            style={{
-              backgroundImage:
-                locale == "ar"
-                  ? "url('/hero/hero1ar.webp')"
-                  : "url('/hero/hero1en.webp')",
-            }}
-          >
-            {/* Hidden preloader — tells browser to fetch the BG image at high priority */}
-            <img
-              src={locale == "ar" ? "/hero/hero1ar.webp" : "/hero/hero1en.webp"}
+          <div className="relative rounded-[30px] h-87.5 md:h-127.5 lg:h-auto aspect-4/3 w-full ">
+            {/* Next.js Image for proper LCP & mobile sizing */}
+            <Image
+              src={
+                locale === "ar" ? "/hero/hero1ar.webp" : "/hero/hero1en.webp"
+              }
               alt="Hero Banner"
-              aria-hidden="true"
+              fill
+              priority
               fetchPriority="high"
-              className="absolute inset-0 w-0 h-0 opacity-0 pointer-events-none"
+              className="object-cover rounded-[30px]"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
             {/* Gear Icon Badge Overlay with Inset Curves (Fillets) */}
             <div className="absolute -top-1 -left-1 w-24 h-24 z-10  shadow-none">
