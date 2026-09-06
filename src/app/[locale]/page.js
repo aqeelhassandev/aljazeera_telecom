@@ -1,13 +1,14 @@
-import Hero from "@/components/Hero";
-import AboutSection from "@/components/AboutSection";
-import ServicesSection from "@/components/ServicesSection";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import PricingSection from "@/components/PricingSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
-import ProjectsSection from "@/components/ProjectsSection";
+import Hero from "@/components/Hero";
 
+const ServicesSection = dynamic(() => import("@/components/ServicesSection"));
+const AboutSection = dynamic(() => import("@/components/AboutSection"));
+const WhyChooseUs = dynamic(() => import("@/components/WhyChooseUs"));
+const ProjectsSection = dynamic(() => import("@/components/ProjectsSection"));
+const PricingSection = dynamic(() => import("@/components/PricingSection"));
+const ContactSection = dynamic(() => import("@/components/ContactSection"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -35,8 +36,8 @@ export default async function Home({ params }) {
         <PricingSection locale={locale} />
         <ContactSection locale={locale} />
         <Footer locale={locale} />
-        {/* <ServicesSection /> */}
       </main>
     </div>
   );
 }
+

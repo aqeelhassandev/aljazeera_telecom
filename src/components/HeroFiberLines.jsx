@@ -163,7 +163,7 @@ export default function HeroFiberLines({
     >
       <canvas
         ref={canvasRef}
-        style={{ display: "block", width: "100%", height: "100%" }}
+        style={{ display: "block", width: "100%", height: "100%", contain: "strict", willChange: "transform" }}
       />
     </div>
   );

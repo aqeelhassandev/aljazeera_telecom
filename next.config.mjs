@@ -2,6 +2,8 @@
 const nextConfig = {
   output: "export",
   trailingSlash: true,
+  compress: true,
+  poweredByHeader: false,
   images: {
     unoptimized: true, // required for static export — Next.js Image Optimization API is not available
   },
@@ -11,3 +13,4 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
